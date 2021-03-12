@@ -24,6 +24,7 @@
     // Do any additional setup after loading the view.
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
     _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+    [_videoShow setVideoShowView:self.showPlayer];
     
     _capture = [[YZPixelBufferCapture alloc] initWithPlayer:_mainPlayer];
     _capture.delegate = self;

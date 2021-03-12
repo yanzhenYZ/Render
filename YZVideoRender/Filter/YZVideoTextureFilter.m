@@ -10,7 +10,7 @@
 @implementation YZVideoTextureFilter
 
 - (void)displayVideo:(YZVideoData *)videoData {
-    NSLog(@"todotodo");
+    [self.player showBGRABuffer:videoData];
 }
 
 @end

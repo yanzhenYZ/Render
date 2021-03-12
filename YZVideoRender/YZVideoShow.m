@@ -16,6 +16,7 @@
 @interface YZVideoShow ()
 @property (nonatomic, strong) YZVideoOptions *options;
 @property (nonatomic, strong) YZVideoFilter *filter;
+@property (nonatomic, strong) YZVideoPlayer *player;
 @end
 
 @implementation YZVideoShow
@@ -45,11 +46,43 @@
     return self;
 }
 
-- (void)setVideoPlayer:(UIView *)player {
-    //todo
+- (void)setVideoShowView:(UIView *)view {
+    [YZVideoShow syncMainThread:^{
+        if (self.player.superview) {
+            [self.player removeFromSuperview];
+        }
+        
+        if (view) {
+            [view addSubview:self.player];
+            self.player.frame = view.bounds;
+            self.filter.player = self.player;
+        } else {
+            self.filter.player = nil;
+        }
+    }];
 }
 
 - (void)displayVideo:(YZVideoData *)videoData {
     [_filter displayVideo:videoData];
+}
+
+#pragma mark - lazy var
+- (YZVideoPlayer *)player {
+    if (!_player) {
+        _player = [[YZVideoPlayer alloc] init];
+        _player.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+    return _player;
+}
+
+#pragma mark - helper
++ (void)syncMainThread:(void(^)(void))block {
+    if (NSThread.isMainThread) {
+        if (block) {
+            block();
+        }
+    } else {
+        dispatch_async(dispatch_get_main_queue(), block);
+    }
 }
 @end

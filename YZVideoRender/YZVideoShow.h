@@ -23,11 +23,15 @@
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)new NS_UNAVAILABLE;
 
+/*
+  The designated initializer.
+  Use you set options, YZVideoRender.framework make corresponding object to show the video.
+*/
 - (instancetype)initWithOptions:(YZVideoOptions *)options;
 
-- (void)setVideoPlayer:(UIView *)player;
+- (void)setVideoShowView:(UIView *)view; //set video show view
 
-- (void)displayVideo:(YZVideoData *)videoData;
+- (void)displayVideo:(YZVideoData *)videoData; //show video
 @end
 
 

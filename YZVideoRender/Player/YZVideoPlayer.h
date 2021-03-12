@@ -7,7 +7,9 @@
 
 #import <MetalKit/MetalKit.h>
 
+@class YZVideoData;
 @interface YZVideoPlayer : MTKView
 
+- (void)showBGRABuffer:(YZVideoData *)videoData;
 @end
 

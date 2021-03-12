@@ -5,10 +5,12 @@
 //  Created by yanzhen on 2021/3/12.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "YZVideoPlayer.h"
+#import "YZVideoData.h"
 
-@class YZVideoData;
 @interface YZVideoFilter : NSObject
+@property (nonatomic, weak) YZVideoPlayer *player;
 
 - (void)displayVideo:(YZVideoData *)videoData;
 
