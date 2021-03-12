@@ -13,6 +13,9 @@
 		9B339E8825FB53E600BC8FCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B339E8725FB53E600BC8FCA /* Assets.xcassets */; };
 		9B339E8B25FB53E600BC8FCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B339E8925FB53E600BC8FCA /* LaunchScreen.storyboard */; };
 		9B339E8E25FB53E600BC8FCA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339E8D25FB53E600BC8FCA /* main.m */; };
+		9B339EA425FB589200BC8FCA /* PixelBuffer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B339EA225FB589200BC8FCA /* PixelBuffer.storyboard */; };
+		9B339EA925FB5A1B00BC8FCA /* YZPixelBufferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339EA825FB5A1B00BC8FCA /* YZPixelBufferViewController.m */; };
+		9B339EAE25FB5B7A00BC8FCA /* YZPixelBufferCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339EAD25FB5B7A00BC8FCA /* YZPixelBufferCapture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,11 @@
 		9B339E8A25FB53E600BC8FCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B339E8C25FB53E600BC8FCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B339E8D25FB53E600BC8FCA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9B339EA325FB589200BC8FCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PixelBuffer.storyboard; sourceTree = "<group>"; };
+		9B339EA725FB5A1B00BC8FCA /* YZPixelBufferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZPixelBufferViewController.h; sourceTree = "<group>"; };
+		9B339EA825FB5A1B00BC8FCA /* YZPixelBufferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZPixelBufferViewController.m; sourceTree = "<group>"; };
+		9B339EAC25FB5B7A00BC8FCA /* YZPixelBufferCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZPixelBufferCapture.h; sourceTree = "<group>"; };
+		9B339EAD25FB5B7A00BC8FCA /* YZPixelBufferCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZPixelBufferCapture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,15 +68,28 @@
 			children = (
 				9B339E7B25FB53E500BC8FCA /* AppDelegate.h */,
 				9B339E7C25FB53E500BC8FCA /* AppDelegate.m */,
+				9B339EA625FB58A600BC8FCA /* PixelBuffer */,
 				9B339E8125FB53E500BC8FCA /* ViewController.h */,
 				9B339E8225FB53E500BC8FCA /* ViewController.m */,
 				9B339E8425FB53E500BC8FCA /* Main.storyboard */,
+				9B339EA225FB589200BC8FCA /* PixelBuffer.storyboard */,
 				9B339E8725FB53E600BC8FCA /* Assets.xcassets */,
 				9B339E8925FB53E600BC8FCA /* LaunchScreen.storyboard */,
 				9B339E8C25FB53E600BC8FCA /* Info.plist */,
 				9B339E8D25FB53E600BC8FCA /* main.m */,
 			);
 			path = MetalRender;
+			sourceTree = "<group>";
+		};
+		9B339EA625FB58A600BC8FCA /* PixelBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				9B339EA725FB5A1B00BC8FCA /* YZPixelBufferViewController.h */,
+				9B339EA825FB5A1B00BC8FCA /* YZPixelBufferViewController.m */,
+				9B339EAC25FB5B7A00BC8FCA /* YZPixelBufferCapture.h */,
+				9B339EAD25FB5B7A00BC8FCA /* YZPixelBufferCapture.m */,
+			);
+			path = PixelBuffer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B339E8B25FB53E600BC8FCA /* LaunchScreen.storyboard in Resources */,
+				9B339EA425FB589200BC8FCA /* PixelBuffer.storyboard in Resources */,
 				9B339E8825FB53E600BC8FCA /* Assets.xcassets in Resources */,
 				9B339E8625FB53E500BC8FCA /* Main.storyboard in Resources */,
 			);
@@ -142,7 +164,9 @@
 			files = (
 				9B339E8325FB53E500BC8FCA /* ViewController.m in Sources */,
 				9B339E7D25FB53E500BC8FCA /* AppDelegate.m in Sources */,
+				9B339EA925FB5A1B00BC8FCA /* YZPixelBufferViewController.m in Sources */,
 				9B339E8E25FB53E600BC8FCA /* main.m in Sources */,
+				9B339EAE25FB5B7A00BC8FCA /* YZPixelBufferCapture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +187,14 @@
 				9B339E8A25FB53E600BC8FCA /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9B339EA225FB589200BC8FCA /* PixelBuffer.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B339EA325FB589200BC8FCA /* Base */,
+			);
+			name = PixelBuffer.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -286,6 +318,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20210312;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				INFOPLIST_FILE = MetalRender/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -293,6 +326,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MetalRender;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -305,6 +339,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20210312;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				INFOPLIST_FILE = MetalRender/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -312,6 +347,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MetalRender;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
