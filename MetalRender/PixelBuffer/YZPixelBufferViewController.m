@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
 @property (nonatomic, strong) YZPixelBufferCapture *capture;
+@property (nonatomic, strong) YZVideoShow *videoShow;
 @end
 
 @implementation YZPixelBufferViewController
@@ -21,16 +22,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    YZVideoOptions *options = [[YZVideoOptions alloc] init];
+    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+    
     _capture = [[YZPixelBufferCapture alloc] initWithPlayer:_mainPlayer];
     _capture.delegate = self;
     [_capture startRunning];
+    
 }
 
 #pragma mark - YZPixelBufferCaptureDelegate
 - (void)capture:(YZPixelBufferCapture *)capture pixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    
+    //NSLog(@"___%d", [YZVideoShow YZDeviceSupport]);
+    YZVideoData *data = [[YZVideoData alloc] init];
+    data.pixelBuffer = pixelBuffer;
+    data.rotation = [self getOutputRotation];
+    [_videoShow displayVideo:data];
 }
 
+- (YZVideoRotation)getOutputRotation {//test code
+    YZVideoRotation ratation = YZVideoRotation0;
+    UIInterfaceOrientation orientation = UIApplication.sharedApplication.statusBarOrientation;
+    switch (orientation) {
+        case UIInterfaceOrientationPortrait:
+            return YZVideoRotation90;
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            return YZVideoRotation270;
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            return YZVideoRotation180;
+            break;
+        default:
+            break;
+    }
+    return ratation;
+    
+}
 #pragma mark - UI
 - (IBAction)exitCapture:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
