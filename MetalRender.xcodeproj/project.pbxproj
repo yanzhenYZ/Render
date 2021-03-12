@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9B339E7D25FB53E500BC8FCA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339E7C25FB53E500BC8FCA /* AppDelegate.m */; };
-		9B339E8325FB53E500BC8FCA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339E8225FB53E500BC8FCA /* ViewController.m */; };
 		9B339E8625FB53E500BC8FCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B339E8425FB53E500BC8FCA /* Main.storyboard */; };
 		9B339E8825FB53E600BC8FCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B339E8725FB53E600BC8FCA /* Assets.xcassets */; };
 		9B339E8B25FB53E600BC8FCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B339E8925FB53E600BC8FCA /* LaunchScreen.storyboard */; };
@@ -16,14 +15,45 @@
 		9B339EA425FB589200BC8FCA /* PixelBuffer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B339EA225FB589200BC8FCA /* PixelBuffer.storyboard */; };
 		9B339EA925FB5A1B00BC8FCA /* YZPixelBufferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339EA825FB5A1B00BC8FCA /* YZPixelBufferViewController.m */; };
 		9B339EAE25FB5B7A00BC8FCA /* YZPixelBufferCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339EAD25FB5B7A00BC8FCA /* YZPixelBufferCapture.m */; };
+		9B339EBC25FB5DC800BC8FCA /* YZVideoRender.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339EBA25FB5DC800BC8FCA /* YZVideoRender.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B339EBF25FB5DC800BC8FCA /* YZVideoRender.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B339EB825FB5DC800BC8FCA /* YZVideoRender.framework */; };
+		9B339EC025FB5DC800BC8FCA /* YZVideoRender.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B339EB825FB5DC800BC8FCA /* YZVideoRender.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9B339EC825FB5DEC00BC8FCA /* YZVideoShow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339EC625FB5DEC00BC8FCA /* YZVideoShow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B339EC925FB5DEC00BC8FCA /* YZVideoShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339EC725FB5DEC00BC8FCA /* YZVideoShow.m */; };
+		9B339ECD25FB5E0500BC8FCA /* YZVideoOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339ECB25FB5E0500BC8FCA /* YZVideoOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B339ECE25FB5E0500BC8FCA /* YZVideoOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339ECC25FB5E0500BC8FCA /* YZVideoOptions.m */; };
+		9B339ED225FB5E7800BC8FCA /* YZVideoData.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339ED025FB5E7800BC8FCA /* YZVideoData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B339ED325FB5E7800BC8FCA /* YZVideoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339ED125FB5E7800BC8FCA /* YZVideoData.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9B339EBD25FB5DC800BC8FCA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B339E7025FB53E500BC8FCA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B339EB725FB5DC800BC8FCA;
+			remoteInfo = YZVideoRender;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9B339EC425FB5DC800BC8FCA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9B339EC025FB5DC800BC8FCA /* YZVideoRender.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9B339E7825FB53E500BC8FCA /* MetalRender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalRender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B339E7B25FB53E500BC8FCA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9B339E7C25FB53E500BC8FCA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9B339E8125FB53E500BC8FCA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9B339E8225FB53E500BC8FCA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9B339E8525FB53E500BC8FCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B339E8725FB53E600BC8FCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B339E8A25FB53E600BC8FCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -34,10 +64,27 @@
 		9B339EA825FB5A1B00BC8FCA /* YZPixelBufferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZPixelBufferViewController.m; sourceTree = "<group>"; };
 		9B339EAC25FB5B7A00BC8FCA /* YZPixelBufferCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZPixelBufferCapture.h; sourceTree = "<group>"; };
 		9B339EAD25FB5B7A00BC8FCA /* YZPixelBufferCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZPixelBufferCapture.m; sourceTree = "<group>"; };
+		9B339EB825FB5DC800BC8FCA /* YZVideoRender.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YZVideoRender.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B339EBA25FB5DC800BC8FCA /* YZVideoRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoRender.h; sourceTree = "<group>"; };
+		9B339EBB25FB5DC800BC8FCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B339EC625FB5DEC00BC8FCA /* YZVideoShow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoShow.h; sourceTree = "<group>"; };
+		9B339EC725FB5DEC00BC8FCA /* YZVideoShow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoShow.m; sourceTree = "<group>"; };
+		9B339ECB25FB5E0500BC8FCA /* YZVideoOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoOptions.h; sourceTree = "<group>"; };
+		9B339ECC25FB5E0500BC8FCA /* YZVideoOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoOptions.m; sourceTree = "<group>"; };
+		9B339ED025FB5E7800BC8FCA /* YZVideoData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoData.h; sourceTree = "<group>"; };
+		9B339ED125FB5E7800BC8FCA /* YZVideoData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9B339E7525FB53E500BC8FCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B339EBF25FB5DC800BC8FCA /* YZVideoRender.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B339EB525FB5DC800BC8FCA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				9B339E7A25FB53E500BC8FCA /* MetalRender */,
+				9B339EB925FB5DC800BC8FCA /* YZVideoRender */,
 				9B339E7925FB53E500BC8FCA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				9B339E7825FB53E500BC8FCA /* MetalRender.app */,
+				9B339EB825FB5DC800BC8FCA /* YZVideoRender.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,8 +118,6 @@
 				9B339E7B25FB53E500BC8FCA /* AppDelegate.h */,
 				9B339E7C25FB53E500BC8FCA /* AppDelegate.m */,
 				9B339EA625FB58A600BC8FCA /* PixelBuffer */,
-				9B339E8125FB53E500BC8FCA /* ViewController.h */,
-				9B339E8225FB53E500BC8FCA /* ViewController.m */,
 				9B339E8425FB53E500BC8FCA /* Main.storyboard */,
 				9B339EA225FB589200BC8FCA /* PixelBuffer.storyboard */,
 				9B339E8725FB53E600BC8FCA /* Assets.xcassets */,
@@ -92,7 +139,36 @@
 			path = PixelBuffer;
 			sourceTree = "<group>";
 		};
+		9B339EB925FB5DC800BC8FCA /* YZVideoRender */ = {
+			isa = PBXGroup;
+			children = (
+				9B339EBA25FB5DC800BC8FCA /* YZVideoRender.h */,
+				9B339EC625FB5DEC00BC8FCA /* YZVideoShow.h */,
+				9B339EC725FB5DEC00BC8FCA /* YZVideoShow.m */,
+				9B339ECB25FB5E0500BC8FCA /* YZVideoOptions.h */,
+				9B339ECC25FB5E0500BC8FCA /* YZVideoOptions.m */,
+				9B339ED025FB5E7800BC8FCA /* YZVideoData.h */,
+				9B339ED125FB5E7800BC8FCA /* YZVideoData.m */,
+				9B339EBB25FB5DC800BC8FCA /* Info.plist */,
+			);
+			path = YZVideoRender;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9B339EB325FB5DC800BC8FCA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B339EC825FB5DEC00BC8FCA /* YZVideoShow.h in Headers */,
+				9B339EBC25FB5DC800BC8FCA /* YZVideoRender.h in Headers */,
+				9B339ECD25FB5E0500BC8FCA /* YZVideoOptions.h in Headers */,
+				9B339ED225FB5E7800BC8FCA /* YZVideoData.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		9B339E7725FB53E500BC8FCA /* MetalRender */ = {
@@ -102,15 +178,35 @@
 				9B339E7425FB53E500BC8FCA /* Sources */,
 				9B339E7525FB53E500BC8FCA /* Frameworks */,
 				9B339E7625FB53E500BC8FCA /* Resources */,
+				9B339EC425FB5DC800BC8FCA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9B339EBE25FB5DC800BC8FCA /* PBXTargetDependency */,
 			);
 			name = MetalRender;
 			productName = MetalRender;
 			productReference = 9B339E7825FB53E500BC8FCA /* MetalRender.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9B339EB725FB5DC800BC8FCA /* YZVideoRender */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B339EC125FB5DC800BC8FCA /* Build configuration list for PBXNativeTarget "YZVideoRender" */;
+			buildPhases = (
+				9B339EB325FB5DC800BC8FCA /* Headers */,
+				9B339EB425FB5DC800BC8FCA /* Sources */,
+				9B339EB525FB5DC800BC8FCA /* Frameworks */,
+				9B339EB625FB5DC800BC8FCA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YZVideoRender;
+			productName = YZVideoRender;
+			productReference = 9B339EB825FB5DC800BC8FCA /* YZVideoRender.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -121,6 +217,9 @@
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					9B339E7725FB53E500BC8FCA = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					9B339EB725FB5DC800BC8FCA = {
 						CreatedOnToolsVersion = 12.3;
 					};
 				};
@@ -139,6 +238,7 @@
 			projectRoot = "";
 			targets = (
 				9B339E7725FB53E500BC8FCA /* MetalRender */,
+				9B339EB725FB5DC800BC8FCA /* YZVideoRender */,
 			);
 		};
 /* End PBXProject section */
@@ -155,6 +255,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9B339EB625FB5DC800BC8FCA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -162,7 +269,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B339E8325FB53E500BC8FCA /* ViewController.m in Sources */,
 				9B339E7D25FB53E500BC8FCA /* AppDelegate.m in Sources */,
 				9B339EA925FB5A1B00BC8FCA /* YZPixelBufferViewController.m in Sources */,
 				9B339E8E25FB53E600BC8FCA /* main.m in Sources */,
@@ -170,7 +276,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9B339EB425FB5DC800BC8FCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B339EC925FB5DEC00BC8FCA /* YZVideoShow.m in Sources */,
+				9B339ED325FB5E7800BC8FCA /* YZVideoData.m in Sources */,
+				9B339ECE25FB5E0500BC8FCA /* YZVideoOptions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9B339EBE25FB5DC800BC8FCA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B339EB725FB5DC800BC8FCA /* YZVideoRender */;
+			targetProxy = 9B339EBD25FB5DC800BC8FCA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9B339E8425FB53E500BC8FCA /* Main.storyboard */ = {
@@ -354,6 +478,62 @@
 			};
 			name = Release;
 		};
+		9B339EC225FB5DC800BC8FCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7XP66VHL84;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = YZVideoRender/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZVideoRender;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9B339EC325FB5DC800BC8FCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7XP66VHL84;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = YZVideoRender/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = yanzhen.YZVideoRender;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -371,6 +551,15 @@
 			buildConfigurations = (
 				9B339E9225FB53E600BC8FCA /* Debug */,
 				9B339E9325FB53E600BC8FCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B339EC125FB5DC800BC8FCA /* Build configuration list for PBXNativeTarget "YZVideoRender" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B339EC225FB5DC800BC8FCA /* Debug */,
+				9B339EC325FB5DC800BC8FCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
