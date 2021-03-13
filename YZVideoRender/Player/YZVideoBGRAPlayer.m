@@ -6,10 +6,13 @@
 //
 
 #import "YZVideoBGRAPlayer.h"
+#import "YZVFOrientation.h"
 
 @interface YZVideoBGRAPlayer ()
 @property (nonatomic, strong) id<MTLTexture> texture;
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
+
+@property (nonatomic, assign) int rotation;
 @end
 
 @implementation YZVideoBGRAPlayer
@@ -42,7 +45,13 @@
     _texture = CVMetalTextureGetTexture(textureRef);
     CFRelease(textureRef);
     textureRef = NULL;
-    self.drawableSize = CGSizeMake(width, height);
+    
+    _rotation = (int)videoData.rotation;
+    if (_rotation == 90 || _rotation == 270) {
+        self.drawableSize = CGSizeMake(height, width);
+    } else {
+        self.drawableSize = CGSizeMake(width, height);
+    }
     [self draw];
 }
 
@@ -63,21 +72,10 @@
     [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
     [encoder setRenderPipelineState:self.pipelineState];
 
-//    CGFloat w = 1;
-//    CGFloat h = 1;
-//    if (_fillMode == YZMTKViewFillModeScaleAspectFit) {//for background color
-//        CGRect bounds = self.currentBounds;
-//        CGRect insetRect = AVMakeRectWithAspectRatioInsideRect(self.drawableSize, bounds);
-//        w = insetRect.size.width / bounds.size.width;
-//        h = insetRect.size.height / bounds.size.height;
-//    }
-    
-//    simd_float8 vertices = {-w, h, w, h, -w, -h, w, -h};
-    
-    simd_float8 vertices = {-1, 1, 1, 1, -1, -1, 1, -1};
+    simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
     
-    simd_float8 textureCoordinates = {0, 0, 1, 0, 0, 1, 1, 1};
+    simd_float8 textureCoordinates = [YZVFOrientation getRotationTextureCoordinates:_rotation];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
     [encoder setFragmentTexture:_texture atIndex:0];
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
