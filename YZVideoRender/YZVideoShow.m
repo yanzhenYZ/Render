@@ -30,9 +30,9 @@
     self = [super init];
     if (self) {
         _options = options;
-        _device = [[YZVideoDevice alloc] init];
-        switch (_options.format) {
-            case YZVideoFormatTexture:
+        _device = [[YZVideoDevice alloc] initWithFormat:options.format];
+        switch (options.format) {
+            case YZVideoFormat32BGRA:
                 _filter = [[YZVideoTextureFilter alloc] init];
                 break;
             case YZVideoFormatI420:

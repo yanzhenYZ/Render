@@ -28,7 +28,6 @@
     self = [super initWithDevice:device];
     if (self) {
         CVMetalTextureCacheCreate(kCFAllocatorDefault, NULL, device.device, NULL, &_textureCache);
-        self.pipelineState = [device newRenderPipeline:@"YZInputVertex" fragment:@"YZFragment"];
     }
     return self;
 }
@@ -70,7 +69,7 @@
         return;
     }
     [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
-    [encoder setRenderPipelineState:self.pipelineState];
+    [encoder setRenderPipelineState:self.videoDevice.pipelineState];
 
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];

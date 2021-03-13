@@ -14,7 +14,6 @@
 - (instancetype)initWithDevice:(YZVideoDevice *)device;
 
 @property (nonatomic, strong, readonly) YZVideoDevice *videoDevice;
-@property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
 
 - (void)showBGRABuffer:(YZVideoData *)videoData;
 @end

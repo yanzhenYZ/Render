@@ -8,14 +8,14 @@
 #import <Foundation/Foundation.h>
 
 typedef enum : NSUInteger {
-    /*!
-     Support CVPixelBuffer type
-     1. kCVPixelFormatType_32BGRA
-     2. kCVPixelFormatType_420YpCbCr8Planar
-     3. kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
-     4. kCVPixelFormatType_420YpCbCr8BiPlanarFullRange
-     */
-    YZVideoFormatTexture,
+    /** kCVPixelFormatType_32BGRA  */
+    YZVideoFormat32BGRA,
+    /** kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange  */
+    YZVideoFormat420YpCbCr8BiPlanarVideoRange,
+    /** kCVPixelFormatType_420YpCbCr8BiPlanarFullRange  */
+    YZVideoFormat420YpCbCr8BiPlanarFullRange,
+    /** kCVPixelFormatType_420YpCbCr8Planar  */
+    YZVideoFormat420YpCbCr8Planar,
     /** I420 */
     YZVideoFormatI420,
     /** NV12 */

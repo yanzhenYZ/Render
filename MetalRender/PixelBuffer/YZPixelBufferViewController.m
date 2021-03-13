@@ -23,6 +23,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
+    if (VIDEOTYPE == 0) {
+        options.format = YZVideoFormat32BGRA;
+    } else if (VIDEOTYPE == 1) {
+        options.format = YZVideoFormat420YpCbCr8BiPlanarVideoRange;
+    } else if (VIDEOTYPE == 2) {
+        options.format = YZVideoFormat420YpCbCr8BiPlanarFullRange;
+    }
     _videoShow = [[YZVideoShow alloc] initWithOptions:options];
     [_videoShow setVideoShowView:self.showPlayer];
     

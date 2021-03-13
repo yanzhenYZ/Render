@@ -21,20 +21,25 @@
     return MPSSupportsMTLDevice(MTLCreateSystemDefaultDevice());
 }
 
-- (instancetype)init
+- (instancetype)initWithFormat:(YZVideoFormat)format
 {
     self = [super init];
     if (self) {
         _device = MTLCreateSystemDefaultDevice();
         
         _commandQueue = [_device newCommandQueue];
-        //BOOL support = MPSSupportsMTLDevice(_device);
-        
-        _defaultLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZVertexFragment] options:NULL error:nil];
-        assert(_defaultLibrary);
-        
-        _yuvRGBLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
-        assert(_yuvRGBLibrary);
+        switch (format) {
+            case YZVideoFormat32BGRA:
+                _defaultLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZVertexFragment] options:NULL error:nil];
+                assert(_defaultLibrary);
+                _pipelineState = [self createRenderPipeline:_defaultLibrary vertex:@"YZInputVertex" fragment:@"YZFragment"];
+                break;
+                
+            default:
+                break;
+        }
+//        _yuvRGBLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
+//        assert(_yuvRGBLibrary);
     }
     return self;
 }
