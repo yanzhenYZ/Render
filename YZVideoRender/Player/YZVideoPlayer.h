@@ -6,9 +6,15 @@
 //
 
 #import <MetalKit/MetalKit.h>
+#import "YZVideoDevice.h"
+#import "YZVideoData.h"
 
-@class YZVideoData;
 @interface YZVideoPlayer : MTKView
+
+- (instancetype)initWithDevice:(YZVideoDevice *)device;
+
+@property (nonatomic, strong, readonly) YZVideoDevice *videoDevice;
+@property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
 
 - (void)showBGRABuffer:(YZVideoData *)videoData;
 @end

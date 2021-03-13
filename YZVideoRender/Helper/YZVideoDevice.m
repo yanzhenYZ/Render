@@ -6,7 +6,14 @@
 //
 
 #import "YZVideoDevice.h"
-#import <MetalPerformanceShaders/MetalPerformanceShaders.h>
+#import "YZVertexFragment.h"
+#import "YZYUVToRGBConversion.h"
+
+@interface YZVideoDevice ()
+@property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
+@property (nonatomic, strong) id<MTLLibrary> yuvRGBLibrary;
+@property (nonatomic, strong) id<MTLLibrary> defaultLibrary;
+@end
 
 @implementation YZVideoDevice
 
@@ -14,4 +21,61 @@
     return MPSSupportsMTLDevice(MTLCreateSystemDefaultDevice());
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _device = MTLCreateSystemDefaultDevice();
+        
+        _commandQueue = [_device newCommandQueue];
+        //BOOL support = MPSSupportsMTLDevice(_device);
+        
+        _defaultLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZVertexFragment] options:NULL error:nil];
+        assert(_defaultLibrary);
+        
+        _yuvRGBLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
+        assert(_yuvRGBLibrary);
+    }
+    return self;
+}
+
+#pragma mark - metal
+- (id<MTLCommandBuffer>)commandBuffer {
+    return [_commandQueue commandBuffer];
+}
+
++ (MTLRenderPassDescriptor *)newRenderPassDescriptor:(id<MTLTexture>)texture {
+    MTLRenderPassDescriptor *desc = [[MTLRenderPassDescriptor alloc] init];
+    desc.colorAttachments[0].texture = texture;
+    desc.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 1);
+    desc.colorAttachments[0].storeAction = MTLStoreActionStore;
+    desc.colorAttachments[0].loadAction = MTLLoadActionClear;
+    return desc;
+}
+
+- (id<MTLRenderPipelineState>)newRenderPipeline:(NSString *)vertex fragment:(NSString *)fragment {
+    if ([vertex isEqualToString:@"YZInputVertex"]) {
+        return [self createRenderPipeline:_defaultLibrary vertex:vertex fragment:fragment];
+    } else if ([vertex isEqualToString:@"YZYUVToRGBVertex"]) {
+        return [self createRenderPipeline:_yuvRGBLibrary vertex:vertex fragment:fragment];
+    }
+    return nil;
+}
+
+- (id<MTLRenderPipelineState>)createRenderPipeline:(id<MTLLibrary>)library vertex:(NSString *)vertex fragment:(NSString *)fragment {
+    id<MTLFunction> vertexFunction = [library newFunctionWithName:vertex];
+    id<MTLFunction> fragmentFunction = [library newFunctionWithName:fragment];
+    MTLRenderPipelineDescriptor *desc = [[MTLRenderPipelineDescriptor alloc] init];
+    desc.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;//bgra
+    desc.rasterSampleCount = 1;
+    desc.vertexFunction = vertexFunction;
+    desc.fragmentFunction = fragmentFunction;
+    
+    NSError *error = nil;
+    id<MTLRenderPipelineState> pipeline = [_device newRenderPipelineStateWithDescriptor:desc error:&error];
+    if (error) {
+        NSLog(@"YZMetalDevice new renderPipelineState failed: %@", error);
+    }
+    return pipeline;
+}
 @end

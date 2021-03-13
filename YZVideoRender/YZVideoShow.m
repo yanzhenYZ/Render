@@ -11,9 +11,10 @@
 #import "YZVideoNV12Filter.h"
 #import "YZVideoI420Filter.h"
 #import "YZVideoTextureFilter.h"
-#import "YZVideoPlayer.h"
+#import "YZVideoBGRAPlayer.h"
 
 @interface YZVideoShow ()
+@property (nonatomic, strong) YZVideoDevice *device;
 @property (nonatomic, strong) YZVideoOptions *options;
 @property (nonatomic, strong) YZVideoFilter *filter;
 @property (nonatomic, strong) YZVideoPlayer *player;
@@ -29,6 +30,7 @@
     self = [super init];
     if (self) {
         _options = options;
+        _device = [[YZVideoDevice alloc] init];
         switch (_options.format) {
             case YZVideoFormatTexture:
                 _filter = [[YZVideoTextureFilter alloc] init];
@@ -69,7 +71,7 @@
 #pragma mark - lazy var
 - (YZVideoPlayer *)player {
     if (!_player) {
-        _player = [[YZVideoPlayer alloc] init];
+        _player = [[YZVideoBGRAPlayer alloc] initWithDevice:_device];
         _player.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _player;
