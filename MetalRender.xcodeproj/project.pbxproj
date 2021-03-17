@@ -51,6 +51,9 @@
 		9B339FF82602259800BC8FCA /* YZFullRangePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339FF62602259800BC8FCA /* YZFullRangePlayer.m */; };
 		9B33A002260225CA00BC8FCA /* YZFullRangeFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B33A000260225CA00BC8FCA /* YZFullRangeFilter.h */; };
 		9B33A003260225CA00BC8FCA /* YZFullRangeFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A001260225CA00BC8FCA /* YZFullRangeFilter.m */; };
+		9B33A00F26022B1400BC8FCA /* Data.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B33A00D26022B1400BC8FCA /* Data.storyboard */; };
+		9B33A01326022B2F00BC8FCA /* YZDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A01226022B2F00BC8FCA /* YZDataViewController.m */; };
+		9B33A01726022CD300BC8FCA /* YZDataCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A01626022CD300BC8FCA /* YZDataCapture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +130,11 @@
 		9B339FF62602259800BC8FCA /* YZFullRangePlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZFullRangePlayer.m; sourceTree = "<group>"; };
 		9B33A000260225CA00BC8FCA /* YZFullRangeFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZFullRangeFilter.h; sourceTree = "<group>"; };
 		9B33A001260225CA00BC8FCA /* YZFullRangeFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZFullRangeFilter.m; sourceTree = "<group>"; };
+		9B33A00E26022B1400BC8FCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Data.storyboard; sourceTree = "<group>"; };
+		9B33A01126022B2F00BC8FCA /* YZDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZDataViewController.h; sourceTree = "<group>"; };
+		9B33A01226022B2F00BC8FCA /* YZDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZDataViewController.m; sourceTree = "<group>"; };
+		9B33A01526022CD300BC8FCA /* YZDataCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZDataCapture.h; sourceTree = "<group>"; };
+		9B33A01626022CD300BC8FCA /* YZDataCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZDataCapture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +179,10 @@
 			children = (
 				9B339E7B25FB53E500BC8FCA /* AppDelegate.h */,
 				9B339E7C25FB53E500BC8FCA /* AppDelegate.m */,
+				9B33A00626022AB600BC8FCA /* Data */,
 				9B339EA625FB58A600BC8FCA /* PixelBuffer */,
 				9B339E8425FB53E500BC8FCA /* Main.storyboard */,
+				9B33A00D26022B1400BC8FCA /* Data.storyboard */,
 				9B339EA225FB589200BC8FCA /* PixelBuffer.storyboard */,
 				9B339E8725FB53E600BC8FCA /* Assets.xcassets */,
 				9B339E8925FB53E600BC8FCA /* LaunchScreen.storyboard */,
@@ -265,6 +275,17 @@
 				9B339F0625FC590900BC8FCA /* YZYUVToRGBConversion.h */,
 			);
 			path = Metal;
+			sourceTree = "<group>";
+		};
+		9B33A00626022AB600BC8FCA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9B33A01126022B2F00BC8FCA /* YZDataViewController.h */,
+				9B33A01226022B2F00BC8FCA /* YZDataViewController.m */,
+				9B33A01526022CD300BC8FCA /* YZDataCapture.h */,
+				9B33A01626022CD300BC8FCA /* YZDataCapture.m */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +401,7 @@
 				9B339E8B25FB53E600BC8FCA /* LaunchScreen.storyboard in Resources */,
 				9B339EA425FB589200BC8FCA /* PixelBuffer.storyboard in Resources */,
 				9B339E8825FB53E600BC8FCA /* Assets.xcassets in Resources */,
+				9B33A00F26022B1400BC8FCA /* Data.storyboard in Resources */,
 				9B339E8625FB53E500BC8FCA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,6 +424,8 @@
 				9B339EA925FB5A1B00BC8FCA /* YZPixelBufferViewController.m in Sources */,
 				9B339E8E25FB53E600BC8FCA /* main.m in Sources */,
 				9B339EAE25FB5B7A00BC8FCA /* YZPixelBufferCapture.m in Sources */,
+				9B33A01326022B2F00BC8FCA /* YZDataViewController.m in Sources */,
+				9B33A01726022CD300BC8FCA /* YZDataCapture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +484,14 @@
 				9B339EA325FB589200BC8FCA /* Base */,
 			);
 			name = PixelBuffer.storyboard;
+			sourceTree = "<group>";
+		};
+		9B33A00D26022B1400BC8FCA /* Data.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B33A00E26022B1400BC8FCA /* Base */,
+			);
+			name = Data.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

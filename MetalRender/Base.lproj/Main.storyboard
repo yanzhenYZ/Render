@@ -67,6 +67,9 @@
                                                 <constraint firstItem="igN-tI-Xba" firstAttribute="leading" secondItem="qKv-4e-IAi" secondAttribute="leading" constant="15" id="zNz-fs-9eq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Cvo-4D-dTA" kind="show" id="eP4-dU-eDk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -106,7 +109,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ads-Rf-OTO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2084" y="170"/>
+            <point key="canvasLocation" x="1917" y="-28"/>
+        </scene>
+        <!--Data-->
+        <scene sceneID="ToW-8J-060">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Data" id="Cvo-4D-dTA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="NIG-gh-QmI"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cdh-el-ok8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2397" y="197"/>
         </scene>
     </scenes>
     <resources>
