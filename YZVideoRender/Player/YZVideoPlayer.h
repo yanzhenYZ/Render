@@ -15,6 +15,6 @@
 
 @property (nonatomic, strong, readonly) YZVideoDevice *videoDevice;
 
-- (void)showBGRABuffer:(YZVideoData *)videoData;
+- (void)showBuffer:(YZVideoData *)videoData;
 @end
 

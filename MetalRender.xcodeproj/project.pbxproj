@@ -43,6 +43,10 @@
 		9B339F1125FC5AAB00BC8FCA /* YZVideoBGRAPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339F0F25FC5AAB00BC8FCA /* YZVideoBGRAPlayer.m */; };
 		9B339F1625FC662100BC8FCA /* YZVFOrientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339F1425FC662100BC8FCA /* YZVFOrientation.h */; };
 		9B339F1725FC662100BC8FCA /* YZVFOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339F1525FC662100BC8FCA /* YZVFOrientation.m */; };
+		9B339FE62602132600BC8FCA /* YZVideoRangeFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339FE42602132600BC8FCA /* YZVideoRangeFilter.h */; };
+		9B339FE72602132600BC8FCA /* YZVideoRangeFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339FE52602132600BC8FCA /* YZVideoRangeFilter.m */; };
+		9B339FEC260213AF00BC8FCA /* YZVideoRangePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339FEA260213AF00BC8FCA /* YZVideoRangePlayer.h */; };
+		9B339FED260213AF00BC8FCA /* YZVideoRangePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339FEB260213AF00BC8FCA /* YZVideoRangePlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +115,10 @@
 		9B339F0F25FC5AAB00BC8FCA /* YZVideoBGRAPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoBGRAPlayer.m; sourceTree = "<group>"; };
 		9B339F1425FC662100BC8FCA /* YZVFOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVFOrientation.h; sourceTree = "<group>"; };
 		9B339F1525FC662100BC8FCA /* YZVFOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVFOrientation.m; sourceTree = "<group>"; };
+		9B339FE42602132600BC8FCA /* YZVideoRangeFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoRangeFilter.h; sourceTree = "<group>"; };
+		9B339FE52602132600BC8FCA /* YZVideoRangeFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoRangeFilter.m; sourceTree = "<group>"; };
+		9B339FEA260213AF00BC8FCA /* YZVideoRangePlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoRangePlayer.h; sourceTree = "<group>"; };
+		9B339FEB260213AF00BC8FCA /* YZVideoRangePlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoRangePlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +220,8 @@
 			children = (
 				9B339EE625FB6B5000BC8FCA /* YZVideoFilter.h */,
 				9B339EE725FB6B5000BC8FCA /* YZVideoFilter.m */,
+				9B339FE42602132600BC8FCA /* YZVideoRangeFilter.h */,
+				9B339FE52602132600BC8FCA /* YZVideoRangeFilter.m */,
 				9B339EEC25FB6B8200BC8FCA /* YZVideoTextureFilter.h */,
 				9B339EED25FB6B8200BC8FCA /* YZVideoTextureFilter.m */,
 				9B339EF125FB6BA900BC8FCA /* YZVideoI420Filter.h */,
@@ -229,6 +239,8 @@
 				9B339EFD25FB6EF000BC8FCA /* YZVideoPlayer.m */,
 				9B339F0E25FC5AAB00BC8FCA /* YZVideoBGRAPlayer.h */,
 				9B339F0F25FC5AAB00BC8FCA /* YZVideoBGRAPlayer.m */,
+				9B339FEA260213AF00BC8FCA /* YZVideoRangePlayer.h */,
+				9B339FEB260213AF00BC8FCA /* YZVideoRangePlayer.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -255,8 +267,10 @@
 				9B339F1625FC662100BC8FCA /* YZVFOrientation.h in Headers */,
 				9B339F1025FC5AAB00BC8FCA /* YZVideoBGRAPlayer.h in Headers */,
 				9B339EF325FB6BA900BC8FCA /* YZVideoI420Filter.h in Headers */,
+				9B339FEC260213AF00BC8FCA /* YZVideoRangePlayer.h in Headers */,
 				9B339F0825FC590900BC8FCA /* YZShaderTypes.h in Headers */,
 				9B339EC825FB5DEC00BC8FCA /* YZVideoShow.h in Headers */,
+				9B339FE62602132600BC8FCA /* YZVideoRangeFilter.h in Headers */,
 				9B339EE825FB6B5000BC8FCA /* YZVideoFilter.h in Headers */,
 				9B339EF825FB6BC100BC8FCA /* YZVideoNV12Filter.h in Headers */,
 				9B339EEE25FB6B8200BC8FCA /* YZVideoTextureFilter.h in Headers */,
@@ -321,6 +335,7 @@
 					};
 					9B339EB725FB5DC800BC8FCA = {
 						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1230;
 					};
 				};
 			};
@@ -384,6 +399,7 @@
 				9B339EC925FB5DEC00BC8FCA /* YZVideoShow.m in Sources */,
 				9B339EEF25FB6B8200BC8FCA /* YZVideoTextureFilter.m in Sources */,
 				9B339EFF25FB6EF000BC8FCA /* YZVideoPlayer.m in Sources */,
+				9B339FE72602132600BC8FCA /* YZVideoRangeFilter.m in Sources */,
 				9B339EF425FB6BA900BC8FCA /* YZVideoI420Filter.m in Sources */,
 				9B339F1725FC662100BC8FCA /* YZVFOrientation.m in Sources */,
 				9B339F1125FC5AAB00BC8FCA /* YZVideoBGRAPlayer.m in Sources */,
@@ -391,6 +407,7 @@
 				9B339EF925FB6BC100BC8FCA /* YZVideoNV12Filter.m in Sources */,
 				9B339ED325FB5E7800BC8FCA /* YZVideoData.m in Sources */,
 				9B339ECE25FB5E0500BC8FCA /* YZVideoOptions.m in Sources */,
+				9B339FED260213AF00BC8FCA /* YZVideoRangePlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +567,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210312;
+				CURRENT_PROJECT_VERSION = 20210317;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				INFOPLIST_FILE = MetalRender/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -558,7 +575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MetalRender;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -571,7 +588,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210312;
+				CURRENT_PROJECT_VERSION = 20210317;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				INFOPLIST_FILE = MetalRender/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -579,7 +596,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MetalRender;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -589,8 +606,9 @@
 		9B339EC225FB5DC800BC8FCA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20210317;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -608,6 +626,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -617,8 +637,9 @@
 		9B339EC325FB5DC800BC8FCA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20210317;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7XP66VHL84;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -636,6 +657,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

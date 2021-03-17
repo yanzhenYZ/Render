@@ -10,7 +10,7 @@
 #import "YZVideoData.h"
 
 @interface YZVideoFilter : NSObject
-@property (nonatomic, weak) YZVideoPlayer *player;
+@property (nonatomic, strong) YZVideoPlayer *player;
 
 - (void)displayVideo:(YZVideoData *)videoData;
 

@@ -26,9 +26,9 @@
     return self;
 }
 
-- (void)showBGRABuffer:(YZVideoData *)videoData {
-    int width = (int)CVPixelBufferGetWidth(videoData.pixelBuffer);
-    int height = (int)CVPixelBufferGetHeight(videoData.pixelBuffer);
+- (void)showBuffer:(YZVideoData *)videoData {
+    //int width = (int)CVPixelBufferGetWidth(videoData.pixelBuffer);
+    //int height = (int)CVPixelBufferGetHeight(videoData.pixelBuffer);
     //NSLog(@"___%d:%d:%d", width, height, videoData.rotation);
 }
 

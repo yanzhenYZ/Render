@@ -10,7 +10,7 @@
 @implementation YZVideoTextureFilter
 
 - (void)displayVideo:(YZVideoData *)videoData {
-    [self.player showBGRABuffer:videoData];
+    [self.player showBuffer:videoData];
 }
 
 @end
