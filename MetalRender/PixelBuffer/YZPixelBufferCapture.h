@@ -9,7 +9,7 @@
 #import <CoreVideo/CoreVideo.h>
 
 //todo 2
-static const int VIDEOTYPE = 1;
+static const int VIDEOTYPE = 2;
 
 @protocol YZPixelBufferCaptureDelegate;
 @interface YZPixelBufferCapture : NSObject

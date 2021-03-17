@@ -12,8 +12,10 @@
 #import "YZVideoI420Filter.h"
 #import "YZVideoTextureFilter.h"
 #import "YZVideoRangeFilter.h"
+#import "YZFullRangeFilter.h"
 #import "YZVideoBGRAPlayer.h"
 #import "YZVideoRangePlayer.h"
+#import "YZFullRangePlayer.h"
 
 @interface YZVideoShow ()
 @property (nonatomic, strong) YZVideoDevice *device;
@@ -35,11 +37,13 @@
         _device = [[YZVideoDevice alloc] initWithFormat:options.format];
         switch (options.format) {
             case YZVideoFormat32BGRA:
-            case YZVideoFormat420YpCbCr8BiPlanarFullRange:
                 _filter = [[YZVideoTextureFilter alloc] init];
                 break;
             case YZVideoFormat420YpCbCr8BiPlanarVideoRange:
                 _filter = [[YZVideoRangeFilter alloc] init];
+                break;
+            case YZVideoFormat420YpCbCr8BiPlanarFullRange:
+                _filter = [[YZFullRangeFilter alloc] init];
                 break;
             case YZVideoFormatI420:
                 _filter = [[YZVideoI420Filter alloc] init];
@@ -79,11 +83,13 @@
     if (!_player) {
         switch (_options.format) {
             case YZVideoFormat32BGRA:
-            case YZVideoFormat420YpCbCr8BiPlanarFullRange:
                 _player = [[YZVideoBGRAPlayer alloc] initWithDevice:_device];
                 break;
             case YZVideoFormat420YpCbCr8BiPlanarVideoRange:
                 _player = [[YZVideoRangePlayer alloc] initWithDevice:_device];
+                break;
+            case YZVideoFormat420YpCbCr8BiPlanarFullRange:
+                _player = [[YZFullRangePlayer alloc] initWithDevice:_device];
                 break;
             case YZVideoFormatI420:
                 _player = [[YZVideoBGRAPlayer alloc] initWithDevice:_device];

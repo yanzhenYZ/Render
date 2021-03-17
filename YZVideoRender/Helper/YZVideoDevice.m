@@ -39,6 +39,11 @@
                 assert(_defaultLibrary);
                 _pipelineState = [self createRenderPipeline:_defaultLibrary vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionVideoRangeFragment"];
                 break;
+            case YZVideoFormat420YpCbCr8BiPlanarFullRange:
+                _defaultLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
+                assert(_defaultLibrary);
+                _pipelineState = [self createRenderPipeline:_defaultLibrary vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionFullRangeFragment"];
+                break;
             default:
                 break;
         }
