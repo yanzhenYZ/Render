@@ -16,7 +16,10 @@
 @property (nonatomic, assign) int rotation;
 @end
 
-@implementation YZFullRangePlayer
+@implementation YZFullRangePlayer {
+    const float *_colorConversion; //4x3
+}
+
 - (void)dealloc {
     if (_textureCache) {
         CVMetalTextureCacheFlush(_textureCache, 0);
@@ -34,6 +37,17 @@
 
 - (void)showBuffer:(YZVideoData *)videoData {
     CVPixelBufferRef pixelBuffer = videoData.pixelBuffer;
+    CFTypeRef attachment = CVBufferGetAttachment(pixelBuffer, kCVImageBufferYCbCrMatrixKey, NULL);
+    if (attachment != NULL) {
+        if(CFStringCompare(attachment, kCVImageBufferYCbCrMatrix_ITU_R_601_4, 0) == kCFCompareEqualTo) {
+            _colorConversion = kYZColorConversion601FullRange;
+        } else {
+            _colorConversion = kYZColorConversion709;
+        }
+    } else {
+        _colorConversion = kYZColorConversion601FullRange;
+    }
+    
     CVMetalTextureRef textureRef = NULL;
     //y
     size_t width = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0);
