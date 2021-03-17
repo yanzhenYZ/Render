@@ -10,7 +10,7 @@
 @implementation YZVideoI420Filter
 
 - (void)displayVideo:(YZVideoData *)videoData {
-    
+    [self.player showBuffer:videoData];
 }
 
 @end

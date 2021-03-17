@@ -8,6 +8,7 @@
 #import "YZVideoDevice.h"
 #import "YZVertexFragment.h"
 #import "YZYUVToRGBConversion.h"
+#import "YZI420MetalString.h"
 
 @interface YZVideoDevice ()
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
@@ -43,6 +44,11 @@
                 _defaultLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
                 assert(_defaultLibrary);
                 _pipelineState = [self createRenderPipeline:_defaultLibrary vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionFullRangeFragment"];
+                break;
+            case YZVideoFormatI420:
+                _defaultLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZI420MetalString] options:NULL error:nil];
+                assert(_defaultLibrary);
+                _pipelineState = [self createRenderPipeline:_defaultLibrary vertex:@"YZYUVDataToRGBVertex" fragment:@"YZYUVDataConversionFullRangeFragment"];
                 break;
             default:
                 break;

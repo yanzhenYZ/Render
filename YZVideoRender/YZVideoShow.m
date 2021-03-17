@@ -16,6 +16,7 @@
 #import "YZVideoBGRAPlayer.h"
 #import "YZVideoRangePlayer.h"
 #import "YZFullRangePlayer.h"
+#import "YZI420Player.h"
 
 @interface YZVideoShow ()
 @property (nonatomic, strong) YZVideoDevice *device;
@@ -92,7 +93,7 @@
                 _player = [[YZFullRangePlayer alloc] initWithDevice:_device];
                 break;
             case YZVideoFormatI420:
-                _player = [[YZVideoBGRAPlayer alloc] initWithDevice:_device];
+                _player = [[YZI420Player alloc] initWithDevice:_device];
                 break;
             case YZVideoFormatNV12:
                 _player = [[YZVideoBGRAPlayer alloc] initWithDevice:_device];

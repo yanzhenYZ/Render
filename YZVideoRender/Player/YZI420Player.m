@@ -1,21 +1,21 @@
 //
-//  YZVideoBGRAPlayer.m
+//  YZI420Player.m
 //  YZVideoRender
 //
-//  Created by yanzhen on 2021/3/13.
+//  Created by yanzhen on 2021/3/17.
 //
 
-#import "YZVideoBGRAPlayer.h"
+#import "YZI420Player.h"
 #import "YZVFOrientation.h"
 
-@interface YZVideoBGRAPlayer ()
+@interface YZI420Player ()
 @property (nonatomic, strong) id<MTLTexture> texture;
 @property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 
 @property (nonatomic, assign) int rotation;
 @end
 
-@implementation YZVideoBGRAPlayer
+@implementation YZI420Player
 
 - (void)dealloc {
     if (_textureCache) {
@@ -33,25 +33,7 @@
 }
 
 - (void)showBuffer:(YZVideoData *)videoData {
-    CVPixelBufferRef pixelBuffer = videoData.pixelBuffer;
-    size_t width = CVPixelBufferGetWidth(pixelBuffer);
-    size_t height = CVPixelBufferGetHeight(pixelBuffer);
-    CVMetalTextureRef textureRef = NULL;
-    CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, nil, MTLPixelFormatBGRA8Unorm, width, height, 0, &textureRef);
-    if (kCVReturnSuccess != status) {
-        return;
-    }
-    _texture = CVMetalTextureGetTexture(textureRef);
-    CFRelease(textureRef);
-    textureRef = NULL;
-    
-    _rotation = (int)videoData.rotation;
-    if (_rotation == 90 || _rotation == 270) {
-        self.drawableSize = CGSizeMake(height, width);
-    } else {
-        self.drawableSize = CGSizeMake(width, height);
-    }
-    [self draw];
+    NSLog(@"todo");
 }
 
 #pragma mark - MTKViewDelegate

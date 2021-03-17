@@ -36,7 +36,6 @@
 		9B339EF925FB6BC100BC8FCA /* YZVideoNV12Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339EF725FB6BC100BC8FCA /* YZVideoNV12Filter.m */; };
 		9B339EFE25FB6EF000BC8FCA /* YZVideoPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339EFC25FB6EF000BC8FCA /* YZVideoPlayer.h */; };
 		9B339EFF25FB6EF000BC8FCA /* YZVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B339EFD25FB6EF000BC8FCA /* YZVideoPlayer.m */; };
-		9B339F0825FC590900BC8FCA /* YZShaderTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339F0425FC590900BC8FCA /* YZShaderTypes.h */; };
 		9B339F0A25FC590900BC8FCA /* YZYUVToRGBConversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339F0625FC590900BC8FCA /* YZYUVToRGBConversion.h */; };
 		9B339F0B25FC590900BC8FCA /* YZVertexFragment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339F0725FC590900BC8FCA /* YZVertexFragment.h */; };
 		9B339F1025FC5AAB00BC8FCA /* YZVideoBGRAPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B339F0E25FC5AAB00BC8FCA /* YZVideoBGRAPlayer.h */; };
@@ -54,6 +53,9 @@
 		9B33A00F26022B1400BC8FCA /* Data.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B33A00D26022B1400BC8FCA /* Data.storyboard */; };
 		9B33A01326022B2F00BC8FCA /* YZDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A01226022B2F00BC8FCA /* YZDataViewController.m */; };
 		9B33A01726022CD300BC8FCA /* YZDataCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A01626022CD300BC8FCA /* YZDataCapture.m */; };
+		9B33A01B2602314C00BC8FCA /* YZI420Player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B33A0192602314C00BC8FCA /* YZI420Player.h */; };
+		9B33A01C2602314C00BC8FCA /* YZI420Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A01A2602314C00BC8FCA /* YZI420Player.m */; };
+		9B33A0212602325200BC8FCA /* YZI420MetalString.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B33A01F2602325200BC8FCA /* YZI420MetalString.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +117,6 @@
 		9B339EF725FB6BC100BC8FCA /* YZVideoNV12Filter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoNV12Filter.m; sourceTree = "<group>"; };
 		9B339EFC25FB6EF000BC8FCA /* YZVideoPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoPlayer.h; sourceTree = "<group>"; };
 		9B339EFD25FB6EF000BC8FCA /* YZVideoPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZVideoPlayer.m; sourceTree = "<group>"; };
-		9B339F0425FC590900BC8FCA /* YZShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZShaderTypes.h; sourceTree = "<group>"; };
 		9B339F0625FC590900BC8FCA /* YZYUVToRGBConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZYUVToRGBConversion.h; sourceTree = "<group>"; };
 		9B339F0725FC590900BC8FCA /* YZVertexFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZVertexFragment.h; sourceTree = "<group>"; };
 		9B339F0E25FC5AAB00BC8FCA /* YZVideoBGRAPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZVideoBGRAPlayer.h; sourceTree = "<group>"; };
@@ -135,6 +136,9 @@
 		9B33A01226022B2F00BC8FCA /* YZDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZDataViewController.m; sourceTree = "<group>"; };
 		9B33A01526022CD300BC8FCA /* YZDataCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZDataCapture.h; sourceTree = "<group>"; };
 		9B33A01626022CD300BC8FCA /* YZDataCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZDataCapture.m; sourceTree = "<group>"; };
+		9B33A0192602314C00BC8FCA /* YZI420Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZI420Player.h; sourceTree = "<group>"; };
+		9B33A01A2602314C00BC8FCA /* YZI420Player.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZI420Player.m; sourceTree = "<group>"; };
+		9B33A01F2602325200BC8FCA /* YZI420MetalString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZI420MetalString.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +267,8 @@
 				9B339FEB260213AF00BC8FCA /* YZVideoRangePlayer.m */,
 				9B339FF52602259800BC8FCA /* YZFullRangePlayer.h */,
 				9B339FF62602259800BC8FCA /* YZFullRangePlayer.m */,
+				9B33A0192602314C00BC8FCA /* YZI420Player.h */,
+				9B33A01A2602314C00BC8FCA /* YZI420Player.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -270,9 +276,9 @@
 		9B339F0225FC56E300BC8FCA /* Metal */ = {
 			isa = PBXGroup;
 			children = (
-				9B339F0425FC590900BC8FCA /* YZShaderTypes.h */,
 				9B339F0725FC590900BC8FCA /* YZVertexFragment.h */,
 				9B339F0625FC590900BC8FCA /* YZYUVToRGBConversion.h */,
+				9B33A01F2602325200BC8FCA /* YZI420MetalString.h */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -296,12 +302,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B339EFE25FB6EF000BC8FCA /* YZVideoPlayer.h in Headers */,
+				9B33A0212602325200BC8FCA /* YZI420MetalString.h in Headers */,
 				9B339F0A25FC590900BC8FCA /* YZYUVToRGBConversion.h in Headers */,
 				9B339F1625FC662100BC8FCA /* YZVFOrientation.h in Headers */,
 				9B339F1025FC5AAB00BC8FCA /* YZVideoBGRAPlayer.h in Headers */,
 				9B339EF325FB6BA900BC8FCA /* YZVideoI420Filter.h in Headers */,
 				9B339FEC260213AF00BC8FCA /* YZVideoRangePlayer.h in Headers */,
-				9B339F0825FC590900BC8FCA /* YZShaderTypes.h in Headers */,
 				9B339FF72602259800BC8FCA /* YZFullRangePlayer.h in Headers */,
 				9B339EC825FB5DEC00BC8FCA /* YZVideoShow.h in Headers */,
 				9B33A002260225CA00BC8FCA /* YZFullRangeFilter.h in Headers */,
@@ -310,6 +316,7 @@
 				9B339EF825FB6BC100BC8FCA /* YZVideoNV12Filter.h in Headers */,
 				9B339EEE25FB6B8200BC8FCA /* YZVideoTextureFilter.h in Headers */,
 				9B339EBC25FB5DC800BC8FCA /* YZVideoRender.h in Headers */,
+				9B33A01B2602314C00BC8FCA /* YZI420Player.h in Headers */,
 				9B339ECD25FB5E0500BC8FCA /* YZVideoOptions.h in Headers */,
 				9B339F0B25FC590900BC8FCA /* YZVertexFragment.h in Headers */,
 				9B339EDD25FB604800BC8FCA /* YZVideoDevice.h in Headers */,
@@ -441,6 +448,7 @@
 				9B339FE72602132600BC8FCA /* YZVideoRangeFilter.m in Sources */,
 				9B33A003260225CA00BC8FCA /* YZFullRangeFilter.m in Sources */,
 				9B339EF425FB6BA900BC8FCA /* YZVideoI420Filter.m in Sources */,
+				9B33A01C2602314C00BC8FCA /* YZI420Player.m in Sources */,
 				9B339F1725FC662100BC8FCA /* YZVFOrientation.m in Sources */,
 				9B339F1125FC5AAB00BC8FCA /* YZVideoBGRAPlayer.m in Sources */,
 				9B339EE925FB6B5000BC8FCA /* YZVideoFilter.m in Sources */,

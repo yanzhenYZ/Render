@@ -1,10 +1,3 @@
-//
-//  YZVideoShow.h
-//  YZVideoRender
-//
-//  Created by yanzhen on 2021/3/12.
-//
-
 #import <UIKit/UIKit.h>
 
 @class YZVideoData;

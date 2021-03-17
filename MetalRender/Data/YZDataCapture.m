@@ -81,13 +81,8 @@
     
     _dataOutput = [[AVCaptureVideoDataOutput alloc] init];
     _dataOutput.alwaysDiscardsLateVideoFrames = YES;
-    if (VIDEOTYPE == 0) {
-        _dataOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA] forKey:(NSString *)kCVPixelBufferPixelFormatTypeKey];
-    } else if (VIDEOTYPE == 1) {
-        _dataOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange] forKey:(NSString *)kCVPixelBufferPixelFormatTypeKey];
-    } else if (VIDEOTYPE == 2) {
-        _dataOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange] forKey:(NSString *)kCVPixelBufferPixelFormatTypeKey];
-    }
+    //kCVPixelFormatType_420YpCbCr8BiPlanarFullRange
+    _dataOutput.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange] forKey:(NSString *)kCVPixelBufferPixelFormatTypeKey];
     
     _dataOutputQueue = dispatch_queue_create("yz.video.queue", 0);
     [self.dataOutput setSampleBufferDelegate:self queue:self.dataOutputQueue];
