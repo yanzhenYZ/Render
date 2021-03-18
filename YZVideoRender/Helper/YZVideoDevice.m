@@ -50,11 +50,14 @@
                 assert(_defaultLibrary);
                 _pipelineState = [self createRenderPipeline:_defaultLibrary vertex:@"YZYUVDataToRGBVertex" fragment:@"YZYUVDataConversionFullRangeFragment"];
                 break;
+            case YZVideoFormatNV21://todo
+                _defaultLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
+                assert(_defaultLibrary);
+                _pipelineState = [self createRenderPipeline:_defaultLibrary vertex:@"YZYUVDataToRGBVertex" fragment:@"YZYUVDataConversionFullRangeFragment"];
+                break;
             default:
                 break;
         }
-//        _yuvRGBLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
-//        assert(_yuvRGBLibrary);
     }
     return self;
 }

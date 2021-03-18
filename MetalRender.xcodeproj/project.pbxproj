@@ -56,6 +56,8 @@
 		9B33A01B2602314C00BC8FCA /* YZI420Player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B33A0192602314C00BC8FCA /* YZI420Player.h */; };
 		9B33A01C2602314C00BC8FCA /* YZI420Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A01A2602314C00BC8FCA /* YZI420Player.m */; };
 		9B33A0212602325200BC8FCA /* YZI420MetalString.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B33A01F2602325200BC8FCA /* YZI420MetalString.h */; };
+		9B33A05826034CAE00BC8FCA /* YZNV21Player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B33A05626034CAE00BC8FCA /* YZNV21Player.h */; };
+		9B33A05926034CAE00BC8FCA /* YZNV21Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A05726034CAE00BC8FCA /* YZNV21Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +141,8 @@
 		9B33A0192602314C00BC8FCA /* YZI420Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZI420Player.h; sourceTree = "<group>"; };
 		9B33A01A2602314C00BC8FCA /* YZI420Player.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZI420Player.m; sourceTree = "<group>"; };
 		9B33A01F2602325200BC8FCA /* YZI420MetalString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZI420MetalString.h; sourceTree = "<group>"; };
+		9B33A05626034CAE00BC8FCA /* YZNV21Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZNV21Player.h; sourceTree = "<group>"; };
+		9B33A05726034CAE00BC8FCA /* YZNV21Player.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZNV21Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +273,8 @@
 				9B339FF62602259800BC8FCA /* YZFullRangePlayer.m */,
 				9B33A0192602314C00BC8FCA /* YZI420Player.h */,
 				9B33A01A2602314C00BC8FCA /* YZI420Player.m */,
+				9B33A05626034CAE00BC8FCA /* YZNV21Player.h */,
+				9B33A05726034CAE00BC8FCA /* YZNV21Player.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -319,6 +325,7 @@
 				9B33A01B2602314C00BC8FCA /* YZI420Player.h in Headers */,
 				9B339ECD25FB5E0500BC8FCA /* YZVideoOptions.h in Headers */,
 				9B339F0B25FC590900BC8FCA /* YZVertexFragment.h in Headers */,
+				9B33A05826034CAE00BC8FCA /* YZNV21Player.h in Headers */,
 				9B339EDD25FB604800BC8FCA /* YZVideoDevice.h in Headers */,
 				9B339ED225FB5E7800BC8FCA /* YZVideoData.h in Headers */,
 			);
@@ -440,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B33A05926034CAE00BC8FCA /* YZNV21Player.m in Sources */,
 				9B339FF82602259800BC8FCA /* YZFullRangePlayer.m in Sources */,
 				9B339EDE25FB604800BC8FCA /* YZVideoDevice.m in Sources */,
 				9B339EC925FB5DEC00BC8FCA /* YZVideoShow.m in Sources */,

@@ -9,6 +9,8 @@
 #import "YZDataCapture.h"
 #import <YZVideoRender/YZVideoRender.h>
 
+#define I420 0
+
 @interface YZDataViewController ()<YZDataCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *mainPlayer;
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
@@ -23,7 +25,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
+#if I420
     options.format = YZVideoFormatI420;
+#else
+    options.format = YZVideoFormatNV21;
+#endif
     _videoShow = [[YZVideoShow alloc] initWithOptions:options];
     [_videoShow setVideoShowView:self.showPlayer];
     
@@ -34,11 +40,40 @@
 
 #pragma mark - YZDataCaptureDelegate
 - (void)capture:(YZDataCapture *)capture pixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    //[self test:pixelBuffer];
+#if I420
     [self testI420:pixelBuffer];
+#else
+    [self testNV21:pixelBuffer];
+#endif
+    
 }
 
-//todo
+
+- (void)testNV21:(CVPixelBufferRef)pixelBuffer {
+    CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+    size_t yWidth = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0);
+    size_t yheight = CVPixelBufferGetHeightOfPlane(pixelBuffer, 0);
+    int8_t *yBuffer = CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0);
+    size_t yBytesPow = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 0);
+    
+    size_t uvheight = CVPixelBufferGetHeightOfPlane(pixelBuffer, 1);
+    int8_t *uvBuffer = CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 1);
+    size_t uvBytesPow = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 1);
+    CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+    
+    YZVideoData *data = [[YZVideoData alloc] init];
+    data.width = (int)yWidth;
+    data.height = (int)yheight;
+    data.yStride = (int)yBytesPow;
+    data.yBuffer = yBuffer;
+    
+    data.uvStride = (int)uvBytesPow;
+    data.uvBuffer = uvBuffer;
+    
+    data.rotation = [self getOutputRotation];
+    [_videoShow displayVideo:data];
+}
+
 - (void)testI420:(CVPixelBufferRef)pixelBuffer {
     CVPixelBufferLockBaseAddress(pixelBuffer, 0);
     size_t yWidth = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0);

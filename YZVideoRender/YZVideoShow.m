@@ -17,6 +17,7 @@
 #import "YZVideoRangePlayer.h"
 #import "YZFullRangePlayer.h"
 #import "YZI420Player.h"
+#import "YZNV21Player.h"
 
 @interface YZVideoShow ()
 @property (nonatomic, strong) YZVideoDevice *device;
@@ -49,7 +50,7 @@
             case YZVideoFormatI420:
                 _filter = [[YZVideoI420Filter alloc] init];
                 break;
-            case YZVideoFormatNV12:
+            case YZVideoFormatNV21:
                 _filter = [[YZVideoNV12Filter alloc] init];
                 break;
             default:
@@ -95,8 +96,8 @@
             case YZVideoFormatI420:
                 _player = [[YZI420Player alloc] initWithDevice:_device];
                 break;
-            case YZVideoFormatNV12:
-                _player = [[YZVideoBGRAPlayer alloc] initWithDevice:_device];
+            case YZVideoFormatNV21:
+                _player = [[YZNV21Player alloc] initWithDevice:_device];
                 break;
             default:
                 break;

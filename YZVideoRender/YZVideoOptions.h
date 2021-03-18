@@ -12,7 +12,7 @@ typedef enum : NSUInteger {
     /** I420 */
     YZVideoFormatI420,
     /** NV12 */
-    YZVideoFormatNV12,
+    YZVideoFormatNV21,
 } YZVideoFormat;
 
 @interface YZVideoOptions : NSObject
