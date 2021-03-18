@@ -13,9 +13,11 @@
 #import "YZVideoTextureFilter.h"
 #import "YZVideoRangeFilter.h"
 #import "YZFullRangeFilter.h"
+#import "YZVideoY420Filter.h"
 #import "YZVideoBGRAPlayer.h"
 #import "YZVideoRangePlayer.h"
 #import "YZFullRangePlayer.h"
+#import "YZVideoY420Player.h"
 #import "YZI420Player.h"
 #import "YZNV21Player.h"
 
@@ -52,6 +54,9 @@
                 break;
             case YZVideoFormatNV21:
                 _filter = [[YZVideoNV12Filter alloc] init];
+                break;
+            case YZVideoFormat420YpCbCr8Planar:
+                _filter = [[YZVideoY420Filter alloc] init];
                 break;
             default:
                 break;
@@ -98,6 +103,9 @@
                 break;
             case YZVideoFormatNV21:
                 _player = [[YZNV21Player alloc] initWithDevice:_device];
+                break;
+            case YZVideoFormat420YpCbCr8Planar:
+                _player = [[YZVideoY420Player alloc] initWithDevice:_device];
                 break;
             default:
                 break;
