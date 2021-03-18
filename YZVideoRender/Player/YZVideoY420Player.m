@@ -35,24 +35,36 @@
 }
 
 - (void)showBuffer:(YZVideoData *)videoData {
-    NSLog(@"todo009");
-    return;
-    int width = videoData.width;
-    int height = videoData.height;
-    MTLTextureDescriptor *yDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatR8Unorm width:width height:height mipmapped:NO];
-    yDesc.usage = MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead;
-    _textureY = [self.device newTextureWithDescriptor:yDesc];
-    [_textureY replaceRegion:MTLRegionMake2D(0, 0, _textureY.width, _textureY.height) mipmapLevel:0 withBytes:videoData.yBuffer bytesPerRow:videoData.yStride];
+    CVPixelBufferRef pixelBuffer = videoData.pixelBuffer;
+    CVMetalTextureRef textureRef = NULL;
+    //y
+    size_t width = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0);
+    size_t height = CVPixelBufferGetHeightOfPlane(pixelBuffer, 0);
+    CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width, height, 0, &textureRef);
+    if(status != kCVReturnSuccess) {
+        return;
+    }
+    _textureY = CVMetalTextureGetTexture(textureRef);
+    CFRelease(textureRef);
+    textureRef = NULL;
     
-    MTLTextureDescriptor *uDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatR8Unorm width:width / 2 height:height / 2 mipmapped:NO];
-    uDesc.usage = MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead;
-    _textureU = [self.device newTextureWithDescriptor:uDesc];
-    [_textureU replaceRegion:MTLRegionMake2D(0, 0, _textureU.width, _textureU.height) mipmapLevel:0 withBytes:videoData.uBuffer bytesPerRow:videoData.uStride];
+    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width/2, height/2, 1, &textureRef);
+    if(status != kCVReturnSuccess) {
+        return;
+    }
+    _textureU = CVMetalTextureGetTexture(textureRef);
+    CFRelease(textureRef);
+    textureRef = NULL;
     
-    MTLTextureDescriptor *vDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatR8Unorm width:width / 2 height:height / 2 mipmapped:NO];
-    vDesc.usage = MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead;
-    _textureV = [self.device newTextureWithDescriptor:vDesc];
-    [_textureV replaceRegion:MTLRegionMake2D(0, 0, _textureV.width, _textureV.height) mipmapLevel:0 withBytes:videoData.vBuffer bytesPerRow:videoData.vStride];
+    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width/2, height/2, 2, &textureRef);
+    if(status != kCVReturnSuccess) {
+        //todo error
+        return;
+    }
+    _textureV = CVMetalTextureGetTexture(textureRef);
+    CFRelease(textureRef);
+    textureRef = NULL;
+    
     _rotation = (int)videoData.rotation;
     if (_rotation == 90 || _rotation == 270) {
         self.drawableSize = CGSizeMake(height, width);
