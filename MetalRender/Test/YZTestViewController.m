@@ -117,7 +117,7 @@
     CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
     
     YZVideoData *data = [[YZVideoData alloc] init];
-    data.pixelBuffer = pixelBuffer;
+    data.pixelBuffer = _pixelBuffer;
     data.rotation = [self getOutputRotation];
     [_videoShow displayVideo:data];
     

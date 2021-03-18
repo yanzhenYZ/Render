@@ -58,7 +58,6 @@
     
     status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width/2, height/2, 2, &textureRef);
     if(status != kCVReturnSuccess) {
-        //todo error
         return;
     }
     _textureV = CVMetalTextureGetTexture(textureRef);
