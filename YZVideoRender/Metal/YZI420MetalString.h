@@ -20,11 +20,7 @@ const char* YZI420MetalString =
 "};\n"
 
 
-"vertex YZYUVDataToRGBVertexIO YZYUVDataToRGBVertex(const device packed_float2 *position [[buffer(0)]],\n"
-"                                       const device packed_float2 *texturecoord [[buffer(1)]],\n"
-"                                       const device packed_float2 *texturecoord2 [[buffer(2)]],\n"
-"                                       const device packed_float2 *texturecoord3 [[buffer(3)]],\n"
-"                                       uint vertexID [[vertex_id]])\n"
+"vertex YZYUVDataToRGBVertexIO YZYUVDataToRGBVertex(const device packed_float2 *position [[buffer(0)]], const device packed_float2 *texturecoord [[buffer(1)]], const device packed_float2 *texturecoord2 [[buffer(2)]], const device packed_float2 *texturecoord3 [[buffer(3)]], uint vertexID [[vertex_id]])\n"
 "{\n"
 "    YZYUVDataToRGBVertexIO outputVertices;\n"
 "    outputVertices.position = float4(position[vertexID], 0, 1.0);\n"
@@ -34,10 +30,7 @@ const char* YZI420MetalString =
 "    return outputVertices;\n"
 "}\n"
 
-"fragment half4 YZYUVDataConversionFullRangeFragment(YZYUVDataToRGBVertexIO fragmentInput [[stage_in]],\n"
-"                                     texture2d<half> inputTexture [[texture(0)]],\n"
-"                                     texture2d<half> inputTexture2 [[texture(1)]],\n"
-"                                     texture2d<half> inputTexture3 [[texture(2)]])\n"
+"fragment half4 YZYUVDataConversionFullRangeFragment(YZYUVDataToRGBVertexIO fragmentInput [[stage_in]], texture2d<half> inputTexture [[texture(0)]], texture2d<half> inputTexture2 [[texture(1)]], texture2d<half> inputTexture3 [[texture(2)]])\n"
 "{\n"
 "    constexpr sampler quadSampler;\n"
 "    half3 yuv;\n"
