@@ -58,6 +58,9 @@
 		9B33A0212602325200BC8FCA /* YZI420MetalString.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B33A01F2602325200BC8FCA /* YZI420MetalString.h */; };
 		9B33A05826034CAE00BC8FCA /* YZNV21Player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B33A05626034CAE00BC8FCA /* YZNV21Player.h */; };
 		9B33A05926034CAE00BC8FCA /* YZNV21Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A05726034CAE00BC8FCA /* YZNV21Player.m */; };
+		9B33A0622603635100BC8FCA /* YZTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A0612603635100BC8FCA /* YZTestViewController.m */; };
+		9B33A0672603636700BC8FCA /* YZTestCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33A0662603636700BC8FCA /* YZTestCapture.m */; };
+		9B33A070260363CC00BC8FCA /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B33A06E260363CC00BC8FCA /* Test.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +146,11 @@
 		9B33A01F2602325200BC8FCA /* YZI420MetalString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZI420MetalString.h; sourceTree = "<group>"; };
 		9B33A05626034CAE00BC8FCA /* YZNV21Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZNV21Player.h; sourceTree = "<group>"; };
 		9B33A05726034CAE00BC8FCA /* YZNV21Player.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZNV21Player.m; sourceTree = "<group>"; };
+		9B33A0602603635100BC8FCA /* YZTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZTestViewController.h; sourceTree = "<group>"; };
+		9B33A0612603635100BC8FCA /* YZTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZTestViewController.m; sourceTree = "<group>"; };
+		9B33A0652603636700BC8FCA /* YZTestCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZTestCapture.h; sourceTree = "<group>"; };
+		9B33A0662603636700BC8FCA /* YZTestCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YZTestCapture.m; sourceTree = "<group>"; };
+		9B33A06F260363CC00BC8FCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Test.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +197,9 @@
 				9B339E7C25FB53E500BC8FCA /* AppDelegate.m */,
 				9B33A00626022AB600BC8FCA /* Data */,
 				9B339EA625FB58A600BC8FCA /* PixelBuffer */,
+				9B33A05F2603632700BC8FCA /* Test */,
 				9B339E8425FB53E500BC8FCA /* Main.storyboard */,
+				9B33A06E260363CC00BC8FCA /* Test.storyboard */,
 				9B33A00D26022B1400BC8FCA /* Data.storyboard */,
 				9B339EA225FB589200BC8FCA /* PixelBuffer.storyboard */,
 				9B339E8725FB53E600BC8FCA /* Assets.xcassets */,
@@ -298,6 +308,17 @@
 				9B33A01626022CD300BC8FCA /* YZDataCapture.m */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		9B33A05F2603632700BC8FCA /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				9B33A0602603635100BC8FCA /* YZTestViewController.h */,
+				9B33A0612603635100BC8FCA /* YZTestViewController.m */,
+				9B33A0652603636700BC8FCA /* YZTestCapture.h */,
+				9B33A0662603636700BC8FCA /* YZTestCapture.m */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,6 +433,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B33A070260363CC00BC8FCA /* Test.storyboard in Resources */,
 				9B339E8B25FB53E600BC8FCA /* LaunchScreen.storyboard in Resources */,
 				9B339EA425FB589200BC8FCA /* PixelBuffer.storyboard in Resources */,
 				9B339E8825FB53E600BC8FCA /* Assets.xcassets in Resources */,
@@ -435,10 +457,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B339E7D25FB53E500BC8FCA /* AppDelegate.m in Sources */,
+				9B33A0672603636700BC8FCA /* YZTestCapture.m in Sources */,
 				9B339EA925FB5A1B00BC8FCA /* YZPixelBufferViewController.m in Sources */,
 				9B339E8E25FB53E600BC8FCA /* main.m in Sources */,
 				9B339EAE25FB5B7A00BC8FCA /* YZPixelBufferCapture.m in Sources */,
 				9B33A01326022B2F00BC8FCA /* YZDataViewController.m in Sources */,
+				9B33A0622603635100BC8FCA /* YZTestViewController.m in Sources */,
 				9B33A01726022CD300BC8FCA /* YZDataCapture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,6 +532,14 @@
 				9B33A00E26022B1400BC8FCA /* Base */,
 			);
 			name = Data.storyboard;
+			sourceTree = "<group>";
+		};
+		9B33A06E260363CC00BC8FCA /* Test.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B33A06F260363CC00BC8FCA /* Base */,
+			);
+			name = Test.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
