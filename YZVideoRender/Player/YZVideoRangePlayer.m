@@ -106,7 +106,7 @@
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:2];
     [encoder setFragmentTexture:_textureUV atIndex:1];
     
-    id<MTLBuffer> uniformBuffer = [self.device newBufferWithBytes:kYZColorConversion601 length:sizeof(float) * 12 options:MTLResourceCPUCacheModeDefaultCache];
+    id<MTLBuffer> uniformBuffer = [self.device newBufferWithBytes:kYZColorConversion601FullRange length:sizeof(float) * 12 options:MTLResourceCPUCacheModeDefaultCache];
     [encoder setFragmentBuffer:uniformBuffer offset:0 atIndex:0];
     
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];

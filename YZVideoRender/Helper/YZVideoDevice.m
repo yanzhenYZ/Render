@@ -53,7 +53,7 @@
             case YZVideoFormatNV21://todo
                 _defaultLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
                 assert(_defaultLibrary);
-                _pipelineState = [self createRenderPipeline:_defaultLibrary vertex:@"YZYUVDataToRGBVertex" fragment:@"YZYUVDataConversionFullRangeFragment"];
+                _pipelineState = [self createRenderPipeline:_defaultLibrary vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionFullRangeFragment"];
                 break;
             default:
                 break;
