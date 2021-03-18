@@ -10,7 +10,6 @@
 const char* YZI420MetalString =
 "using namespace metal;\n"
 
-"constant half3x3 YZYUVDATAMAT = half3x3(half3(1.164,1.164,1.164),half3(0.0,-0.213,2.112),half3(1.793,-0.533,0.0));\n"
 "struct YZYUVDataToRGBVertexIO\n"
 "{\n"
 "    float4 position [[position]];\n"
@@ -37,6 +36,8 @@ const char* YZI420MetalString =
 "    yuv.x = inputTexture.sample(quadSampler, fragmentInput.textureCoordinate).r - (16.0/255.0);\n"
 "    yuv.y = inputTexture2.sample(quadSampler, fragmentInput.textureCoordinate2).r - half(0.5);\n"
 "    yuv.z = inputTexture3.sample(quadSampler, fragmentInput.textureCoordinate3).r - half(0.5);\n"
+//ios10.0
+"    half3x3 YZYUVDATAMAT = half3x3(half3(1.164),half3(0.0,-0.213,2.112),half3(1.793,-0.533,0.0));\n"
 "    half3 rgb = YZYUVDATAMAT * yuv;\n"
 "    return half4(rgb, 1.0);\n"
 "}\n";
