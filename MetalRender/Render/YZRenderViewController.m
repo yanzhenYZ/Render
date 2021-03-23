@@ -17,6 +17,8 @@
  */
 @interface YZRenderViewController ()<YZRenderCaptureDelegate>
 @property (nonatomic, strong) YZRenderCapture *capture;
+
+@property (nonatomic, strong) YZLayerView *layerView;
 @end
 
 @implementation YZRenderViewController
@@ -33,14 +35,19 @@
 //    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
 //    [_videoShow setVideoShowView:self.showPlayer];
     
-    _capture = [[YZRenderCapture alloc] initWithPlayer:self.view];
+    _layerView = [[YZLayerView alloc] initWithFrame:self.view.bounds];
+    _layerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:_layerView];
+    
+    _capture = [[YZRenderCapture alloc] initWithPlayer:nil];
     _capture.delegate = self;
     [_capture startRunning];
 }
 
 #pragma mark - YZRenderCaptureDelegate
 -(void)capture:(YZRenderCapture *)capture pixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    NSLog(@"todo");
+//    NSLog(@"todo");
+    [_layerView displayVideo:pixelBuffer];
 }
 
 

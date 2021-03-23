@@ -8,5 +8,7 @@
 #import "YZRenderMTKView.h"
 
 @implementation YZRenderMTKView
-
+-(void)displayVideo:(CVPixelBufferRef)pixelBuffer {
+     
+}
 @end
