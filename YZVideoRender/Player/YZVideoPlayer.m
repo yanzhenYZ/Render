@@ -13,6 +13,13 @@
 
 @implementation YZVideoPlayer
 
+- (void)dealloc {
+    if (_textureCache) {
+        CVMetalTextureCacheFlush(_textureCache, 0);
+        CFRelease(_textureCache);
+    }
+}
+
 - (instancetype)initWithDevice:(YZVideoDevice *)device {
     self = [super initWithFrame:CGRectZero device:device.device];
     if (self) {
@@ -22,6 +29,7 @@
         self.framebufferOnly = NO;
         self.enableSetNeedsDisplay = NO;
         self.contentMode = UIViewContentModeScaleAspectFit;
+        CVMetalTextureCacheCreate(kCFAllocatorDefault, NULL, device.device, NULL, &_textureCache);
     }
     return self;
 }

@@ -10,34 +10,16 @@
 
 @interface YZVideoBGRAPlayer ()
 @property (nonatomic, strong) id<MTLTexture> texture;
-@property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
-
-@property (nonatomic, assign) int rotation;
 @end
 
 @implementation YZVideoBGRAPlayer
-
-- (void)dealloc {
-    if (_textureCache) {
-        CVMetalTextureCacheFlush(_textureCache, 0);
-        CFRelease(_textureCache);
-    }
-}
-
-- (instancetype)initWithDevice:(YZVideoDevice *)device {
-    self = [super initWithDevice:device];
-    if (self) {
-        CVMetalTextureCacheCreate(kCFAllocatorDefault, NULL, device.device, NULL, &_textureCache);
-    }
-    return self;
-}
 
 - (void)showBuffer:(YZVideoData *)videoData {
     CVPixelBufferRef pixelBuffer = videoData.pixelBuffer;
     size_t width = CVPixelBufferGetWidth(pixelBuffer);
     size_t height = CVPixelBufferGetHeight(pixelBuffer);
     CVMetalTextureRef textureRef = NULL;
-    CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, nil, MTLPixelFormatBGRA8Unorm, width, height, 0, &textureRef);
+    CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, nil, MTLPixelFormatBGRA8Unorm, width, height, 0, &textureRef);
     if (kCVReturnSuccess != status) {
         return;
     }
@@ -45,8 +27,8 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    _rotation = (int)videoData.rotation;
-    if (_rotation == 90 || _rotation == 270) {
+    self.rotation = (int)videoData.rotation;
+    if (videoData.rotation == 90 || videoData.rotation == 270) {
         self.drawableSize = CGSizeMake(height, width);
     } else {
         self.drawableSize = CGSizeMake(width, height);
@@ -74,7 +56,7 @@
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
     
-    simd_float8 textureCoordinates = [YZVFOrientation getRotationTextureCoordinates:_rotation];
+    simd_float8 textureCoordinates = [YZVFOrientation getRotationTextureCoordinates:self.rotation];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
     [encoder setFragmentTexture:_texture atIndex:0];
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];

@@ -12,27 +12,10 @@
 @property (nonatomic, strong) id<MTLTexture> textureY;
 @property (nonatomic, strong) id<MTLTexture> textureU;
 @property (nonatomic, strong) id<MTLTexture> textureV;
-@property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
 
-@property (nonatomic, assign) int rotation;
 @end
 
 @implementation YZVideoY420Player
-
-- (void)dealloc {
-    if (_textureCache) {
-        CVMetalTextureCacheFlush(_textureCache, 0);
-        CFRelease(_textureCache);
-    }
-}
-
-- (instancetype)initWithDevice:(YZVideoDevice *)device {
-    self = [super initWithDevice:device];
-    if (self) {
-        CVMetalTextureCacheCreate(kCFAllocatorDefault, NULL, device.device, NULL, &_textureCache);
-    }
-    return self;
-}
 
 - (void)showBuffer:(YZVideoData *)videoData {
     CVPixelBufferRef pixelBuffer = videoData.pixelBuffer;
@@ -40,7 +23,7 @@
     //y
     size_t width = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0);
     size_t height = CVPixelBufferGetHeightOfPlane(pixelBuffer, 0);
-    CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width, height, 0, &textureRef);
+    CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width, height, 0, &textureRef);
     if(status != kCVReturnSuccess) {
         return;
     }
@@ -48,7 +31,7 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width/2, height/2, 1, &textureRef);
+    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width/2, height/2, 1, &textureRef);
     if(status != kCVReturnSuccess) {
         return;
     }
@@ -56,7 +39,7 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width/2, height/2, 2, &textureRef);
+    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width/2, height/2, 2, &textureRef);
     if(status != kCVReturnSuccess) {
         return;
     }
@@ -64,8 +47,8 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    _rotation = (int)videoData.rotation;
-    if (_rotation == 90 || _rotation == 270) {
+    self.rotation = (int)videoData.rotation;
+    if (videoData.rotation == 90 || videoData.rotation == 270) {
         self.drawableSize = CGSizeMake(height, width);
     } else {
         self.drawableSize = CGSizeMake(width, height);
@@ -87,13 +70,13 @@
         NSLog(@"YZI420Player render endcoder Fail");
         return;
     }
-    [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
+    [encoder setFrontFacingWinding:MTLWindingClockwise];
     [encoder setRenderPipelineState:self.videoDevice.pipelineState];
 
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
 
-    simd_float8 textureCoordinates = [YZVFOrientation getRotationTextureCoordinates:_rotation];
+    simd_float8 textureCoordinates = [YZVFOrientation getRotationTextureCoordinates:self.rotation];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
     [encoder setFragmentTexture:_textureY atIndex:0];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:2];

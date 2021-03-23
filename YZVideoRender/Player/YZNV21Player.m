@@ -11,27 +11,9 @@
 @interface YZNV21Player ()
 @property (nonatomic, strong) id<MTLTexture> textureY;
 @property (nonatomic, strong) id<MTLTexture> textureUV;
-@property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
-
-@property (nonatomic, assign) int rotation;
 @end
 
 @implementation YZNV21Player
-
-- (void)dealloc {
-    if (_textureCache) {
-        CVMetalTextureCacheFlush(_textureCache, 0);
-        CFRelease(_textureCache);
-    }
-}
-
-- (instancetype)initWithDevice:(YZVideoDevice *)device {
-    self = [super initWithDevice:device];
-    if (self) {
-        CVMetalTextureCacheCreate(kCFAllocatorDefault, NULL, device.device, NULL, &_textureCache);
-    }
-    return self;
-}
 
 - (void)showBuffer:(YZVideoData *)videoData {
     int width = videoData.width;
@@ -46,8 +28,8 @@
     _textureUV = [self.device newTextureWithDescriptor:uvDesc];
     [_textureUV replaceRegion:MTLRegionMake2D(0, 0, _textureUV.width, _textureUV.height) mipmapLevel:0 withBytes:videoData.uvBuffer bytesPerRow:videoData.uvStride];
 
-    _rotation = (int)videoData.rotation;
-    if (_rotation == 90 || _rotation == 270) {
+    self.rotation = (int)videoData.rotation;
+    if (videoData.rotation == 90 || videoData.rotation == 270) {
         self.drawableSize = CGSizeMake(height, width);
     } else {
         self.drawableSize = CGSizeMake(width, height);
@@ -75,7 +57,7 @@
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
     
-    simd_float8 textureCoordinates = [YZVFOrientation getRotationTextureCoordinates:_rotation];
+    simd_float8 textureCoordinates = [YZVFOrientation getRotationTextureCoordinates:self.rotation];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
     [encoder setFragmentTexture:_textureY atIndex:0];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:2];

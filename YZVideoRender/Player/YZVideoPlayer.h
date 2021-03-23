@@ -10,10 +10,11 @@
 #import "YZVideoData.h"
 
 @interface YZVideoPlayer : MTKView
+@property (nonatomic, assign) CVMetalTextureCacheRef textureCache;
+@property (nonatomic, strong, readonly) YZVideoDevice *videoDevice;
+@property (nonatomic, assign) int rotation;
 
 - (instancetype)initWithDevice:(YZVideoDevice *)device;
-
-@property (nonatomic, strong, readonly) YZVideoDevice *videoDevice;
 
 - (void)showBuffer:(YZVideoData *)videoData;
 @end
