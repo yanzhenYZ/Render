@@ -53,7 +53,7 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    [self draw:width height:height rotation:(int)videoData.rotation];
+    [self draw:w height:h rotation:(int)videoData.rotation];
 }
 
 #pragma mark - MTKViewDelegate
