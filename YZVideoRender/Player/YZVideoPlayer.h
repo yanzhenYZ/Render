@@ -17,5 +17,6 @@
 - (instancetype)initWithDevice:(YZVideoDevice *)device;
 
 - (void)showBuffer:(YZVideoData *)videoData;
+- (void)draw:(size_t)width height:(size_t)height rotation:(int)rotation;
 @end
 

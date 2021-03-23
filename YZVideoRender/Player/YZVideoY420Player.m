@@ -19,8 +19,10 @@
 
 - (void)showBuffer:(YZVideoData *)videoData {
     CVPixelBufferRef pixelBuffer = videoData.pixelBuffer;
+    size_t w = CVPixelBufferGetWidth(pixelBuffer);
+    size_t h = CVPixelBufferGetHeight(pixelBuffer);
+    
     CVMetalTextureRef textureRef = NULL;
-    //y
     size_t width = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0);
     size_t height = CVPixelBufferGetHeightOfPlane(pixelBuffer, 0);
     CVReturn status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width, height, 0, &textureRef);
@@ -31,7 +33,9 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width/2, height/2, 1, &textureRef);
+    width = CVPixelBufferGetWidthOfPlane(pixelBuffer, 1);
+    height = CVPixelBufferGetHeightOfPlane(pixelBuffer, 1);
+    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width, height, 1, &textureRef);
     if(status != kCVReturnSuccess) {
         return;
     }
@@ -39,7 +43,9 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width/2, height/2, 2, &textureRef);
+    width = CVPixelBufferGetWidthOfPlane(pixelBuffer, 2);
+    height = CVPixelBufferGetHeightOfPlane(pixelBuffer, 2);
+    status = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width, height, 2, &textureRef);
     if(status != kCVReturnSuccess) {
         return;
     }
@@ -47,13 +53,7 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    self.rotation = (int)videoData.rotation;
-    if (videoData.rotation == 90 || videoData.rotation == 270) {
-        self.drawableSize = CGSizeMake(height, width);
-    } else {
-        self.drawableSize = CGSizeMake(width, height);
-    }
-    [self draw];
+    [self draw:width height:height rotation:(int)videoData.rotation];
 }
 
 #pragma mark - MTKViewDelegate

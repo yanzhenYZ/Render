@@ -34,13 +34,7 @@
     vDesc.usage = MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead;
     _textureV = [self.device newTextureWithDescriptor:vDesc];
     [_textureV replaceRegion:MTLRegionMake2D(0, 0, _textureV.width, _textureV.height) mipmapLevel:0 withBytes:videoData.vBuffer bytesPerRow:videoData.vStride];
-    self.rotation = (int)videoData.rotation;
-    if (videoData.rotation == 90 || videoData.rotation == 270) {
-        self.drawableSize = CGSizeMake(height, width);
-    } else {
-        self.drawableSize = CGSizeMake(width, height);
-    }
-    [self draw];
+    [self draw:width height:height rotation:(int)videoData.rotation];
 }
 
 #pragma mark - MTKViewDelegate

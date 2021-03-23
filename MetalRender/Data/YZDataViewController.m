@@ -9,7 +9,7 @@
 #import "YZDataCapture.h"
 #import <YZVideoRender/YZVideoRender.h>
 
-#define I420 0
+#define I420 1
 
 @interface YZDataViewController ()<YZDataCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *mainPlayer;

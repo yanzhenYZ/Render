@@ -28,13 +28,7 @@
     _textureUV = [self.device newTextureWithDescriptor:uvDesc];
     [_textureUV replaceRegion:MTLRegionMake2D(0, 0, _textureUV.width, _textureUV.height) mipmapLevel:0 withBytes:videoData.uvBuffer bytesPerRow:videoData.uvStride];
 
-    self.rotation = (int)videoData.rotation;
-    if (videoData.rotation == 90 || videoData.rotation == 270) {
-        self.drawableSize = CGSizeMake(height, width);
-    } else {
-        self.drawableSize = CGSizeMake(width, height);
-    }
-    [self draw];
+    [self draw:width height:height rotation:(int)videoData.rotation];
 }
 
 #pragma mark - MTKViewDelegate

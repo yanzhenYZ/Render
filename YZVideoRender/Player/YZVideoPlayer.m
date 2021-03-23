@@ -40,6 +40,16 @@
     //NSLog(@"___%d:%d:%d", width, height, videoData.rotation);
 }
 
+- (void)draw:(size_t)width height:(size_t)height rotation:(int)rotation {
+    self.rotation = rotation;
+    if (rotation == 90 || rotation == 270) {
+        self.drawableSize = CGSizeMake(height, width);
+    } else {
+        self.drawableSize = CGSizeMake(width, height);
+    }
+    [self draw];
+}
+
 #pragma mark - MTKViewDelegate
 
 - (void)drawInMTKView:(MTKView *)view {

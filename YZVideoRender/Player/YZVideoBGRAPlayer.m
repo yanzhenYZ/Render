@@ -27,13 +27,7 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    self.rotation = (int)videoData.rotation;
-    if (videoData.rotation == 90 || videoData.rotation == 270) {
-        self.drawableSize = CGSizeMake(height, width);
-    } else {
-        self.drawableSize = CGSizeMake(width, height);
-    }
-    [self draw];
+    [self draw:width height:height rotation:(int)videoData.rotation];
 }
 
 #pragma mark - MTKViewDelegate

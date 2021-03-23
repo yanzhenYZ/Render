@@ -19,6 +19,8 @@
 
 - (void)showBuffer:(YZVideoData *)videoData {
     CVPixelBufferRef pixelBuffer = videoData.pixelBuffer;
+    size_t w = CVPixelBufferGetWidth(pixelBuffer);
+    size_t h = CVPixelBufferGetHeight(pixelBuffer);
     CFTypeRef attachment = CVBufferGetAttachment(pixelBuffer, kCVImageBufferYCbCrMatrixKey, NULL);
     if (attachment != NULL) {
         if(CFStringCompare(attachment, kCVImageBufferYCbCrMatrix_ITU_R_601_4, 0) == kCFCompareEqualTo) {
@@ -53,14 +55,7 @@
     CFRelease(textureRef);
     textureRef = NULL;
     
-    
-    self.rotation = (int)videoData.rotation;
-    if (videoData.rotation == 90 || videoData.rotation == 270) {
-        self.drawableSize = CGSizeMake(height, width);
-    } else {
-        self.drawableSize = CGSizeMake(width, height);
-    }
-    [self draw];
+    [self draw:w height:h rotation:(int)videoData.rotation];
 }
 
 #pragma mark - MTKViewDelegate
