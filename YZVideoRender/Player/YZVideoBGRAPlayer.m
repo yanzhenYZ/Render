@@ -34,9 +34,10 @@
 - (void)drawInMTKView:(MTKView *)view {
     if (!view.currentDrawable || !_texture) { return; }
     id<MTLTexture> outTexture = view.currentDrawable.texture;
-    
+
     MTLRenderPassDescriptor *desc = [YZVideoDevice newRenderPassDescriptor:outTexture];
-    desc.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 1);
+    //desc.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 1);
+
     
     id<MTLCommandBuffer> commandBuffer = [self.videoDevice commandBuffer];
     id<MTLRenderCommandEncoder> encoder = [commandBuffer renderCommandEncoderWithDescriptor:desc];
@@ -44,18 +45,19 @@
         NSLog(@"YZVideoBGRAPlayer render endcoder Fail");
         return;
     }
+    
     [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
     [encoder setRenderPipelineState:self.videoDevice.pipelineState];
 
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
-    
+
     simd_float8 textureCoordinates = [YZVFOrientation getRotationTextureCoordinates:self.rotation];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
     [encoder setFragmentTexture:_texture atIndex:0];
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
     [encoder endEncoding];
-    
+
     [commandBuffer presentDrawable:view.currentDrawable];
     [commandBuffer commit];
     _texture = nil;

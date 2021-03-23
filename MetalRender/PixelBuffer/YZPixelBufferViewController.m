@@ -33,7 +33,7 @@
     _videoShow = [[YZVideoShow alloc] initWithOptions:options];
     [_videoShow setVideoShowView:self.showPlayer];
     
-    _capture = [[YZPixelBufferCapture alloc] initWithPlayer:_mainPlayer];
+    _capture = [[YZPixelBufferCapture alloc] initWithPlayer:nil];
     _capture.delegate = self;
     [_capture startRunning];
     
