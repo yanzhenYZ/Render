@@ -9,7 +9,7 @@ typedef enum : NSUInteger {
 } YZVideoRotation;
 
 @interface YZVideoData : NSObject
-/** only use when you set YZVideoOptions.format = YZVideoFormatTexture */
+/** see YZVideoFormat */
 @property (nonatomic, assign) CVPixelBufferRef pixelBuffer;
 
 /** input video width */
@@ -36,7 +36,7 @@ typedef enum : NSUInteger {
 @property (assign, nonatomic) YZVideoRotation rotation;
 
 
-/** I420 or NV12 y stride */
+/** I420 or NV21 y stride */
 @property (nonatomic) int yStride;
 
 /** I420 u stride */
@@ -45,11 +45,11 @@ typedef enum : NSUInteger {
 /** I420 v stride */
 @property (nonatomic) int vStride;
 
-/** NV12 uv stride */
+/** NV21 uv stride */
 @property (nonatomic) int uvStride;
 
 
-/** I420 or NV12 y buffer */
+/** I420 or NV21 y buffer */
 @property (nonatomic) int8_t *yBuffer;
 
 /** I420 u buffer */
@@ -58,7 +58,7 @@ typedef enum : NSUInteger {
 /** I420 v buffer */
 @property (nonatomic) int8_t *vBuffer;
 
-/** NV12 uv buffer */
+/** NV21 uv buffer */
 @property (nonatomic) int8_t *uvBuffer;
 @end
 
