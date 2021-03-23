@@ -25,6 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
+    options.crop = YES;
 #if I420
     options.format = YZVideoFormatI420;
 #else
@@ -108,6 +109,8 @@
     data.vStride = uvBytesPow / 2;
     data.vBuffer = vBuffer;
     data.rotation = [self getOutputRotation];
+    data.cropTop = 60;
+    data.cropBottom = 60;
     [_videoShow displayVideo:data];
     
     free(uBuffer);

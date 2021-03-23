@@ -23,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
+    options.crop = YES;
     if (VIDEOTYPE == 0) {
         options.format = YZVideoFormat32BGRA;
     } else if (VIDEOTYPE == 1) {
@@ -45,6 +46,8 @@
     YZVideoData *data = [[YZVideoData alloc] init];
     data.pixelBuffer = pixelBuffer;
     data.rotation = [self getOutputRotation];
+    data.cropTop = 60;
+    data.cropBottom = 60;
     [_videoShow displayVideo:data];
 }
 
