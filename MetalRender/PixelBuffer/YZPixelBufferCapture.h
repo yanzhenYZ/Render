@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreVideo/CoreVideo.h>
 
-static const int VIDEOTYPE = 2;
+static const int VIDEOTYPE = 0;
 
 @protocol YZPixelBufferCaptureDelegate;
 @interface YZPixelBufferCapture : NSObject

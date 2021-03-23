@@ -7,7 +7,7 @@
 
 #import "YZVideoPlayer.h"
 
-@interface YZVideoBGRAPlayer : YZVideoPlayer<MTKViewDelegate>
+@interface YZVideoBGRAPlayer : YZVideoPlayer
 
 @end
 
