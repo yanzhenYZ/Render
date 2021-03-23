@@ -6,6 +6,7 @@
 //
 
 #import "YZVideoPlayer.h"
+#import "YZVFOrientation.h"
 
 @interface YZVideoPlayer ()<MTKViewDelegate>
 //@property (nonatomic, strong)
@@ -50,6 +51,9 @@
     [self draw];
 }
 
+- (simd_float8)getTextureCoordinates {
+    return [YZVFOrientation getRotationTextureCoordinates:_rotation];
+}
 #pragma mark - MTKViewDelegate
 
 - (void)drawInMTKView:(MTKView *)view {

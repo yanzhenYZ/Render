@@ -110,6 +110,7 @@
             default:
                 break;
         }
+        _player.crop = _options.crop;
         _player.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _player;

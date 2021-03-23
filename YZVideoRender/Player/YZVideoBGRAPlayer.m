@@ -50,7 +50,7 @@
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
     
-    simd_float8 textureCoordinates = [YZVFOrientation getRotationTextureCoordinates:self.rotation];
+    simd_float8 textureCoordinates = [self getTextureCoordinates];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
     [encoder setFragmentTexture:_texture atIndex:0];
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
