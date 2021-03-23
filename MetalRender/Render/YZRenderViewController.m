@@ -14,8 +14,12 @@
  2. MTKView show         3-4%    33MB
  3. MTKView shader show  3-4%    38MB
  
- todo
  4. Layer BGRA nv12 show
+  1. BGRA
+  2. NV21
+ 
+ todo
+  3. I420
  */
 @interface YZRenderViewController ()<YZRenderCaptureDelegate>
 @property (nonatomic, strong) YZRenderCapture *capture;
