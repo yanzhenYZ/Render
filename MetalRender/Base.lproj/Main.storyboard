@@ -101,6 +101,34 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="render" id="Xqx-5j-C5U">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Mzd-R2-SgO">
+                                        <rect key="frame" x="0.0" y="354" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mzd-R2-SgO" id="n7R-MA-DLp">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pixel buffer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oP9-ZU-UZN">
+                                                    <rect key="frame" x="15" y="0.0" width="86" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="oP9-ZU-UZN" secondAttribute="bottom" id="5g4-dH-qIs"/>
+                                                <constraint firstItem="oP9-ZU-UZN" firstAttribute="leading" secondItem="n7R-MA-DLp" secondAttribute="leading" constant="15" id="B9v-EN-OO2"/>
+                                                <constraint firstItem="oP9-ZU-UZN" firstAttribute="top" secondItem="n7R-MA-DLp" secondAttribute="top" id="Kwd-QT-CJP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="tGa-D3-duu" kind="show" id="0V8-N8-Pnj"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="RoI-MF-AsE" id="mgj-gG-GJv"/>
@@ -158,6 +186,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJY-3z-tZw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2539" y="168"/>
+        </scene>
+        <!--Render-->
+        <scene sceneID="ggu-Ta-czl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Render" id="tGa-D3-duu" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="eSb-ax-kc6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pxw-nO-Mpu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2303" y="526"/>
         </scene>
     </scenes>
     <resources>
