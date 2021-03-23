@@ -54,8 +54,7 @@
     _textureUV = CVMetalTextureGetTexture(textureRef);
     CFRelease(textureRef);
     textureRef = NULL;
-    
-    [self draw:w height:h rotation:(int)videoData.rotation];
+    [self draw:w height:h videoData:videoData];
 }
 
 #pragma mark - MTKViewDelegate

@@ -72,7 +72,6 @@ static const simd_float8 YZRotate180 = {1, 1, 0, 1, 1, 0, 0, 0};
     if (CGRectEqualToRect(CGRectZero, crop)) {
         return [self getRotationTextureCoordinates:rotation];
     }
-//    NSLog(@"1234___%@", NSStringFromCGRect(crop));
     CGFloat x = crop.origin.x;
     CGFloat y = crop.origin.y;
     CGFloat maxX = CGRectGetMaxX(crop);

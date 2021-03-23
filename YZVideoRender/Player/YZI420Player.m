@@ -34,7 +34,8 @@
     vDesc.usage = MTLTextureUsageShaderWrite | MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead;
     _textureV = [self.device newTextureWithDescriptor:vDesc];
     [_textureV replaceRegion:MTLRegionMake2D(0, 0, _textureV.width, _textureV.height) mipmapLevel:0 withBytes:videoData.vBuffer bytesPerRow:videoData.vStride];
-    [self draw:width height:height rotation:(int)videoData.rotation];
+    
+    [self draw:width height:height videoData:videoData];
 }
 
 #pragma mark - MTKViewDelegate

@@ -18,7 +18,7 @@
 - (instancetype)initWithDevice:(YZVideoDevice *)device;
 
 - (void)showBuffer:(YZVideoData *)videoData;
-- (void)draw:(size_t)width height:(size_t)height rotation:(int)rotation;
+- (void)draw:(size_t)width height:(size_t)height videoData:(YZVideoData *)data;
 - (simd_float8)getTextureCoordinates;
 @end
 

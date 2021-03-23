@@ -9,7 +9,7 @@
 #import "YZVFOrientation.h"
 
 @interface YZVideoPlayer ()<MTKViewDelegate>
-//@property (nonatomic, strong)
+@property (nonatomic, assign) CGRect cropRect;
 @end
 
 @implementation YZVideoPlayer
@@ -41,18 +41,25 @@
     //NSLog(@"___%d:%d:%d", width, height, videoData.rotation);
 }
 
-- (void)draw:(size_t)width height:(size_t)height rotation:(int)rotation {
-    self.rotation = rotation;
-    if (rotation == 90 || rotation == 270) {
-        self.drawableSize = CGSizeMake(height, width);
+- (void)draw:(size_t)width height:(size_t)height videoData:(YZVideoData *)data {
+    self.rotation = (int)data.rotation;
+    size_t w = width;
+    size_t h = height;
+    if (self.crop) {
+        _cropRect = [self getCropWith:width heigth:height videoData:data];
+        w = width - data.cropLeft - data.cropRight;
+        h = height - data.cropTop - data.cropBottom;
+    }
+    if (_rotation == 90 || _rotation == 270) {
+        self.drawableSize = CGSizeMake(h, w);
     } else {
-        self.drawableSize = CGSizeMake(width, height);
+        self.drawableSize = CGSizeMake(w, h);
     }
     [self draw];
 }
 
 - (simd_float8)getTextureCoordinates {
-    return [YZVFOrientation getRotationTextureCoordinates:_rotation];
+    return [YZVFOrientation getCropRotationTextureCoordinates:_rotation crop:_cropRect];
 }
 #pragma mark - MTKViewDelegate
 
@@ -62,5 +69,14 @@
 
 - (void)mtkView:(MTKView *)view drawableSizeWillChange:(CGSize)size {
     
+}
+
+#pragma mark - helper
+- (CGRect)getCropWith:(CGFloat)width heigth:(CGFloat)height videoData:(YZVideoData *)data {
+    CGFloat x = data.cropLeft / width;
+    CGFloat y = data.cropTop / height;
+    CGFloat w =  1 - x - data.cropRight / width;
+    CGFloat h =  1 - y - data.cropBottom / height;
+    return CGRectMake(x, y, w, h);
 }
 @end

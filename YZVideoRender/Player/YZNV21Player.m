@@ -28,7 +28,7 @@
     _textureUV = [self.device newTextureWithDescriptor:uvDesc];
     [_textureUV replaceRegion:MTLRegionMake2D(0, 0, _textureUV.width, _textureUV.height) mipmapLevel:0 withBytes:videoData.uvBuffer bytesPerRow:videoData.uvStride];
 
-    [self draw:width height:height rotation:(int)videoData.rotation];
+    [self draw:width height:height videoData:videoData];
 }
 
 #pragma mark - MTKViewDelegate
