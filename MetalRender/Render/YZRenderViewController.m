@@ -100,19 +100,19 @@
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
     int8_t *uBuffer = malloc(uvBytesPow * uvheight / 2);
     int8_t *vBuffer = malloc(uvBytesPow * uvheight / 2);
-    
+    //yBytesPow, uvBytesPow
     for (int i = 0; i < uvBytesPow * uvheight / 2; i++) {
         uBuffer[i] = uvBuffer[2*i];
         vBuffer[i] = uvBuffer[2*i+1];
     }
-    //todo 绿边
+    
     CVPixelBufferLockBaseAddress(_pixelBuffer, 0);
     int8_t *yB = CVPixelBufferGetBaseAddressOfPlane(_pixelBuffer, 0);
     int8_t *uB = CVPixelBufferGetBaseAddressOfPlane(_pixelBuffer, 1);
     int8_t *vB = CVPixelBufferGetBaseAddressOfPlane(_pixelBuffer, 2);
-    memcpy(yB, yBuffer, width * height);
-    memcpy(uB, uBuffer, width * height / 4);
-    memcpy(vB, vBuffer, width * height / 4);
+    memcpy(yB, yBuffer, yBytesPow * height);
+    memcpy(uB, uBuffer, uvBytesPow * height / 4);
+    memcpy(vB, vBuffer, uvBytesPow * height / 4);
     CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
     
     [_layerView displayVideo:_pixelBuffer];
