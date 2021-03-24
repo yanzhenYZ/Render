@@ -111,9 +111,9 @@
     int8_t *yB = CVPixelBufferGetBaseAddressOfPlane(_pixelBuffer, 0);
     int8_t *uB = CVPixelBufferGetBaseAddressOfPlane(_pixelBuffer, 1);
     int8_t *vB = CVPixelBufferGetBaseAddressOfPlane(_pixelBuffer, 2);
-    memcpy(yB, yBuffer, width * height);
-    memcpy(uB, uBuffer, width * height / 4);
-    memcpy(vB, vBuffer, width * height / 4);
+    memcpy(yB, yBuffer, uvBytesPow * height);
+    memcpy(uB, uBuffer, uvBytesPow * height / 4);
+    memcpy(vB, vBuffer, uvBytesPow * height / 4);
     CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
     
     YZVideoData *data = [[YZVideoData alloc] init];
