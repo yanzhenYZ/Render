@@ -21,7 +21,7 @@
 #import "YZI420Player.h"
 #import "YZNV21Player.h"
 
-@interface YZVideoShow ()
+@interface YZVideoShow ()<YZVideoFilterDelegate>
 @property (nonatomic, strong) YZVideoDevice *device;
 @property (nonatomic, strong) YZVideoOptions *options;
 @property (nonatomic, strong) YZVideoFilter *filter;
@@ -41,26 +41,27 @@
         _device = [[YZVideoDevice alloc] initWithFormat:options.format];
         switch (options.format) {
             case YZVideoFormat32BGRA:
-                _filter = [[YZVideoTextureFilter alloc] init];
+                _filter = [[YZVideoTextureFilter alloc] initWithDevice:_device output:options.output];
                 break;
             case YZVideoFormat420YpCbCr8BiPlanarVideoRange:
-                _filter = [[YZVideoRangeFilter alloc] init];
+                _filter = [[YZVideoRangeFilter alloc] initWithDevice:_device output:options.output];
                 break;
             case YZVideoFormat420YpCbCr8BiPlanarFullRange:
-                _filter = [[YZFullRangeFilter alloc] init];
+                _filter = [[YZFullRangeFilter alloc] initWithDevice:_device output:options.output];
                 break;
             case YZVideoFormatI420:
-                _filter = [[YZVideoI420Filter alloc] init];
+                _filter = [[YZVideoI420Filter alloc] initWithDevice:_device output:options.output];
                 break;
             case YZVideoFormatNV21:
-                _filter = [[YZVideoNV12Filter alloc] init];
+                _filter = [[YZVideoNV12Filter alloc] initWithDevice:_device output:options.output];
                 break;
             case YZVideoFormat420YpCbCr8Planar:
-                _filter = [[YZVideoY420Filter alloc] init];
+                _filter = [[YZVideoY420Filter alloc] initWithDevice:_device output:options.output];
                 break;
             default:
                 break;
         }
+        _filter.delegate = self;
     }
     return self;
 }
@@ -84,31 +85,40 @@
 - (void)displayVideo:(YZVideoData *)videoData {
     [_filter displayVideo:videoData];
 }
-
+#pragma mark - YZVideoFilterDelegate
+- (void)filter:(YZVideoFilter *)filter pixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    if ([_delegate respondsToSelector:@selector(videoShow:pixelBuffer:)]) {
+        [_delegate videoShow:self pixelBuffer:pixelBuffer];
+    }
+}
 #pragma mark - lazy var
 - (YZVideoPlayer *)player {
     if (!_player) {
-        switch (_options.format) {
-            case YZVideoFormat32BGRA:
-                _player = [[YZVideoBGRAPlayer alloc] initWithDevice:_device];
-                break;
-            case YZVideoFormat420YpCbCr8BiPlanarVideoRange:
-                _player = [[YZVideoRangePlayer alloc] initWithDevice:_device];
-                break;
-            case YZVideoFormat420YpCbCr8BiPlanarFullRange:
-                _player = [[YZFullRangePlayer alloc] initWithDevice:_device];
-                break;
-            case YZVideoFormatI420:
-                _player = [[YZI420Player alloc] initWithDevice:_device];
-                break;
-            case YZVideoFormatNV21:
-                _player = [[YZNV21Player alloc] initWithDevice:_device];
-                break;
-            case YZVideoFormat420YpCbCr8Planar:
-                _player = [[YZVideoY420Player alloc] initWithDevice:_device];
-                break;
-            default:
-                break;
+        if (_options.output) {
+            _player = [[YZVideoPlayer alloc] initWithDevice:_device];
+        } else {
+            switch (_options.format) {
+                case YZVideoFormat32BGRA:
+                    _player = [[YZVideoBGRAPlayer alloc] initWithDevice:_device];
+                    break;
+                case YZVideoFormat420YpCbCr8BiPlanarVideoRange:
+                    _player = [[YZVideoRangePlayer alloc] initWithDevice:_device];
+                    break;
+                case YZVideoFormat420YpCbCr8BiPlanarFullRange:
+                    _player = [[YZFullRangePlayer alloc] initWithDevice:_device];
+                    break;
+                case YZVideoFormatI420:
+                    _player = [[YZI420Player alloc] initWithDevice:_device];
+                    break;
+                case YZVideoFormatNV21:
+                    _player = [[YZNV21Player alloc] initWithDevice:_device];
+                    break;
+                case YZVideoFormat420YpCbCr8Planar:
+                    _player = [[YZVideoY420Player alloc] initWithDevice:_device];
+                    break;
+                default:
+                    break;
+            }
         }
         _player.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }

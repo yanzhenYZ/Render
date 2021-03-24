@@ -9,7 +9,7 @@
 #import "YZPixelBufferCapture.h"
 #import <YZVideoRender/YZVideoRender.h>
 
-@interface YZPixelBufferViewController ()<YZPixelBufferCaptureDelegate>
+@interface YZPixelBufferViewController ()<YZPixelBufferCaptureDelegate, YZVideoShowDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *mainPlayer;
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
@@ -23,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
+    options.output = YES;
     if (VIDEOTYPE == 0) {
         options.format = YZVideoFormat32BGRA;
     } else if (VIDEOTYPE == 1) {
@@ -31,12 +32,18 @@
         options.format = YZVideoFormat420YpCbCr8BiPlanarFullRange;
     }
     _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+    _videoShow.delegate = self;
     [_videoShow setVideoShowView:self.showPlayer];
     
     _capture = [[YZPixelBufferCapture alloc] initWithPlayer:_mainPlayer];
     _capture.delegate = self;
     [_capture startRunning];
     
+}
+
+#pragma mark - YZVideoShowDelegate
+- (void)videoShow:(YZVideoShow *)videoShow pixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    //NSLog(@"todo:%d:%d", CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
 }
 
 #pragma mark - YZPixelBufferCaptureDelegate

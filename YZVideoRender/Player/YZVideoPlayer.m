@@ -9,6 +9,7 @@
 #import "YZVFOrientation.h"
 
 @interface YZVideoPlayer ()<MTKViewDelegate>
+@property (nonatomic, strong) id<MTLTexture> superTexture;
 @property (nonatomic, assign) CGRect cropRect;
 @end
 
@@ -59,10 +60,42 @@
 - (simd_float8)getTextureCoordinates {
     return [YZVFOrientation getCropRotationTextureCoordinates:_rotation crop:_cropRect];
 }
-#pragma mark - MTKViewDelegate
 
+- (void)displayTexture:(id<MTLTexture>)texture {
+    _superTexture = texture;
+    self.drawableSize = CGSizeMake(texture.width, texture.height);
+    [self draw];
+}
+#pragma mark - MTKViewDelegate
+//only use output
 - (void)drawInMTKView:(MTKView *)view {
+    if (!view.currentDrawable || !_superTexture) { return; }
+    id<MTLTexture> outTexture = view.currentDrawable.texture;
     
+    MTLRenderPassDescriptor *desc = [YZVideoDevice newRenderPassDescriptor:outTexture];
+    desc.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 1);
+    
+    id<MTLCommandBuffer> commandBuffer = [self.videoDevice commandBuffer];
+    id<MTLRenderCommandEncoder> encoder = [commandBuffer renderCommandEncoderWithDescriptor:desc];
+    if (!encoder) {
+        NSLog(@"YZVideoPlayer render endcoder Fail");
+        return;
+    }
+    [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
+    [encoder setRenderPipelineState:self.videoDevice.pipelineState];
+
+    simd_float8 vertices = [YZVFOrientation defaultVertices];
+    [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
+    
+    simd_float8 textureCoordinates = [YZVFOrientation defaultTextureCoordinates];
+    [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
+    [encoder setFragmentTexture:_superTexture atIndex:0];
+    [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];
+    [encoder endEncoding];
+    
+    [commandBuffer presentDrawable:view.currentDrawable];
+    [commandBuffer commit];
+    _superTexture = nil;
 }
 
 - (void)mtkView:(MTKView *)view drawableSizeWillChange:(CGSize)size {

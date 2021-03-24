@@ -20,5 +20,8 @@
 - (void)showBuffer:(YZVideoData *)videoData;
 - (void)draw:(size_t)width height:(size_t)height videoData:(YZVideoData *)data;
 - (simd_float8)getTextureCoordinates;
+//outout
+- (void)displayTexture:(id<MTLTexture>)texture;
 @end
+
 
