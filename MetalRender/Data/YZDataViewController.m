@@ -9,7 +9,7 @@
 #import "YZDataCapture.h"
 #import <YZVideoRender/YZVideoRender.h>
 
-#define I420 1
+#define I420 0
 
 @interface YZDataViewController ()<YZDataCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *mainPlayer;
@@ -25,6 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
+    options.output = YES;
 #if I420
     options.format = YZVideoFormatI420;
 #else
@@ -70,6 +71,8 @@
     data.uvStride = (int)uvBytesPow;
     data.uvBuffer = uvBuffer;
     
+    data.cropTop = 60;
+    data.cropBottom = 60;
     data.rotation = [self getOutputRotation];
     [_videoShow displayVideo:data];
 }
