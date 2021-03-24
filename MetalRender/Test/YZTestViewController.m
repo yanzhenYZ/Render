@@ -26,7 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
-    options.crop = YES;
     options.format = YZVideoFormat420YpCbCr8Planar;
     
     _videoShow = [[YZVideoShow alloc] initWithOptions:options];

@@ -25,7 +25,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
-    options.crop = YES;
 #if I420
     options.format = YZVideoFormatI420;
 #else

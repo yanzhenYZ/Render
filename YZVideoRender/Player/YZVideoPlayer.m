@@ -45,11 +45,9 @@
     self.rotation = (int)data.rotation;
     size_t w = width;
     size_t h = height;
-    if (self.crop) {
-        _cropRect = [self getCropWith:width heigth:height videoData:data];
-        w = width - data.cropLeft - data.cropRight;
-        h = height - data.cropTop - data.cropBottom;
-    }
+    _cropRect = [self getCropWith:width heigth:height videoData:data];
+    w = width - data.cropLeft - data.cropRight;
+    h = height - data.cropTop - data.cropBottom;
     if (_rotation == 90 || _rotation == 270) {
         self.drawableSize = CGSizeMake(h, w);
     } else {

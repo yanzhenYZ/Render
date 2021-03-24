@@ -23,7 +23,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
-    options.crop = YES;
     if (VIDEOTYPE == 0) {
         options.format = YZVideoFormat32BGRA;
     } else if (VIDEOTYPE == 1) {
