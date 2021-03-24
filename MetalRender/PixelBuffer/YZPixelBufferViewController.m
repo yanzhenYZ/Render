@@ -51,9 +51,9 @@
     //NSLog(@"___%d", [YZVideoShow YZDeviceSupport]);
     YZVideoData *data = [[YZVideoData alloc] init];
     data.pixelBuffer = pixelBuffer;
-    data.rotation = [self getOutputRotation];
-    data.cropTop = 60;
-    data.cropBottom = 60;
+//    data.rotation = [self getOutputRotation];
+    data.cropLeft = 60;
+    data.cropRight = 60;
     [_videoShow displayVideo:data];
 }
 

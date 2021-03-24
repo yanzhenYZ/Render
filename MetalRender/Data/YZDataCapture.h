@@ -8,8 +8,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreVideo/CoreVideo.h>
 
-static const int VIDEOTYPE = 1;
-
 @protocol YZDataCaptureDelegate;
 @interface YZDataCapture : NSObject
 @property (nonatomic, weak) id<YZDataCaptureDelegate> delegate;

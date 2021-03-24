@@ -9,9 +9,9 @@
 #import "YZDataCapture.h"
 #import <YZVideoRender/YZVideoRender.h>
 
-#define I420 0
+#define I420 1
 
-@interface YZDataViewController ()<YZDataCaptureDelegate>
+@interface YZDataViewController ()<YZDataCaptureDelegate, YZVideoShowDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *mainPlayer;
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
@@ -32,11 +32,17 @@
     options.format = YZVideoFormatNV21;
 #endif
     _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+    _videoShow.delegate = self;
     [_videoShow setVideoShowView:self.showPlayer];
     
     _capture = [[YZDataCapture alloc] initWithPlayer:_mainPlayer];
     _capture.delegate = self;
     [_capture startRunning];
+}
+
+#pragma mark - YZVideoShowDelegate
+- (void)videoShow:(YZVideoShow *)videoShow pixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    NSLog(@"todo:%d:%d", CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
 }
 
 #pragma mark - YZDataCaptureDelegate
@@ -71,9 +77,9 @@
     data.uvStride = (int)uvBytesPow;
     data.uvBuffer = uvBuffer;
     
-    data.cropTop = 60;
-    data.cropBottom = 60;
-    data.rotation = [self getOutputRotation];
+    data.cropLeft = 60;
+    data.cropRight = 60;
+//    data.rotation = [self getOutputRotation];
     [_videoShow displayVideo:data];
 }
 
@@ -110,9 +116,11 @@
     data.uBuffer = uBuffer;
     data.vStride = uvBytesPow / 2;
     data.vBuffer = vBuffer;
-    data.rotation = [self getOutputRotation];
-    data.cropTop = 60;
-    data.cropBottom = 60;
+    
+//    data.rotation = [self getOutputRotation];
+//    data.cropTop = 60;
+//    data.cropBottom = 60;
+    
     [_videoShow displayVideo:data];
     
     free(uBuffer);

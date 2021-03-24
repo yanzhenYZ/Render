@@ -118,9 +118,9 @@
     
     YZVideoData *data = [[YZVideoData alloc] init];
     data.pixelBuffer = _pixelBuffer;
-    data.rotation = [self getOutputRotation];
-    data.cropTop = 60;
-    data.cropBottom = 60;
+//    data.rotation = [self getOutputRotation];
+//    data.cropTop = 60;
+//    data.cropBottom = 60;
     [_videoShow displayVideo:data];
     
     free(uBuffer);
