@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     YZVideoOptions *options = [[YZVideoOptions alloc] init];
+    options.output = YES;
     options.format = YZVideoFormat420YpCbCr8Planar;
     
     _videoShow = [[YZVideoShow alloc] initWithOptions:options];
