@@ -42,8 +42,7 @@
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
     
-    CGRect crop = [self getCropWith:CGSizeMake(width, height) videoData:videoData];
-    simd_float8 textureCoordinates = [YZVFOrientation getCropRotationTextureCoordinates:(int)videoData.rotation crop:crop];
+    simd_float8 textureCoordinates = [self getTextureCoordinates:CGSizeMake(width, height) videoData:videoData];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
     [encoder setFragmentTexture:texture atIndex:0];
     

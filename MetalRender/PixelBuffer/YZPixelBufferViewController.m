@@ -43,7 +43,7 @@
 
 #pragma mark - YZVideoShowDelegate
 - (void)videoShow:(YZVideoShow *)videoShow pixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    //NSLog(@"todo:%d:%d", CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
+    NSLog(@"todo:%d:%d", CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
 }
 
 #pragma mark - YZPixelBufferCaptureDelegate

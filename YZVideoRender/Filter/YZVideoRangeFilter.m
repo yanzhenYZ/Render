@@ -8,9 +8,7 @@
 #import "YZVideoRangeFilter.h"
 #import "YZVFOrientation.h"
 
-@implementation YZVideoRangeFilter {
-    const float *_colorConversion; //4x3
-}
+@implementation YZVideoRangeFilter
 
 - (void)displayVideo:(YZVideoData *)videoData {
     if (!self.outout) {
@@ -23,15 +21,16 @@
     if (![self cropTextureSize:CGSizeMake(w, h) videoData:videoData]) {
         return;
     }
+    const float *colorConversion;
     CFTypeRef attachment = CVBufferGetAttachment(pixelBuffer, kCVImageBufferYCbCrMatrixKey, NULL);
     if (attachment != NULL) {
         if(CFStringCompare(attachment, kCVImageBufferYCbCrMatrix_ITU_R_601_4, 0) == kCFCompareEqualTo) {
-            _colorConversion = kYZColorConversion601;
+            colorConversion = kYZColorConversion601;
         } else {
-            _colorConversion = kYZColorConversion709;
+            colorConversion = kYZColorConversion709;
         }
     } else {
-        _colorConversion = kYZColorConversion601;
+        colorConversion = kYZColorConversion601;
     }
     
     CVMetalTextureRef textureRef = NULL;
@@ -72,14 +71,13 @@
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
     
-    CGRect crop = [self getCropWith:CGSizeMake(w, h) videoData:videoData];
-    simd_float8 textureCoordinates = [YZVFOrientation getCropRotationTextureCoordinates:(int)videoData.rotation crop:crop];
+    simd_float8 textureCoordinates = [self getTextureCoordinates:CGSizeMake(w, h) videoData:videoData];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:1];
     [encoder setFragmentTexture:textureY atIndex:0];
     [encoder setVertexBytes:&textureCoordinates length:sizeof(simd_float8) atIndex:2];
     [encoder setFragmentTexture:textureUV atIndex:1];
     
-    id<MTLBuffer> uniformBuffer = [self.device.device newBufferWithBytes:_colorConversion length:sizeof(float) * 12 options:MTLResourceCPUCacheModeDefaultCache];
+    id<MTLBuffer> uniformBuffer = [self.device.device newBufferWithBytes:colorConversion length:sizeof(float) * 12 options:MTLResourceCPUCacheModeDefaultCache];
     [encoder setFragmentBuffer:uniformBuffer offset:0 atIndex:0];
     
     [encoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:4];

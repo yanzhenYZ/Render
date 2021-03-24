@@ -6,6 +6,7 @@
 //
 
 #import "YZVideoFilter.h"
+#import "YZVFOrientation.h"
 
 @interface YZVideoFilter ()
 @property (nonatomic) CGSize size;
@@ -57,12 +58,9 @@
     return [self continueMetal];
 }
 
-- (CGRect)getCropWith:(CGSize)size videoData:(YZVideoData *)data {
-    CGFloat x = data.cropLeft / size.width;
-    CGFloat y = data.cropTop / size.height;
-    CGFloat w =  1 - x - data.cropRight / size.width;
-    CGFloat h =  1 - y - data.cropBottom / size.height;
-    return CGRectMake(x, y, w, h);
+- (simd_float8)getTextureCoordinates:(CGSize)size videoData:(YZVideoData *)data {
+    CGRect crop = [self getCropWith:size videoData:data];
+    return [YZVFOrientation getCropRotationTextureCoordinates:(int)data.rotation crop:crop];
 }
 
 - (void)showTexture {
@@ -73,6 +71,14 @@
 }
 
 #pragma mark - helper
+- (CGRect)getCropWith:(CGSize)size videoData:(YZVideoData *)data {
+    CGFloat x = data.cropLeft / size.width;
+    CGFloat y = data.cropTop / size.height;
+    CGFloat w =  1 - x - data.cropRight / size.width;
+    CGFloat h =  1 - y - data.cropBottom / size.height;
+    return CGRectMake(x, y, w, h);
+}
+
 - (BOOL)continueMetal {
     if (!_pixelBuffer || !_texture) {
         return NO;

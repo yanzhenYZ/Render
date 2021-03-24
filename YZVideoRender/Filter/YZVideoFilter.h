@@ -24,7 +24,7 @@
 - (void)displayVideo:(YZVideoData *)videoData;
 //outout
 - (BOOL)cropTextureSize:(CGSize)size videoData:(YZVideoData *)data;
-- (CGRect)getCropWith:(CGSize)size videoData:(YZVideoData *)data;
+- (simd_float8)getTextureCoordinates:(CGSize)size videoData:(YZVideoData *)data;
 - (void)showTexture;
 @end
 
