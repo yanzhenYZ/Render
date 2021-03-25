@@ -1,7 +1,7 @@
 *.xccheckout
 *.moved-aside
 *.xcuserstate
-
+UserInterfaceState.xcuserstate
 
 build/
 
