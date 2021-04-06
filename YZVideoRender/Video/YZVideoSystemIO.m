@@ -10,6 +10,7 @@
 
 @interface YZVideoSystemIO ()
 @property (nonatomic, strong) YZSystemPlayer *player;
+@property (nonatomic, assign) UIViewContentMode contentMode;
 @end
 
 @implementation YZVideoSystemIO
@@ -34,6 +35,7 @@
 }
 
 - (void)setContentModeInMainThread:(UIViewContentMode)contentMode {
+    _contentMode = contentMode;
     _player.contentMode = contentMode;
 }
 #pragma mark - lazy var
@@ -42,6 +44,7 @@
         _player = [[YZSystemPlayer alloc] init];
         _player.backgroundColor = UIColor.blackColor;
         _player.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _player.contentMode = _contentMode;
     }
     return _player;
 }
