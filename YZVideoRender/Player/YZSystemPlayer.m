@@ -14,18 +14,18 @@
 
 @implementation YZSystemPlayer
 
-+ (Class)layerClass {
-    return [AVSampleBufferDisplayLayer class];
-}
-
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        _sampleBufferDisplayLayer = (AVSampleBufferDisplayLayer *)self.layer;
-        _sampleBufferDisplayLayer.videoGravity = AVLayerVideoGravityResize;
+        [self createDisplayLayer:AVLayerVideoGravityResize];
     }
     return self;
+}
+
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    _sampleBufferDisplayLayer.frame = self.bounds;
 }
 
 - (void)displayVideo:(CVPixelBufferRef)pixelBuffer {
@@ -54,23 +54,47 @@
 
 - (void)setContentMode:(UIViewContentMode)contentMode {
     [super setContentMode:contentMode];
-    switch (contentMode) {
-        case UIViewContentModeScaleToFill:
-            _sampleBufferDisplayLayer.videoGravity = AVLayerVideoGravityResize;
-            break;
-        case UIViewContentModeScaleAspectFit:
-//            _sampleBufferDisplayLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-            [_sampleBufferDisplayLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
-            break;
-        case UIViewContentModeScaleAspectFill:
-            _sampleBufferDisplayLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-            break;
-        default:
-            break;
+    AVLayerVideoGravity videoGravity = [self getVideoGravity:contentMode];
+    if (![videoGravity isEqualToString:_sampleBufferDisplayLayer.videoGravity]) {
+        [self createDisplayLayer:videoGravity];
     }
 }
 
 - (NSString *)description {
     return @"YZ Video Player";
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _sampleBufferDisplayLayer.frame = self.bounds;
+}
+#pragma mark - private
+- (void)createDisplayLayer:(AVLayerVideoGravity)videoGravity {
+    if (_sampleBufferDisplayLayer) {
+        [_sampleBufferDisplayLayer stopRequestingMediaData];
+        [_sampleBufferDisplayLayer removeFromSuperlayer];
+        _sampleBufferDisplayLayer = nil;
+    }
+    _sampleBufferDisplayLayer = [[AVSampleBufferDisplayLayer alloc] init];
+    _sampleBufferDisplayLayer.videoGravity = videoGravity;
+    _sampleBufferDisplayLayer.frame = self.bounds;
+    [self.layer addSublayer:_sampleBufferDisplayLayer];
+}
+
+- (AVLayerVideoGravity)getVideoGravity:(UIViewContentMode)contentMode {
+    switch (contentMode) {
+        case UIViewContentModeScaleToFill:
+            return AVLayerVideoGravityResize;
+            break;
+        case UIViewContentModeScaleAspectFit:
+            return AVLayerVideoGravityResizeAspect;
+            break;
+        case UIViewContentModeScaleAspectFill:
+            return AVLayerVideoGravityResizeAspectFill;
+            break;
+        default:
+            break;
+    }
+    return _sampleBufferDisplayLayer.videoGravity;
 }
 @end
