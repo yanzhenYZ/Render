@@ -45,6 +45,9 @@
     
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
+}
 #pragma mark - YZVideoShowDelegate
 - (void)videoShow:(YZVideoShow *)videoShow pixelBuffer:(CVPixelBufferRef)pixelBuffer {
     NSLog(@"todo:%d:%d", CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));

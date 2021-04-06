@@ -13,4 +13,11 @@
     
 }
 
+- (void)setVideoShowViewInMainThread:(UIView *)view {
+    
+}
+
+- (void)setContentModeInMainThread:(UIViewContentMode)contentMode {
+    
+}
 @end

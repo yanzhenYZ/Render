@@ -13,6 +13,8 @@
 - (void)displayVideo:(YZVideoData *)videoData;
 
 - (void)setVideoShowViewInMainThread:(UIView *)view;
+
+-(void)setContentModeInMainThread:(UIViewContentMode)contentMode;
 @end
 
 

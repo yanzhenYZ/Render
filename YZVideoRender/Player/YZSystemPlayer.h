@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YZSystemPlayer : UIView
-
+- (void)displayVideo:(CVPixelBufferRef)pixelBuffer;
 @end
 
 

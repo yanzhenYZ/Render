@@ -46,6 +46,12 @@
     }];
 }
 
+- (void)setViewFillMode:(YZVideoFillMode)mode {
+    [YZVideoDisplay syncMainThread:^{
+        [self.videoIO setContentModeInMainThread:(UIViewContentMode)mode];
+    }];
+}
+
 #pragma mark - helper
 + (void)syncMainThread:(void(^)(void))block {
     if (NSThread.isMainThread) {

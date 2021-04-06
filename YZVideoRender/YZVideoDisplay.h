@@ -7,6 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSInteger {
+    YZVideoFillModeScaleToFill,     /** Same as UIViewContentModeScaleToFill */
+    YZVideoFillModeScaleAspectFit,  /** Same as UIViewContentModeScaleAspectFit */
+    YZVideoFillModeScaleAspectFill, /** Same as UIViewContentModeScaleAspectFill */
+} YZVideoFillMode;
+
 @class YZVideoData;
 @interface YZVideoDisplay : NSObject
 /**
@@ -21,6 +27,7 @@
 - (void)displayVideo:(YZVideoData *)videoData; //show video
 
 - (void)setVideoShowView:(UIView *)view; //set video show view
+- (void)setViewFillMode:(YZVideoFillMode)mode; //see YZVideoFillMode
 @end
 
 
