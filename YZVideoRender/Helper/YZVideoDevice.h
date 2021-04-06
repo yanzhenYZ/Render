@@ -19,6 +19,8 @@
 @property (nonatomic, strong) id<MTLRenderPipelineState> defaultPipelineState;
 @property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
 
+- (BOOL)deviceSupport;
+
 - (id<MTLCommandBuffer>)commandBuffer;
 + (MTLRenderPassDescriptor *)newRenderPassDescriptor:(id<MTLTexture>)texture;
 - (void)newDefaultRenderPipeline;

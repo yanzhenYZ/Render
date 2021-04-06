@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
 @property (nonatomic, strong) YZPixelBufferCapture *capture;
-@property (nonatomic, strong) YZVideoShow *videoShow;
+//@property (nonatomic, strong) YZVideoShow *videoShow;
+@property (nonatomic, strong) YZVideoDisplay *display;
 @end
 
 @implementation YZPixelBufferViewController
@@ -22,18 +23,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    YZVideoOptions *options = [[YZVideoOptions alloc] init];
-    options.output = YES;
-    if (VIDEOTYPE == 0) {
-        options.format = YZVideoFormat32BGRA;
-    } else if (VIDEOTYPE == 1) {
-        options.format = YZVideoFormat420YpCbCr8BiPlanarVideoRange;
-    } else if (VIDEOTYPE == 2) {
-        options.format = YZVideoFormat420YpCbCr8BiPlanarFullRange;
-    }
-    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
-    _videoShow.delegate = self;
-    [_videoShow setVideoShowView:self.showPlayer];
+//    YZVideoOptions *options = [[YZVideoOptions alloc] init];
+//    options.output = YES;
+//    if (VIDEOTYPE == 0) {
+//        options.format = YZVideoFormat32BGRA;
+//    } else if (VIDEOTYPE == 1) {
+//        options.format = YZVideoFormat420YpCbCr8BiPlanarVideoRange;
+//    } else if (VIDEOTYPE == 2) {
+//        options.format = YZVideoFormat420YpCbCr8BiPlanarFullRange;
+//    }
+//    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+//    _videoShow.delegate = self;
+//    [_videoShow setVideoShowView:self.showPlayer];
+    
+    _display = [[YZVideoDisplay alloc] init];
+    [_display setVideoShowView:self.showPlayer];
     
     _capture = [[YZPixelBufferCapture alloc] initWithPlayer:_mainPlayer];
     _capture.delegate = self;
@@ -54,7 +58,8 @@
     data.rotation = [self getOutputRotation];
     data.cropTop = 60;
     data.cropBottom = 60;
-    [_videoShow displayVideo:data];
+//    [_videoShow displayVideo:data];
+    [_display displayVideo:data];
 }
 
 - (YZVideoRotation)getOutputRotation {//test code

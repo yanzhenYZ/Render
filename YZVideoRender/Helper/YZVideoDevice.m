@@ -63,6 +63,10 @@
     return self;
 }
 
+- (BOOL)deviceSupport {
+    return MPSSupportsMTLDevice(_device);
+}
+
 #pragma mark - metal
 - (id<MTLCommandBuffer>)commandBuffer {
     return [_commandQueue commandBuffer];
