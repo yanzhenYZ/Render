@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
 @property (nonatomic, strong) YZDataCapture *capture;
-//@property (nonatomic, strong) YZVideoShow *videoShow;
+@property (nonatomic, strong) YZVideoDisplay *display;
 @end
 
 @implementation YZDataViewController
@@ -33,6 +33,10 @@
 //#endif
 //    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
 //    [_videoShow setVideoShowView:self.showPlayer];
+    
+    _display = [[YZVideoDisplay alloc] init];
+    [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
+    [_display setVideoShowView:self.showPlayer];
     
     _capture = [[YZDataCapture alloc] initWithPlayer:_mainPlayer];
     _capture.delegate = self;
@@ -63,8 +67,9 @@
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
     
     YZVideoData *data = [[YZVideoData alloc] init];
-    data.width = (int)yWidth;
-    data.height = (int)yheight;
+    data.format = YZVideoFormatNV12;
+    data.width = (int)CVPixelBufferGetWidth(pixelBuffer);
+    data.height = (int)CVPixelBufferGetHeight(pixelBuffer);
     data.yStride = (int)yBytesPow;
     data.yBuffer = yBuffer;
     
@@ -74,6 +79,7 @@
     data.cropTop = 60;
     data.cropBottom = 60;
     data.rotation = [self getOutputRotation];
+    [_display displayVideo:data];
 //    [_videoShow displayVideo:data];
 }
 
