@@ -61,9 +61,15 @@
     } else if (type == kCVPixelFormatType_420YpCbCr8Planar) {
         NSLog(@"todo_420");
     } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
-        NSLog(@"todo_full");
+        if (![_format isKindOfClass:[YZMetalFormatFullRange class]]) {
+            _format = [[YZMetalFormatFullRange alloc] initWithDevice:self.device];
+            _format.mtkView = _player;
+        }
     } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
-        NSLog(@"todo_video");
+        if (![_format isKindOfClass:[YZMetalFormatVideoRange class]]) {
+            _format = [[YZMetalFormatVideoRange alloc] initWithDevice:self.device];
+            _format.mtkView = _player;
+        }
     }
     [_format displayVideo:data];
 }

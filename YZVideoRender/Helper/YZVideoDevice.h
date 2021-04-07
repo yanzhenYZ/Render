@@ -27,6 +27,8 @@
 
 //new display
 - (id<MTLRenderPipelineState>)getBGRAPipeline;
+- (id<MTLRenderPipelineState>)getVideoRangePipeline;
+- (id<MTLRenderPipelineState>)getFullRangePipeline;
 @end
 
 

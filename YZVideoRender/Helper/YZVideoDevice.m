@@ -15,6 +15,7 @@
 @property (nonatomic, strong) id<MTLLibrary> library;
 
 @property (nonatomic, strong) id<MTLLibrary> bgraLibrary;
+@property (nonatomic, strong) id<MTLLibrary> rangeLibrary;
 @end
 
 @implementation YZVideoDevice
@@ -43,23 +44,6 @@
         _commandQueue = [_device newCommandQueue];
         /*
         switch (format) {
-            case YZVideoFormat32BGRA:
-                _library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZVertexFragment] options:NULL error:nil];
-                assert(_library);
-                _pipelineState = [self createRenderPipeline:_library vertex:@"YZInputVertex" fragment:@"YZFragment"];
-                _defaultPipelineState = _pipelineState;
-                break;
-            case YZVideoFormat420YpCbCr8BiPlanarVideoRange:
-                _library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
-                assert(_library);
-                _pipelineState = [self createRenderPipeline:_library vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionVideoRangeFragment"];
-                break;
-            case YZVideoFormat420YpCbCr8BiPlanarFullRange:
-            case YZVideoTFormatNV21:
-                _library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
-                assert(_library);
-                _pipelineState = [self createRenderPipeline:_library vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionFullRangeFragment"];
-                break;
             case YZVideoTFormatI420:
                 _library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZI420MetalString] options:NULL error:nil];
                 assert(_library);
@@ -131,5 +115,21 @@
         assert(_bgraLibrary);
     }
     return [self createRenderPipeline:_bgraLibrary vertex:@"YZInputVertex" fragment:@"YZFragment"];
+}
+
+- (id<MTLRenderPipelineState>)getVideoRangePipeline {
+    if (!_rangeLibrary) {
+        _rangeLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
+        assert(_rangeLibrary);
+    }
+    return [self createRenderPipeline:_rangeLibrary vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionVideoRangeFragment"];
+}
+
+- (id<MTLRenderPipelineState>)getFullRangePipeline {
+    if (!_rangeLibrary) {
+        _rangeLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
+        assert(_rangeLibrary);
+    }
+    return [self createRenderPipeline:_rangeLibrary vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionFullRangeFragment"];
 }
 @end
