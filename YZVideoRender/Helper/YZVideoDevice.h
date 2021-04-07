@@ -16,19 +16,17 @@
 -(instancetype)initWithFormat:(YZVideoFormat)format;
 
 @property (nonatomic, strong) id<MTLDevice> device;
-@property (nonatomic, strong) id<MTLRenderPipelineState> defaultPipelineState;
-@property (nonatomic, strong) id<MTLRenderPipelineState> pipelineState;
 
 - (BOOL)deviceSupport;
 
 - (id<MTLCommandBuffer>)commandBuffer;
 + (MTLRenderPassDescriptor *)newRenderPassDescriptor:(id<MTLTexture>)texture;
-- (void)newDefaultRenderPipeline;
 
 //new display
 - (id<MTLRenderPipelineState>)getBGRAPipeline;
 - (id<MTLRenderPipelineState>)getVideoRangePipeline;
 - (id<MTLRenderPipelineState>)getFullRangePipeline;
+- (id<MTLRenderPipelineState>)getY420Pipeline;
 @end
 
 

@@ -38,7 +38,7 @@
     }
 
     [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
-    [encoder setRenderPipelineState:self.device.pipelineState];
+//    [encoder setRenderPipelineState:self.device.pipelineState];
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];
     

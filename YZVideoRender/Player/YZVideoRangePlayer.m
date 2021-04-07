@@ -72,7 +72,7 @@
         return;
     }
     [encoder setFrontFacingWinding:MTLWindingCounterClockwise];
-    [encoder setRenderPipelineState:self.videoDevice.pipelineState];
+//    [encoder setRenderPipelineState:self.videoDevice.pipelineState];
 
     simd_float8 vertices = [YZVFOrientation defaultVertices];
     [encoder setVertexBytes:&vertices length:sizeof(simd_float8) atIndex:0];

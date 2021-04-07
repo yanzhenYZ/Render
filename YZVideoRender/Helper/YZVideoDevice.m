@@ -12,10 +12,10 @@
 
 @interface YZVideoDevice ()
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
-@property (nonatomic, strong) id<MTLLibrary> library;
 
 @property (nonatomic, strong) id<MTLLibrary> bgraLibrary;
 @property (nonatomic, strong) id<MTLLibrary> rangeLibrary;
+@property (nonatomic, strong) id<MTLLibrary> y420Library;
 @end
 
 @implementation YZVideoDevice
@@ -79,14 +79,6 @@
     return desc;
 }
 
-- (void)newDefaultRenderPipeline {
-    if (!_defaultPipelineState) {
-        id<MTLLibrary> library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZVertexFragment] options:NULL error:nil];
-        assert(library);
-        _defaultPipelineState = [self createRenderPipeline:library vertex:@"YZInputVertex" fragment:@"YZFragment"];
-    }
-}
-
 - (id<MTLRenderPipelineState>)createRenderPipeline:(id<MTLLibrary>)library vertex:(NSString *)vertex fragment:(NSString *)fragment {
     id<MTLFunction> vertexFunction = [library newFunctionWithName:vertex];
     id<MTLFunction> fragmentFunction = [library newFunctionWithName:fragment];
@@ -131,5 +123,13 @@
         assert(_rangeLibrary);
     }
     return [self createRenderPipeline:_rangeLibrary vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionFullRangeFragment"];
+}
+
+- (id<MTLRenderPipelineState>)getY420Pipeline {
+    if (!_y420Library) {
+        _y420Library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZI420MetalString] options:NULL error:nil];
+        assert(_y420Library);
+    }
+    return [self createRenderPipeline:_y420Library vertex:@"YZYUVDataToRGBVertex" fragment:@"YZYUVDataConversionFullRangeFragment"];
 }
 @end

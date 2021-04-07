@@ -59,7 +59,10 @@
             _format.mtkView = _player;
         }
     } else if (type == kCVPixelFormatType_420YpCbCr8Planar) {
-        NSLog(@"todo_420");
+        if (![_format isKindOfClass:[YZMetalFormatY420 class]]) {
+            _format = [[YZMetalFormatY420 alloc] initWithDevice:self.device];
+            _format.mtkView = _player;
+        }
     } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
         if (![_format isKindOfClass:[YZMetalFormatFullRange class]]) {
             _format = [[YZMetalFormatFullRange alloc] initWithDevice:self.device];

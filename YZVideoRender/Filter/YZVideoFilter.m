@@ -36,7 +36,7 @@
         _device = device;
         _outout = output;
         if (output) {
-            [device newDefaultRenderPipeline];
+            //[device newDefaultRenderPipeline];
             CVMetalTextureCacheCreate(NULL, NULL, device.device, NULL, &_textureCache);
         }
     }
