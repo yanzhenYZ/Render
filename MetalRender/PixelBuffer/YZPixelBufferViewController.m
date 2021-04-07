@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) YZPixelBufferCapture *capture;
 //@property (nonatomic, strong) YZVideoShow *videoShow;
-@property (nonatomic, strong) YZVideoDisplay *display;
+@property (nonatomic, strong) YZVideoShow *display;
 @end
 
 @implementation YZPixelBufferViewController
@@ -36,7 +36,7 @@
 //    _videoShow.delegate = self;
 //    [_videoShow setVideoShowView:self.showPlayer];
     
-    _display = [[YZVideoDisplay alloc] init];
+    _display = [[YZVideoShow alloc] init];
     [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
     [_display setVideoShowView:self.showPlayer];
     

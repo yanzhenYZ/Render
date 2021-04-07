@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
 @property (nonatomic, strong) YZDataCapture *capture;
-@property (nonatomic, strong) YZVideoDisplay *display;
+@property (nonatomic, strong) YZVideoShow *display;
 @end
 
 @implementation YZDataViewController
@@ -34,7 +34,7 @@
 //    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
 //    [_videoShow setVideoShowView:self.showPlayer];
     
-    _display = [[YZVideoDisplay alloc] init];
+    _display = [[YZVideoShow alloc] init];
     [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
     [_display setVideoShowView:self.showPlayer];
     
