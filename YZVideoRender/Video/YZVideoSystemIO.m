@@ -96,9 +96,67 @@
 }
 
 - (void)displayI420Video:(YZVideoData *)data {
-    NSLog(@"todo I420");
+    [self createI420PixelBuffer:data];
+    if (!_pixelBuffer) { return; }
+    CVPixelBufferLockBaseAddress(_pixelBuffer, 0);
+    uint8_t *yBuffer = CVPixelBufferGetBaseAddressOfPlane(_pixelBuffer, 0);
+    uint8_t *uBuffer = CVPixelBufferGetBaseAddressOfPlane(_pixelBuffer, 1);
+    uint8_t *vBuffer = CVPixelBufferGetBaseAddressOfPlane(_pixelBuffer, 2);
+    
+    size_t yStride = CVPixelBufferGetBytesPerRowOfPlane(_pixelBuffer, 0);
+    size_t uStride = CVPixelBufferGetBytesPerRowOfPlane(_pixelBuffer, 1);
+    size_t vStride = CVPixelBufferGetBytesPerRowOfPlane(_pixelBuffer, 2);
+    if (yStride == data.yStride) {
+        memcpy(yBuffer, data.yBuffer, yStride * data.height);
+    } else {
+        for (int i = 0; i < data.height; i++) {
+            memcpy(yBuffer + yStride * i, data.yBuffer + data.yStride * i, data.yStride);
+        }
+    }
+    
+    if (uStride == data.uStride) {
+        memcpy(uBuffer, data.uBuffer, uStride * data.height / 2);
+    } else {
+        for (int i = 0; i < data.height / 2; i++) {
+            memcpy(uBuffer + uStride * i, data.uBuffer + data.uStride * i, data.uStride);
+        }
+    }
+    
+    if (vStride == data.vStride) {
+        memcpy(vBuffer, data.vBuffer, vStride * data.height / 2);
+    } else {
+        for (int i = 0; i < data.height / 2; i++) {
+            memcpy(vBuffer + vStride * i, data.vBuffer + data.vStride * i, data.vStride);
+        }
+    }
+    
+    CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
+    
+    [_player displayVideo:_pixelBuffer];
 }
 
+- (void)createI420PixelBuffer:(YZVideoData *)data {
+    if (_pixelBuffer) {
+        size_t width = CVPixelBufferGetWidth(_pixelBuffer);
+        size_t height = CVPixelBufferGetHeight(_pixelBuffer);
+        if (data.width == width && data.height == height) {
+            return;
+        }
+        CVPixelBufferRelease(_pixelBuffer);
+        _pixelBuffer = nil;
+    }
+    NSDictionary *pixelAttributes = @{(NSString *)kCVPixelBufferIOSurfacePropertiesKey:@{}};
+    CVReturn result = CVPixelBufferCreate(kCFAllocatorDefault,
+                                            data.width,
+                                            data.height,
+                                            kCVPixelFormatType_420YpCbCr8Planar,
+                                            (__bridge CFDictionaryRef)(pixelAttributes),
+                                            &_pixelBuffer);
+    if (result != kCVReturnSuccess) {
+        NSLog(@"SystemIO to create cvpixelbuffer %d", result);
+        return;
+    }
+}
 
 - (void)createNV12PixelBuffer:(YZVideoData *)data {
     if (_pixelBuffer) {

@@ -111,7 +111,7 @@
         uBuffer[i] = uvBuffer[2*i];
         vBuffer[i] = uvBuffer[2*i+1];
     }
-    
+    data.format = YZVideoFormatI420;
     data.uStride = uvBytesPow / 2;
     data.uBuffer = uBuffer;
     data.vStride = uvBytesPow / 2;
@@ -119,7 +119,7 @@
     data.rotation = [self getOutputRotation];
     data.cropTop = 60;
     data.cropBottom = 60;
-//    [_videoShow displayVideo:data];
+    [_display displayVideo:data];
     
     free(uBuffer);
     free(vBuffer);
