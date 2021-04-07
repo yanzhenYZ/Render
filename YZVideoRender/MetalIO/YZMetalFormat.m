@@ -6,6 +6,7 @@
 //
 
 #import "YZMetalFormat.h"
+#import "YZVFOrientation.h"
 
 @interface YZMetalFormat ()
 @property (nonatomic, assign) int rotation;
@@ -30,6 +31,10 @@
 }
 
 - (void)displayVideo:(YZVideoData *)videoData { }
+
+- (simd_float8)getTextureCoordinates {
+    return [YZVFOrientation getCropRotationTextureCoordinates:_rotation crop:_cropRect];
+}
 
 - (void)draw:(size_t)width height:(size_t)height videoData:(YZVideoData *)data {
     self.rotation = (int)data.rotation;

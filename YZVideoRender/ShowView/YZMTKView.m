@@ -7,7 +7,7 @@
 
 #import "YZMTKView.h"
 
-@interface YZMTKView ()<MTKViewDelegate>
+@interface YZMTKView ()
 
 @end
 
@@ -17,20 +17,10 @@
     self = [super initWithFrame:frameRect device:device];
     if (self) {
         self.paused = YES;
-        self.delegate = self;
         self.framebufferOnly = NO;
         self.enableSetNeedsDisplay = NO;
         //self.contentMode = UIViewContentModeScaleAspectFit;
     }
     return self;
-}
-
-#pragma mark - MTKViewDelegate
-- (void)drawInMTKView:(MTKView *)view {
-    NSLog(@"todo_0_bgra");
-}
-
-- (void)mtkView:(MTKView *)view drawableSizeWillChange:(CGSize)size {
-    
 }
 @end

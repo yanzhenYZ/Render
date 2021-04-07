@@ -21,6 +21,8 @@
 
 - (void)displayVideo:(YZVideoData *)videoData;
 
+- (simd_float8)getTextureCoordinates;
+- (void)drawTexture:(id <CAMetalDrawable>)currentDrawable;
 - (void)draw:(size_t)width height:(size_t)height videoData:(YZVideoData *)data;
 @end
 

@@ -12,7 +12,7 @@
 #import "YZMetalFormatY420.h"
 #import "YZMTKView.h"
 
-@interface YZVideoMetalIO ()
+@interface YZVideoMetalIO ()<MTKViewDelegate>
 @property (nonatomic, strong) YZMTKView *player;
 @property (nonatomic, strong) YZMetalFormat *format;
 @property (nonatomic, assign) YZVideoFormat videFormat;
@@ -68,10 +68,21 @@
     [_format displayVideo:data];
 }
 
+#pragma mark - MTKViewDelegate
+- (void)drawInMTKView:(MTKView *)view {
+    if (!view.currentDrawable) { return; }
+    [_format drawTexture:view.currentDrawable];
+}
+
+- (void)mtkView:(MTKView *)view drawableSizeWillChange:(CGSize)size {
+    
+}
+
 #pragma mark - lazy var
 - (YZMTKView *)player {
     if (!_player) {
         _player = [[YZMTKView alloc] initWithFrame:CGRectZero device:self.device.device];
+        _player.delegate = self;
         _player.layer.backgroundColor = UIColor.blackColor.CGColor;
         _player.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _player.contentMode = _contentMode;

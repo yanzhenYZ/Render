@@ -37,6 +37,7 @@
 //    [_videoShow setVideoShowView:self.showPlayer];
     
     _display = [[YZVideoDisplay alloc] init];
+    [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
     [_display setVideoShowView:self.showPlayer];
     
     _capture = [[YZPixelBufferCapture alloc] initWithPlayer:_mainPlayer];
