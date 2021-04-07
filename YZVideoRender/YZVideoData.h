@@ -1,14 +1,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreMedia/CoreMedia.h>
 
-typedef enum : NSUInteger {
+typedef NS_ENUM(NSUInteger, YZVideoRotation) {
     YZVideoRotation0   = 0,
     YZVideoRotation90  = 90,
     YZVideoRotation180 = 180,
     YZVideoRotation270 = 270,
-} YZVideoRotation;
+};
 
-typedef enum : NSUInteger {
+typedef NS_ENUM(NSUInteger, YZVideoFormat) {
     /** support 
      kCVPixelFormatType_32BGRA
      kCVPixelFormatType_420YpCbCr8Planar
@@ -20,7 +20,7 @@ typedef enum : NSUInteger {
     YZVideoFormatI420,
     /** NV12 */
     YZVideoFormatNV12,
-} YZVideoFormat;
+};
 
 @interface YZVideoData : NSObject
 /** see YZVideoFormat */

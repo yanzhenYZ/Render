@@ -75,13 +75,19 @@
     if (yStride == data.yStride) {
         memcpy(yBuffer, data.yBuffer, yStride * data.height);
     } else {
-        NSLog(@"NV12Y__%d:%d", yStride, data.yStride);
+        for (int i = 0; i < data.height; i++) {
+            memcpy(yBuffer + yStride * i, data.yBuffer + data.yStride * i, data.yStride);
+        }
+        //NSLog(@"NV12Y__%d:%d", yStride, data.yStride);
     }
     
     if (uvStride == data.uvStride) {
         memcpy(uvBuffer, data.uvBuffer, uvStride * data.height / 2);
     } else {
-        NSLog(@"NV12UV__%d:%d", uvStride, data.uvStride);
+        for (int i = 0; i < data.height / 2; i++) {
+            memcpy(uvBuffer + uvStride * i, data.uvBuffer + data.uvStride * i, data.uvStride);
+        }
+        //NSLog(@"NV12UV__%d:%d", uvStride, data.uvStride);
     }
     
     CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
