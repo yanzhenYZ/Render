@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, YZVideoFillMode) {
 @interface YZVideoDisplay : NSObject
 /**
  *  isSupportAdditionalFeatures
- *  @abstract   The additional features contain YZVideoData's cropLeft, cropTop, cropRight, cropBottom and rotation.
+ *  @abstract   The additional features contain YZVideoData's cropLeft, cropTop, cropRight, cropBottom, mirror and rotation.
  *
  *  @return     YES             The device is supported.
  *              NO              The device is not supported
