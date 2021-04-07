@@ -14,15 +14,6 @@
 @property (nonatomic, assign) YZVideoFormat format;
 @end
 
-/** todo
- 
- 1. 步长宽高不相等
- 2. fullRange nv12, videoRange nv12
- 3. 视频尺寸发生变化
- 4. 视频format发生变化
- 
- */
-
 @implementation YZVideoSystemIO {
     CVPixelBufferRef _pixelBuffer;
 }
@@ -39,10 +30,24 @@
     if (videoData.format == YZVideoFormatPixelBuffer) {
         [_player displayVideo:videoData.pixelBuffer];
     } else if (videoData.format == YZVideoFormatNV12) {
+        if (_format != YZVideoFormatNV12) {
+            if (_pixelBuffer) {
+                CVPixelBufferRelease(_pixelBuffer);
+                _pixelBuffer = nil;
+            }
+        }
         [self displayNV12Video:videoData];
     } else if (videoData.format == YZVideoFormatI420) {
+        if (_format != YZVideoFormatI420) {
+            if (_pixelBuffer) {
+                CVPixelBufferRelease(_pixelBuffer);
+                _pixelBuffer = nil;
+            }
+        }
         [self displayI420Video:videoData];
     }
+    
+    _format = videoData.format;
 }
 
 - (void)setVideoShowViewInMainThread:(UIView *)view {
@@ -78,7 +83,6 @@
         for (int i = 0; i < data.height; i++) {
             memcpy(yBuffer + yStride * i, data.yBuffer + data.yStride * i, data.yStride);
         }
-        //NSLog(@"NV12Y__%d:%d", yStride, data.yStride);
     }
     
     if (uvStride == data.uvStride) {
@@ -87,7 +91,6 @@
         for (int i = 0; i < data.height / 2; i++) {
             memcpy(uvBuffer + uvStride * i, data.uvBuffer + data.uvStride * i, data.uvStride);
         }
-        //NSLog(@"NV12UV__%d:%d", uvStride, data.uvStride);
     }
     
     CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
@@ -112,6 +115,7 @@
         for (int i = 0; i < data.height; i++) {
             memcpy(yBuffer + yStride * i, data.yBuffer + data.yStride * i, data.yStride);
         }
+        NSLog(@"NV12Y__%d:%d", yStride, data.yStride);
     }
     
     if (uStride == data.uStride) {
@@ -120,6 +124,7 @@
         for (int i = 0; i < data.height / 2; i++) {
             memcpy(uBuffer + uStride * i, data.uBuffer + data.uStride * i, data.uStride);
         }
+        NSLog(@"NV12U__%d:%d", uStride, data.uStride);
     }
     
     if (vStride == data.vStride) {
@@ -128,6 +133,7 @@
         for (int i = 0; i < data.height / 2; i++) {
             memcpy(vBuffer + vStride * i, data.vBuffer + data.vStride * i, data.vStride);
         }
+        NSLog(@"NV12V__%d:%d", vStride, data.vStride);
     }
     
     CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);

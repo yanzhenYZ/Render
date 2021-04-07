@@ -21,13 +21,25 @@
     return MPSSupportsMTLDevice(MTLCreateSystemDefaultDevice());
 }
 
-- (instancetype)initWithFormat:(YZVideoTFormat)format
+- (instancetype)init
 {
     self = [super init];
     if (self) {
         _device = MTLCreateSystemDefaultDevice();
         
         _commandQueue = [_device newCommandQueue];
+    }
+    return self;
+}
+
+- (instancetype)initWithFormat:(YZVideoFormat)format
+{
+    self = [super init];
+    if (self) {
+        _device = MTLCreateSystemDefaultDevice();
+        
+        _commandQueue = [_device newCommandQueue];
+        /*
         switch (format) {
             case YZVideoFormat32BGRA:
                 _library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZVertexFragment] options:NULL error:nil];
@@ -58,7 +70,7 @@
                 break;
             default:
                 break;
-        }
+        }*/
     }
     return self;
 }

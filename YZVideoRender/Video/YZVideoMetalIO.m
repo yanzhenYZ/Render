@@ -10,7 +10,7 @@
 @implementation YZVideoMetalIO
 
 - (void)displayVideo:(YZVideoData *)videoData {
-    
+    NSLog(@"M_todo");
 }
 
 - (void)setVideoShowViewInMainThread:(UIView *)view {

@@ -25,13 +25,12 @@
     self = [super init];
     if (self) {
         _device = [[YZVideoDevice alloc] init];
-//        if ([_device deviceSupport]) {
-//            _videoIO = [[YZVideoMetalIO alloc] init];
-//        } else {
-//            _videoIO = [[YZVideoSystemIO alloc] init];
-//            _device = nil;
-//        }
-        _videoIO = [[YZVideoSystemIO alloc] init];
+        if ([_device deviceSupport]) {
+            _videoIO = [[YZVideoMetalIO alloc] init];
+        } else {
+            _videoIO = [[YZVideoSystemIO alloc] init];
+            _device = nil;
+        }
     }
     return self;
 }

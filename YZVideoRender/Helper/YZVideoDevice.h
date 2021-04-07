@@ -7,13 +7,13 @@
 
 #import <Foundation/Foundation.h>
 #import <MetalPerformanceShaders/MetalPerformanceShaders.h>
-#import "YZVideoOptions.h"
+#import "YZVideoData.h"
 
 @interface YZVideoDevice : NSObject
 
 + (BOOL)isDeviceSupport;
 
--(instancetype)initWithFormat:(YZVideoTFormat)format;
+-(instancetype)initWithFormat:(YZVideoFormat)format;
 
 @property (nonatomic, strong) id<MTLDevice> device;
 @property (nonatomic, strong) id<MTLRenderPipelineState> defaultPipelineState;
