@@ -13,6 +13,8 @@
 @interface YZVideoDevice ()
 @property (nonatomic, strong) id<MTLCommandQueue> commandQueue;
 @property (nonatomic, strong) id<MTLLibrary> library;
+
+@property (nonatomic, strong) id<MTLLibrary> bgraLibrary;
 @end
 
 @implementation YZVideoDevice
@@ -117,8 +119,17 @@
     NSError *error = nil;
     id<MTLRenderPipelineState> pipeline = [_device newRenderPipelineStateWithDescriptor:desc error:&error];
     if (error) {
-        NSLog(@"YZMetalDevice new renderPipelineState failed: %@", error);
+        NSLog(@"YZVideoDevice new renderPipelineState failed: %@", error);
     }
     return pipeline;
+}
+
+#pragma mark - new display
+- (id<MTLRenderPipelineState>)getBGRAPipeline {
+    if (!_bgraLibrary) {
+        _bgraLibrary = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZVertexFragment] options:NULL error:nil];
+        assert(_bgraLibrary);
+    }
+    return [self createRenderPipeline:_bgraLibrary vertex:@"YZInputVertex" fragment:@"YZFragment"];
 }
 @end

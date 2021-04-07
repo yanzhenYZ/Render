@@ -25,6 +25,8 @@
 + (MTLRenderPassDescriptor *)newRenderPassDescriptor:(id<MTLTexture>)texture;
 - (void)newDefaultRenderPipeline;
 
+//new display
+- (id<MTLRenderPipelineState>)getBGRAPipeline;
 @end
 
 

@@ -27,6 +27,7 @@
         _device = [[YZVideoDevice alloc] init];
         if ([_device deviceSupport]) {
             _videoIO = [[YZVideoMetalIO alloc] init];
+            _videoIO.device = _device;
         } else {
             _videoIO = [[YZVideoSystemIO alloc] init];
             _device = nil;

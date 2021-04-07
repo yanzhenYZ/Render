@@ -51,13 +51,13 @@
 #pragma mark - helper
 - (void)displayPixelBuffer:(YZVideoData *)data {
     CVPixelBufferRef pixelBuffer = data.pixelBuffer;
-    if (!pixelBuffer) { return; }
+    if (!pixelBuffer || !_player) { return; }
     OSType type = CVPixelBufferGetPixelFormatType(pixelBuffer);
     if (type == kCVPixelFormatType_32BGRA) {
         if (![_format isKindOfClass:[YZMetalFormatBGRA class]]) {
-            _format = [[YZMetalFormatBGRA alloc] init];
+            _format = [[YZMetalFormatBGRA alloc] initWithDevice:self.device];
+            _format.mtkView = _player;
         }
-        NSLog(@"todo_bgra");
     } else if (type == kCVPixelFormatType_420YpCbCr8Planar) {
         NSLog(@"todo_420");
     } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
@@ -65,12 +65,13 @@
     } else if (type == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange) {
         NSLog(@"todo_video");
     }
+    [_format displayVideo:data];
 }
 
 #pragma mark - lazy var
 - (YZMTKView *)player {
     if (!_player) {
-        _player = [[YZMTKView alloc] init];
+        _player = [[YZMTKView alloc] initWithFrame:CGRectZero device:self.device.device];
         _player.layer.backgroundColor = UIColor.blackColor.CGColor;
         _player.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _player.contentMode = _contentMode;

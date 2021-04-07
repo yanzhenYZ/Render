@@ -115,7 +115,6 @@
         for (int i = 0; i < data.height; i++) {
             memcpy(yBuffer + yStride * i, data.yBuffer + data.yStride * i, data.yStride);
         }
-        NSLog(@"NV12Y__%d:%d", yStride, data.yStride);
     }
     
     if (uStride == data.uStride) {
@@ -124,7 +123,6 @@
         for (int i = 0; i < data.height / 2; i++) {
             memcpy(uBuffer + uStride * i, data.uBuffer + data.uStride * i, data.uStride);
         }
-        NSLog(@"NV12U__%d:%d", uStride, data.uStride);
     }
     
     if (vStride == data.vStride) {
@@ -133,7 +131,6 @@
         for (int i = 0; i < data.height / 2; i++) {
             memcpy(vBuffer + vStride * i, data.vBuffer + data.vStride * i, data.vStride);
         }
-        NSLog(@"NV12V__%d:%d", vStride, data.vStride);
     }
     
     CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
