@@ -49,10 +49,10 @@
             case YZVideoFormat420YpCbCr8BiPlanarFullRange:
                 _filter = [[YZFullRangeFilter alloc] initWithDevice:_device output:options.output];
                 break;
-            case YZVideoFormatI420:
+            case YZVideoTFormatI420:
                 _filter = [[YZVideoI420Filter alloc] initWithDevice:_device output:options.output];
                 break;
-            case YZVideoFormatNV21:
+            case YZVideoTFormatNV21:
                 _filter = [[YZVideoNV12Filter alloc] initWithDevice:_device output:options.output];
                 break;
             case YZVideoFormat420YpCbCr8Planar:
@@ -107,10 +107,10 @@
                 case YZVideoFormat420YpCbCr8BiPlanarFullRange:
                     _player = [[YZFullRangePlayer alloc] initWithDevice:_device];
                     break;
-                case YZVideoFormatI420:
+                case YZVideoTFormatI420:
                     _player = [[YZI420Player alloc] initWithDevice:_device];
                     break;
-                case YZVideoFormatNV21:
+                case YZVideoTFormatNV21:
                     _player = [[YZNV21Player alloc] initWithDevice:_device];
                     break;
                 case YZVideoFormat420YpCbCr8Planar:

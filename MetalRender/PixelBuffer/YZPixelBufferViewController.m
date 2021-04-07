@@ -9,7 +9,7 @@
 #import "YZPixelBufferCapture.h"
 #import <YZVideoRender/YZVideoRender.h>
 
-@interface YZPixelBufferViewController ()<YZPixelBufferCaptureDelegate, YZVideoShowDelegate>
+@interface YZPixelBufferViewController ()<YZPixelBufferCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *mainPlayer;
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
@@ -48,10 +48,10 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
 }
-#pragma mark - YZVideoShowDelegate
-- (void)videoShow:(YZVideoShow *)videoShow pixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    NSLog(@"todo:%d:%d", CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
-}
+//#pragma mark - YZVideoShowDelegate
+//- (void)videoShow:(YZVideoShow *)videoShow pixelBuffer:(CVPixelBufferRef)pixelBuffer {
+//    NSLog(@"todo:%d:%d", CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
+//}
 
 #pragma mark - YZPixelBufferCaptureDelegate
 - (void)capture:(YZPixelBufferCapture *)capture pixelBuffer:(CVPixelBufferRef)pixelBuffer {
@@ -61,7 +61,7 @@
     data.rotation = [self getOutputRotation];
     data.cropTop = 60;
     data.cropBottom = 60;
-//    [_videoShow displayVideo:data];
+    data.format = YZVideoFormatPixelBuffer;
     [_display displayVideo:data];
 }
 

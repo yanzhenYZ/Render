@@ -16,7 +16,7 @@
 @property (nonatomic, assign) CGSize size;
 
 @property (nonatomic, strong) YZTestCapture *capture;
-@property (nonatomic, strong) YZVideoShow *videoShow;
+//@property (nonatomic, strong) YZVideoShow *videoShow;
 @end
 
 @implementation YZTestViewController {
@@ -25,12 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    YZVideoOptions *options = [[YZVideoOptions alloc] init];
-    options.output = YES;
-    options.format = YZVideoFormat420YpCbCr8Planar;
-    
-    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
-    [_videoShow setVideoShowView:self.showPlayer];
+//    YZVideoOptions *options = [[YZVideoOptions alloc] init];
+//    options.output = YES;
+//    options.format = YZVideoFormat420YpCbCr8Planar;
+//
+//    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+//    [_videoShow setVideoShowView:self.showPlayer];
     
     _capture = [[YZTestCapture alloc] initWithPlayer:_mainPlayer];
     _capture.delegate = self;
@@ -121,7 +121,7 @@
     data.rotation = [self getOutputRotation];
     data.cropTop = 60;
     data.cropBottom = 60;
-    [_videoShow displayVideo:data];
+//    [_videoShow displayVideo:data];
     
     free(uBuffer);
     free(vBuffer);
@@ -161,7 +161,7 @@
     data.vStride = uvBytesPow / 2;
     data.vBuffer = vBuffer;
     data.rotation = [self getOutputRotation];
-    [_videoShow displayVideo:data];
+//    [_videoShow displayVideo:data];
     
     free(uBuffer);
     free(vBuffer);
@@ -171,7 +171,7 @@
     YZVideoData *data = [[YZVideoData alloc] init];
     data.pixelBuffer = pixelBuffer;
     data.rotation = [self getOutputRotation];
-    [_videoShow displayVideo:data];
+//    [_videoShow displayVideo:data];
 }
 
 - (YZVideoRotation)getOutputRotation {//test code

@@ -13,7 +13,7 @@
 
 + (BOOL)isDeviceSupport;
 
--(instancetype)initWithFormat:(YZVideoFormat)format;
+-(instancetype)initWithFormat:(YZVideoTFormat)format;
 
 @property (nonatomic, strong) id<MTLDevice> device;
 @property (nonatomic, strong) id<MTLRenderPipelineState> defaultPipelineState;

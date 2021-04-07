@@ -24,10 +24,10 @@ typedef enum : NSInteger {
  */
 + (BOOL)isSupportAdditionalFeatures;
 
-- (void)displayVideo:(YZVideoData *)videoData; //show video
-
 - (void)setVideoShowView:(UIView *)view; //set video show view
 - (void)setViewFillMode:(YZVideoFillMode)mode; //see YZVideoFillMode
+
+- (void)displayVideo:(YZVideoData *)videoData; //show video
 @end
 
 

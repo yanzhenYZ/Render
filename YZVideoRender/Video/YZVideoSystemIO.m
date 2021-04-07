@@ -15,7 +15,7 @@
 
 @implementation YZVideoSystemIO
 - (void)displayVideo:(YZVideoData *)videoData {
-    if (videoData.pixelBuffer) {
+    if (videoData.format == YZVideoFormatPixelBuffer) {
         [_player displayVideo:videoData.pixelBuffer];
     } else {
         NSLog(@"todo--001");

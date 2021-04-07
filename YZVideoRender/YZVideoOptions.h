@@ -10,14 +10,14 @@ typedef enum : NSUInteger {
     /** kCVPixelFormatType_420YpCbCr8Planar  */
     YZVideoFormat420YpCbCr8Planar,
     /** I420 */
-    YZVideoFormatI420,
+    YZVideoTFormatI420,
     /** NV21 */
-    YZVideoFormatNV21,
-} YZVideoFormat;
+    YZVideoTFormatNV21,
+} YZVideoTFormat;
 
 @interface YZVideoOptions : NSObject
 /** see YZVideoFormat */
-@property (nonatomic, assign) YZVideoFormat format;
+@property (nonatomic, assign) YZVideoTFormat format;
 
 @property (nonatomic, assign) BOOL output;//output BGRA CVPixelbuffer
 @end

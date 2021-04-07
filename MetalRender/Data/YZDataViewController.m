@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
 @property (nonatomic, strong) YZDataCapture *capture;
-@property (nonatomic, strong) YZVideoShow *videoShow;
+//@property (nonatomic, strong) YZVideoShow *videoShow;
 @end
 
 @implementation YZDataViewController
@@ -24,15 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    YZVideoOptions *options = [[YZVideoOptions alloc] init];
-    options.output = YES;
-#if I420
-    options.format = YZVideoFormatI420;
-#else
-    options.format = YZVideoFormatNV21;
-#endif
-    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
-    [_videoShow setVideoShowView:self.showPlayer];
+//    YZVideoOptions *options = [[YZVideoOptions alloc] init];
+//    options.output = YES;
+//#if I420
+//    options.format = YZVideoFormatI420;
+//#else
+//    options.format = YZVideoFormatNV21;
+//#endif
+//    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+//    [_videoShow setVideoShowView:self.showPlayer];
     
     _capture = [[YZDataCapture alloc] initWithPlayer:_mainPlayer];
     _capture.delegate = self;
@@ -74,7 +74,7 @@
     data.cropTop = 60;
     data.cropBottom = 60;
     data.rotation = [self getOutputRotation];
-    [_videoShow displayVideo:data];
+//    [_videoShow displayVideo:data];
 }
 
 - (void)testI420:(CVPixelBufferRef)pixelBuffer {
@@ -113,7 +113,7 @@
     data.rotation = [self getOutputRotation];
     data.cropTop = 60;
     data.cropBottom = 60;
-    [_videoShow displayVideo:data];
+//    [_videoShow displayVideo:data];
     
     free(uBuffer);
     free(vBuffer);
@@ -123,7 +123,7 @@
     YZVideoData *data = [[YZVideoData alloc] init];
     data.pixelBuffer = pixelBuffer;
     data.rotation = [self getOutputRotation];
-    [_videoShow displayVideo:data];
+//    [_videoShow displayVideo:data];
 }
 
 - (YZVideoRotation)getOutputRotation {//test code

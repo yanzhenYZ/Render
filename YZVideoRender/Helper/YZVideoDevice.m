@@ -21,7 +21,7 @@
     return MPSSupportsMTLDevice(MTLCreateSystemDefaultDevice());
 }
 
-- (instancetype)initWithFormat:(YZVideoFormat)format
+- (instancetype)initWithFormat:(YZVideoTFormat)format
 {
     self = [super init];
     if (self) {
@@ -41,12 +41,12 @@
                 _pipelineState = [self createRenderPipeline:_library vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionVideoRangeFragment"];
                 break;
             case YZVideoFormat420YpCbCr8BiPlanarFullRange:
-            case YZVideoFormatNV21:
+            case YZVideoTFormatNV21:
                 _library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZYUVToRGBString] options:NULL error:nil];
                 assert(_library);
                 _pipelineState = [self createRenderPipeline:_library vertex:@"YZYUVToRGBVertex" fragment:@"YZYUVConversionFullRangeFragment"];
                 break;
-            case YZVideoFormatI420:
+            case YZVideoTFormatI420:
                 _library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZI420MetalString] options:NULL error:nil];
                 assert(_library);
                 _pipelineState = [self createRenderPipeline:_library vertex:@"YZYUVDataToRGBVertex" fragment:@"YZYUVDataConversionFullRangeFragment"];

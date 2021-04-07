@@ -8,7 +8,24 @@ typedef enum : NSUInteger {
     YZVideoRotation270 = 270,
 } YZVideoRotation;
 
+typedef enum : NSUInteger {
+    /** support 
+     kCVPixelFormatType_32BGRA
+     kCVPixelFormatType_420YpCbCr8Planar
+     kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
+     kCVPixelFormatType_420YpCbCr8BiPlanarFullRange
+     */
+    YZVideoFormatPixelBuffer,
+    /** I420 */
+    YZVideoFormatI420,
+    /** NV21 */
+    YZVideoFormatNV21,
+} YZVideoFormat;
+
 @interface YZVideoData : NSObject
+/** see YZVideoFormat */
+@property (nonatomic, assign) YZVideoFormat format;
+
 /** see YZVideoFormat */
 @property (nonatomic, assign) CVPixelBufferRef pixelBuffer;
 
