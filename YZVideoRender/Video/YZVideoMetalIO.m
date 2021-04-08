@@ -10,6 +10,8 @@
 #import "YZMetalFormatFullRange.h"
 #import "YZMetalFormatBGRA.h"
 #import "YZMetalFormatY420.h"
+#import "YZMetalFormatI420.h"
+#import "YZMetalFormatNV12.h"
 #import "YZMTKView.h"
 
 @interface YZVideoMetalIO ()<MTKViewDelegate>
@@ -25,9 +27,19 @@
     if (videoData.format == YZVideoFormatPixelBuffer) {
         [self displayPixelBuffer:videoData];
     } else if (videoData.format == YZVideoFormatI420) {
-        
+        if (!_player) { return; }
+        if (![_format isKindOfClass:[YZMetalFormatI420 class]]) {
+            _format = [[YZMetalFormatI420 alloc] initWithDevice:self.device];
+            _format.mtkView = _player;
+        }
+        [_format displayVideo:videoData];
     } else if (videoData.format == YZVideoFormatNV12) {
-        
+        if (!_player) { return; }
+        if (![_format isKindOfClass:[YZMetalFormatNV12 class]]) {
+            _format = [[YZMetalFormatNV12 alloc] initWithDevice:self.device];
+            _format.mtkView = _player;
+        }
+        [_format displayVideo:videoData];
     }
 }
 

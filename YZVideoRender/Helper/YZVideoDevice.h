@@ -27,8 +27,6 @@
 - (id<MTLRenderPipelineState>)getVideoRangePipeline;
 - (id<MTLRenderPipelineState>)getFullRangePipeline;
 - (id<MTLRenderPipelineState>)getY420Pipeline;
-- (id<MTLRenderPipelineState>)getI420Pipeline;
-- (id<MTLRenderPipelineState>)getNV12Pipeline;
 @end
 
 

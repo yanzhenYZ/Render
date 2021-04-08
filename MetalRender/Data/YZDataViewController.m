@@ -99,6 +99,7 @@
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
     
     YZVideoData *data = [[YZVideoData alloc] init];
+    data.format = YZVideoFormatI420;
     data.width = (int)yWidth;
     data.height = (int)yheight;
     data.yStride = (int)yBytesPow;

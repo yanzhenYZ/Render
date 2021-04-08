@@ -133,7 +133,4 @@
     return [self createRenderPipeline:_y420Library vertex:@"YZYUVDataToRGBVertex" fragment:@"YZYUVDataConversionFullRangeFragment"];
 }
 
-//- (id<MTLRenderPipelineState>)getNV12Pipeline {
-//    
-//}
 @end
