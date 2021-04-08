@@ -14,8 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
 @property (nonatomic, strong) YZPixelBufferCapture *capture;
-//@property (nonatomic, strong) YZVideoShow *videoShow;
-@property (nonatomic, strong) YZVideoShow *display;
+//@property (nonatomic, strong) YXVideoShow *videoShow;
+@property (nonatomic, strong) YXVideoShow *display;
 @end
 
 @implementation YZPixelBufferViewController
@@ -26,17 +26,17 @@
 //    YZVideoOptions *options = [[YZVideoOptions alloc] init];
 //    options.output = YES;
 //    if (VIDEOTYPE == 0) {
-//        options.format = YZVideoFormat32BGRA;
+//        options.format = YXVideoFormat32BGRA;
 //    } else if (VIDEOTYPE == 1) {
-//        options.format = YZVideoFormat420YpCbCr8BiPlanarVideoRange;
+//        options.format = YXVideoFormat420YpCbCr8BiPlanarVideoRange;
 //    } else if (VIDEOTYPE == 2) {
-//        options.format = YZVideoFormat420YpCbCr8BiPlanarFullRange;
+//        options.format = YXVideoFormat420YpCbCr8BiPlanarFullRange;
 //    }
-//    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+//    _videoShow = [[YXVideoShow alloc] initWithOptions:options];
 //    _videoShow.delegate = self;
 //    [_videoShow setVideoShowView:self.showPlayer];
     
-    _display = [[YZVideoShow alloc] init];
+    _display = [[YXVideoShow alloc] init];
     [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
     [_display setVideoShowView:self.showPlayer];
     
@@ -49,35 +49,35 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
 }
-//#pragma mark - YZVideoShowDelegate
-//- (void)videoShow:(YZVideoShow *)videoShow pixelBuffer:(CVPixelBufferRef)pixelBuffer {
+//#pragma mark - YXVideoShowDelegate
+//- (void)videoShow:(YXVideoShow *)videoShow pixelBuffer:(CVPixelBufferRef)pixelBuffer {
 //    NSLog(@"todo:%d:%d", CVPixelBufferGetWidth(pixelBuffer), CVPixelBufferGetHeight(pixelBuffer));
 //}
 
 #pragma mark - YZPixelBufferCaptureDelegate
 - (void)capture:(YZPixelBufferCapture *)capture pixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    //NSLog(@"___%d", [YZVideoShow YZDeviceSupport]);
-    YZVideoData *data = [[YZVideoData alloc] init];
+    //NSLog(@"___%d", [YXVideoShow YZDeviceSupport]);
+    YXVideoData *data = [[YXVideoData alloc] init];
     data.pixelBuffer = pixelBuffer;
     data.rotation = [self getOutputRotation];
     data.cropTop = 60;
     data.cropBottom = 60;
-    data.format = YZVideoFormatPixelBuffer;
+    data.format = YXVideoFormatPixelBuffer;
     [_display displayVideo:data];
 }
 
-- (YZVideoRotation)getOutputRotation {//test code
-    YZVideoRotation ratation = YZVideoRotation0;
+- (YXVideoRotation)getOutputRotation {//test code
+    YXVideoRotation ratation = YXVideoRotation0;
     UIInterfaceOrientation orientation = UIApplication.sharedApplication.statusBarOrientation;
     switch (orientation) {
         case UIInterfaceOrientationPortrait:
-            return YZVideoRotation90;
+            return YXVideoRotation90;
             break;
         case UIInterfaceOrientationPortraitUpsideDown:
-            return YZVideoRotation270;
+            return YXVideoRotation270;
             break;
         case UIInterfaceOrientationLandscapeRight:
-            return YZVideoRotation180;
+            return YXVideoRotation180;
             break;
         default:
             break;

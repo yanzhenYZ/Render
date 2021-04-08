@@ -9,7 +9,7 @@
 
 @implementation YZVideoIO
 
-- (void)displayVideo:(YZVideoData *)videoData {
+- (void)displayVideo:(YXVideoData *)videoData {
     
 }
 

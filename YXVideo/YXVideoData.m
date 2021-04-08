@@ -1,12 +1,12 @@
 //
-//  YZVideoData.m
+//  YXVideoData.m
 //  YZVideoRender
 //
 //  Created by yanzhen on 2021/3/12.
 //
 
-#import "YZVideoData.h"
+#import "YXVideoData.h"
 
-@implementation YZVideoData
+@implementation YXVideoData
 
 @end

@@ -17,23 +17,23 @@
 @interface YZVideoMetalIO ()<MTKViewDelegate>
 @property (nonatomic, strong) YZMTKView *player;
 @property (nonatomic, strong) YZMetalFormat *format;
-@property (nonatomic, assign) YZVideoFormat videFormat;
+@property (nonatomic, assign) YXVideoFormat videFormat;
 @property (nonatomic, assign) UIViewContentMode contentMode;
 @end
 
 @implementation YZVideoMetalIO
 
-- (void)displayVideo:(YZVideoData *)videoData {
-    if (videoData.format == YZVideoFormatPixelBuffer) {
+- (void)displayVideo:(YXVideoData *)videoData {
+    if (videoData.format == YXVideoFormatPixelBuffer) {
         [self displayPixelBuffer:videoData];
-    } else if (videoData.format == YZVideoFormatI420) {
+    } else if (videoData.format == YXVideoFormatI420) {
         if (!_player) { return; }
         if (![_format isKindOfClass:[YZMetalFormatI420 class]]) {
             _format = [[YZMetalFormatI420 alloc] initWithDevice:self.device];
             _format.mtkView = _player;
         }
         [_format displayVideo:videoData];
-    } else if (videoData.format == YZVideoFormatNV12) {
+    } else if (videoData.format == YXVideoFormatNV12) {
         if (!_player) { return; }
         if (![_format isKindOfClass:[YZMetalFormatNV12 class]]) {
             _format = [[YZMetalFormatNV12 alloc] initWithDevice:self.device];
@@ -61,7 +61,7 @@
 }
 
 #pragma mark - helper
-- (void)displayPixelBuffer:(YZVideoData *)data {
+- (void)displayPixelBuffer:(YXVideoData *)data {
     CVPixelBufferRef pixelBuffer = data.pixelBuffer;
     if (!pixelBuffer || !_player) { return; }
     OSType type = CVPixelBufferGetPixelFormatType(pixelBuffer);

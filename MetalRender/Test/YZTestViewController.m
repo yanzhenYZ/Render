@@ -16,7 +16,7 @@
 @property (nonatomic, assign) CGSize size;
 
 @property (nonatomic, strong) YZTestCapture *capture;
-//@property (nonatomic, strong) YZVideoShow *videoShow;
+//@property (nonatomic, strong) YXVideoShow *videoShow;
 @end
 
 @implementation YZTestViewController {
@@ -27,9 +27,9 @@
     [super viewDidLoad];
 //    YZVideoOptions *options = [[YZVideoOptions alloc] init];
 //    options.output = YES;
-//    options.format = YZVideoFormat420YpCbCr8Planar;
+//    options.format = YXVideoFormat420YpCbCr8Planar;
 //
-//    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+//    _videoShow = [[YXVideoShow alloc] initWithOptions:options];
 //    [_videoShow setVideoShowView:self.showPlayer];
     
     _capture = [[YZTestCapture alloc] initWithPlayer:_mainPlayer];
@@ -116,7 +116,7 @@
     memcpy(vB, vBuffer, width * height / 4);
     CVPixelBufferUnlockBaseAddress(_pixelBuffer, 0);
     
-    YZVideoData *data = [[YZVideoData alloc] init];
+    YXVideoData *data = [[YXVideoData alloc] init];
     data.pixelBuffer = _pixelBuffer;
     data.rotation = [self getOutputRotation];
     data.cropTop = 60;
@@ -142,7 +142,7 @@
     //NSLog(@"___1234:%d:%d:%d", uvWidth, uvheight, uvBytesPow);
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
     
-    YZVideoData *data = [[YZVideoData alloc] init];
+    YXVideoData *data = [[YXVideoData alloc] init];
     data.width = (int)yWidth;
     data.height = (int)yheight;
     data.yStride = (int)yBytesPow;
@@ -168,24 +168,24 @@
 }
 
 - (void)test:(CVPixelBufferRef)pixelBuffer  {
-    YZVideoData *data = [[YZVideoData alloc] init];
+    YXVideoData *data = [[YXVideoData alloc] init];
     data.pixelBuffer = pixelBuffer;
     data.rotation = [self getOutputRotation];
 //    [_videoShow displayVideo:data];
 }
 
-- (YZVideoRotation)getOutputRotation {//test code
-    YZVideoRotation ratation = YZVideoRotation0;
+- (YXVideoRotation)getOutputRotation {//test code
+    YXVideoRotation ratation = YXVideoRotation0;
     UIInterfaceOrientation orientation = UIApplication.sharedApplication.statusBarOrientation;
     switch (orientation) {
         case UIInterfaceOrientationPortrait:
-            return YZVideoRotation90;
+            return YXVideoRotation90;
             break;
         case UIInterfaceOrientationPortraitUpsideDown:
-            return YZVideoRotation270;
+            return YXVideoRotation270;
             break;
         case UIInterfaceOrientationLandscapeRight:
-            return YZVideoRotation180;
+            return YXVideoRotation180;
             break;
         default:
             break;

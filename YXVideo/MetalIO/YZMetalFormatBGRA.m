@@ -21,7 +21,7 @@
     return self;
 }
 
-- (void)displayVideo:(YZVideoData *)videoData {
+- (void)displayVideo:(YXVideoData *)videoData {
     CVPixelBufferRef pixelBuffer = videoData.pixelBuffer;
     size_t width = CVPixelBufferGetWidth(pixelBuffer);
     size_t height = CVPixelBufferGetHeight(pixelBuffer);

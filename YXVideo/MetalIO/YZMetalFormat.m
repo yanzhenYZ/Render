@@ -30,13 +30,13 @@
     return self;
 }
 
-- (void)displayVideo:(YZVideoData *)videoData { }
+- (void)displayVideo:(YXVideoData *)videoData { }
 
 - (simd_float8)getTextureCoordinates {
     return [YZVFOrientation getCropRotationTextureCoordinates:_rotation crop:_cropRect];
 }
 
-- (void)draw:(size_t)width height:(size_t)height videoData:(YZVideoData *)data {
+- (void)draw:(size_t)width height:(size_t)height videoData:(YXVideoData *)data {
     self.rotation = (int)data.rotation;
     size_t w = width;
     size_t h = height;
@@ -52,7 +52,7 @@
 }
 
 #pragma mark - helper
-- (CGRect)getCropWith:(CGFloat)width heigth:(CGFloat)height videoData:(YZVideoData *)data {
+- (CGRect)getCropWith:(CGFloat)width heigth:(CGFloat)height videoData:(YXVideoData *)data {
     CGFloat x = data.cropLeft / width;
     CGFloat y = data.cropTop / height;
     CGFloat w =  1 - x - data.cropRight / width;

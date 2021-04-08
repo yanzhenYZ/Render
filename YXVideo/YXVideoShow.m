@@ -1,21 +1,21 @@
 //
-//  YZVideoShow.m
+//  YXVideoShow.m
 //  YZVideoRender
 //
 //  Created by yanzhen on 2021/4/7.
 //
 
-#import "YZVideoShow.h"
+#import "YXVideoShow.h"
 #import "YZVideoDevice.h"
 #import "YZVideoSystemIO.h"
 #import "YZVideoMetalIO.h"
 
-@interface YZVideoShow ()
+@interface YXVideoShow ()
 @property (nonatomic, strong) YZVideoDevice *device;
 @property (nonatomic, strong) YZVideoIO *videoIO;
 @end
 
-@implementation YZVideoShow
+@implementation YXVideoShow
 + (BOOL)isSupportAdditionalFeatures {
     return [YZVideoDevice isDeviceSupport];
 }
@@ -36,18 +36,18 @@
     return self;
 }
 
-- (void)displayVideo:(YZVideoData *)videoData {
+- (void)displayVideo:(YXVideoData *)videoData {
     [_videoIO displayVideo:videoData];
 }
 
 - (void)setVideoShowView:(UIView *)view {
-    [YZVideoShow syncMainThread:^{
+    [YXVideoShow syncMainThread:^{
         [self.videoIO setVideoShowViewInMainThread:view];
     }];
 }
 
 - (void)setViewFillMode:(YZVideoFillMode)mode {
-    [YZVideoShow syncMainThread:^{
+    [YXVideoShow syncMainThread:^{
         [self.videoIO setContentModeInMainThread:(UIViewContentMode)mode];
     }];
 }

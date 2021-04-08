@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <Metal/Metal.h>
 #import "YZVideoDevice.h"
-#import "YZVideoData.h"
+#import "YXVideoData.h"
 #import "YZMTKView.h"
 
 @interface YZMetalFormat : NSObject
@@ -19,11 +19,11 @@
 
 - (instancetype)initWithDevice:(YZVideoDevice *)device;
 
-- (void)displayVideo:(YZVideoData *)videoData;
+- (void)displayVideo:(YXVideoData *)videoData;
 
 - (simd_float8)getTextureCoordinates;
 - (void)drawTexture:(id <CAMetalDrawable>)currentDrawable;
-- (void)draw:(size_t)width height:(size_t)height videoData:(YZVideoData *)data;
+- (void)draw:(size_t)width height:(size_t)height videoData:(YXVideoData *)data;
 @end
 
 

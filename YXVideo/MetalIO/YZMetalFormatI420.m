@@ -24,7 +24,7 @@
     return self;
 }
 
-- (void)displayVideo:(YZVideoData *)videoData {
+- (void)displayVideo:(YXVideoData *)videoData {
     int width = videoData.width;
     int height = videoData.height;
     MTLTextureDescriptor *yDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatR8Unorm width:width height:height mipmapped:NO];

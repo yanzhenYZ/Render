@@ -11,7 +11,7 @@
 @interface YZVideoSystemIO ()
 @property (nonatomic, strong) YZSystemPlayer *player;
 @property (nonatomic, assign) UIViewContentMode contentMode;
-@property (nonatomic, assign) YZVideoFormat format;
+@property (nonatomic, assign) YXVideoFormat format;
 @end
 
 @implementation YZVideoSystemIO {
@@ -26,19 +26,19 @@
     }
 }
 
-- (void)displayVideo:(YZVideoData *)videoData {
-    if (videoData.format == YZVideoFormatPixelBuffer) {
+- (void)displayVideo:(YXVideoData *)videoData {
+    if (videoData.format == YXVideoFormatPixelBuffer) {
         [_player displayVideo:videoData.pixelBuffer];
-    } else if (videoData.format == YZVideoFormatNV12) {
-        if (_format != YZVideoFormatNV12) {
+    } else if (videoData.format == YXVideoFormatNV12) {
+        if (_format != YXVideoFormatNV12) {
             if (_pixelBuffer) {
                 CVPixelBufferRelease(_pixelBuffer);
                 _pixelBuffer = nil;
             }
         }
         [self displayNV12Video:videoData];
-    } else if (videoData.format == YZVideoFormatI420) {
-        if (_format != YZVideoFormatI420) {
+    } else if (videoData.format == YXVideoFormatI420) {
+        if (_format != YXVideoFormatI420) {
             if (_pixelBuffer) {
                 CVPixelBufferRelease(_pixelBuffer);
                 _pixelBuffer = nil;
@@ -68,7 +68,7 @@
 }
 
 #pragma mark - private helper
-- (void)displayNV12Video:(YZVideoData *)data {
+- (void)displayNV12Video:(YXVideoData *)data {
     [self createNV12PixelBuffer:data];
     if (!_pixelBuffer) { return; }
     CVPixelBufferLockBaseAddress(_pixelBuffer, 0);
@@ -98,7 +98,7 @@
     [_player displayVideo:_pixelBuffer];
 }
 
-- (void)displayI420Video:(YZVideoData *)data {
+- (void)displayI420Video:(YXVideoData *)data {
     [self createI420PixelBuffer:data];
     if (!_pixelBuffer) { return; }
     CVPixelBufferLockBaseAddress(_pixelBuffer, 0);
@@ -138,7 +138,7 @@
     [_player displayVideo:_pixelBuffer];
 }
 
-- (void)createI420PixelBuffer:(YZVideoData *)data {
+- (void)createI420PixelBuffer:(YXVideoData *)data {
     if (_pixelBuffer) {
         size_t width = CVPixelBufferGetWidth(_pixelBuffer);
         size_t height = CVPixelBufferGetHeight(_pixelBuffer);
@@ -161,7 +161,7 @@
     }
 }
 
-- (void)createNV12PixelBuffer:(YZVideoData *)data {
+- (void)createNV12PixelBuffer:(YXVideoData *)data {
     if (_pixelBuffer) {
         size_t width = CVPixelBufferGetWidth(_pixelBuffer);
         size_t height = CVPixelBufferGetHeight(_pixelBuffer);

@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *showPlayer;
 
 @property (nonatomic, strong) YZDataCapture *capture;
-@property (nonatomic, strong) YZVideoShow *display;
+@property (nonatomic, strong) YXVideoShow *display;
 @end
 
 @implementation YZDataViewController
@@ -27,14 +27,14 @@
 //    YZVideoOptions *options = [[YZVideoOptions alloc] init];
 //    options.output = YES;
 //#if I420
-//    options.format = YZVideoFormatI420;
+//    options.format = YXVideoFormatI420;
 //#else
-//    options.format = YZVideoFormatNV21;
+//    options.format = YXVideoFormatNV21;
 //#endif
-//    _videoShow = [[YZVideoShow alloc] initWithOptions:options];
+//    _videoShow = [[YXVideoShow alloc] initWithOptions:options];
 //    [_videoShow setVideoShowView:self.showPlayer];
     
-    _display = [[YZVideoShow alloc] init];
+    _display = [[YXVideoShow alloc] init];
     [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
     [_display setVideoShowView:self.showPlayer];
     
@@ -66,8 +66,8 @@
     size_t uvBytesPow = CVPixelBufferGetBytesPerRowOfPlane(pixelBuffer, 1);
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
     
-    YZVideoData *data = [[YZVideoData alloc] init];
-    data.format = YZVideoFormatNV12;
+    YXVideoData *data = [[YXVideoData alloc] init];
+    data.format = YXVideoFormatNV12;
     data.width = (int)CVPixelBufferGetWidth(pixelBuffer);
     data.height = (int)CVPixelBufferGetHeight(pixelBuffer);
     data.yStride = (int)yBytesPow;
@@ -98,8 +98,8 @@
     //NSLog(@"___1234:%d:%d:%d", uvWidth, uvheight, uvBytesPow);
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
     
-    YZVideoData *data = [[YZVideoData alloc] init];
-    data.format = YZVideoFormatI420;
+    YXVideoData *data = [[YXVideoData alloc] init];
+    data.format = YXVideoFormatI420;
     data.width = (int)yWidth;
     data.height = (int)yheight;
     data.yStride = (int)yBytesPow;
@@ -112,7 +112,7 @@
         uBuffer[i] = uvBuffer[2*i];
         vBuffer[i] = uvBuffer[2*i+1];
     }
-    data.format = YZVideoFormatI420;
+    data.format = YXVideoFormatI420;
     data.uStride = uvBytesPow / 2;
     data.uBuffer = uBuffer;
     data.vStride = uvBytesPow / 2;
@@ -127,24 +127,24 @@
 }
 
 - (void)test:(CVPixelBufferRef)pixelBuffer  {
-    YZVideoData *data = [[YZVideoData alloc] init];
+    YXVideoData *data = [[YXVideoData alloc] init];
     data.pixelBuffer = pixelBuffer;
     data.rotation = [self getOutputRotation];
 //    [_videoShow displayVideo:data];
 }
 
-- (YZVideoRotation)getOutputRotation {//test code
-    YZVideoRotation ratation = YZVideoRotation0;
+- (YXVideoRotation)getOutputRotation {//test code
+    YXVideoRotation ratation = YXVideoRotation0;
     UIInterfaceOrientation orientation = UIApplication.sharedApplication.statusBarOrientation;
     switch (orientation) {
         case UIInterfaceOrientationPortrait:
-            return YZVideoRotation90;
+            return YXVideoRotation90;
             break;
         case UIInterfaceOrientationPortraitUpsideDown:
-            return YZVideoRotation270;
+            return YXVideoRotation270;
             break;
         case UIInterfaceOrientationLandscapeRight:
-            return YZVideoRotation180;
+            return YXVideoRotation180;
             break;
         default:
             break;

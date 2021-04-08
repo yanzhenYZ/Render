@@ -7,12 +7,12 @@
 
 #import <UIKit/UIKit.h>
 #import "YZVideoDevice.h"
-#import "YZVideoData.h"
+#import "YXVideoData.h"
 
 @interface YZVideoIO : NSObject
 @property (nonatomic, strong) YZVideoDevice *device;
 
-- (void)displayVideo:(YZVideoData *)videoData;
+- (void)displayVideo:(YXVideoData *)videoData;
 
 - (void)setVideoShowViewInMainThread:(UIView *)view;
 

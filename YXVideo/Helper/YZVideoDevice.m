@@ -35,7 +35,7 @@
     return self;
 }
 
-- (instancetype)initWithFormat:(YZVideoFormat)format
+- (instancetype)initWithFormat:(YXVideoFormat)format
 {
     self = [super init];
     if (self) {
@@ -49,7 +49,7 @@
                 assert(_library);
                 _pipelineState = [self createRenderPipeline:_library vertex:@"YZYUVDataToRGBVertex" fragment:@"YZYUVDataConversionFullRangeFragment"];
                 break;
-            case YZVideoFormat420YpCbCr8Planar://todo
+            case YXVideoFormat420YpCbCr8Planar://todo
                 _library = [_device newLibraryWithSource:[NSString stringWithUTF8String:YZI420MetalString] options:NULL error:nil];
                 assert(_library);
                 _pipelineState = [self createRenderPipeline:_library vertex:@"YZYUVDataToRGBVertex" fragment:@"YZYUVDataConversionFullRangeFragment"];

@@ -7,13 +7,13 @@
 
 #import <Foundation/Foundation.h>
 #import <MetalPerformanceShaders/MetalPerformanceShaders.h>
-#import "YZVideoData.h"
+#import "YXVideoData.h"
 
 @interface YZVideoDevice : NSObject
 
 + (BOOL)isDeviceSupport;
 
--(instancetype)initWithFormat:(YZVideoFormat)format;
+-(instancetype)initWithFormat:(YXVideoFormat)format;
 
 @property (nonatomic, strong) id<MTLDevice> device;
 
