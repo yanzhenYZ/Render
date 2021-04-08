@@ -37,7 +37,7 @@
 //    [_videoShow setVideoShowView:self.showPlayer];
     
     _display = [[YXVideoShow alloc] init];
-    [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
+    [_display setViewFillMode:YXVideoFillModeScaleAspectFit];
     [_display setVideoShowView:self.showPlayer];
     
     _capture = [[YZPixelBufferCapture alloc] initWithPlayer:_mainPlayer];
@@ -47,7 +47,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [_display setViewFillMode:YZVideoFillModeScaleAspectFit];
+    [_display setViewFillMode:YXVideoFillModeScaleAspectFit];
 }
 //#pragma mark - YXVideoShowDelegate
 //- (void)videoShow:(YXVideoShow *)videoShow pixelBuffer:(CVPixelBufferRef)pixelBuffer {

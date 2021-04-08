@@ -46,7 +46,7 @@
     }];
 }
 
-- (void)setViewFillMode:(YZVideoFillMode)mode {
+- (void)setViewFillMode:(YXVideoFillMode)mode {
     [YXVideoShow syncMainThread:^{
         [self.videoIO setContentModeInMainThread:(UIViewContentMode)mode];
     }];
