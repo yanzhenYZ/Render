@@ -7,7 +7,7 @@
 
 #import "YZTestViewController.h"
 #import "YZTestCapture.h"
-#import <YZVideoRender/YZVideoRender.h>
+#import <YXVideo/YXVideo.h>
 
 @interface YZTestViewController ()<YZTestCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *mainPlayer;

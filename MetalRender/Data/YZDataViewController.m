@@ -7,7 +7,7 @@
 
 #import "YZDataViewController.h"
 #import "YZDataCapture.h"
-#import <YZVideoRender/YZVideoRender.h>
+#import <YXVideo/YXVideo.h>
 
 #define I420 0
 

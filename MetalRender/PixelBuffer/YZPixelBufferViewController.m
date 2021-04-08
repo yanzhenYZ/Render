@@ -7,7 +7,7 @@
 
 #import "YZPixelBufferViewController.h"
 #import "YZPixelBufferCapture.h"
-#import <YZVideoRender/YZVideoRender.h>
+#import <YXVideo/YXVideo.h>
 
 @interface YZPixelBufferViewController ()<YZPixelBufferCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *mainPlayer;
