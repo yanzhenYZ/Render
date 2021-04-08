@@ -62,6 +62,7 @@
     data.rotation = [self getOutputRotation];
     data.cropTop = 60;
     data.cropBottom = 60;
+    data.mirror = YES;
     data.format = YXVideoFormatPixelBuffer;
     [_display displayVideo:data];
 }

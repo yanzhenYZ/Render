@@ -9,7 +9,7 @@
 #import "YZVFOrientation.h"
 
 @interface YZMetalFormat ()
-@property (nonatomic, assign) int rotation;
+@property (nonatomic, strong) YXVideoData *videoData;
 @property (nonatomic, assign) CGRect cropRect;
 @end
 
@@ -34,17 +34,23 @@
 - (void)drawTexture:(id<CAMetalDrawable>)currentDrawable { }
 
 - (simd_float8)getTextureCoordinates {
-    return [YZVFOrientation getCropRotationTextureCoordinates:_rotation crop:_cropRect];
+    simd_float8 t = [YZVFOrientation getCropRotationTextureCoordinates:(int)_videoData.rotation crop:_cropRect];
+    if (_videoData.mirror) {
+        simd_float8 mirror = {t[2], t[3], t[0], t[1], t[6], t[7], t[4], t[5]};
+        return mirror;//todo
+    } else {
+        return t;
+    }
 }
 
 - (void)draw:(size_t)width height:(size_t)height videoData:(YXVideoData *)data {
-    self.rotation = (int)data.rotation;
+    _videoData = data;
     size_t w = width;
     size_t h = height;
     _cropRect = [self getCropWith:width heigth:height videoData:data];
     w = width - data.cropLeft - data.cropRight;
     h = height - data.cropTop - data.cropBottom;
-    if (_rotation == 90 || _rotation == 270) {
+    if (data.rotation == 90 || data.rotation == 270) {
         self.mtkView.drawableSize = CGSizeMake(h, w);
     } else {
         self.mtkView.drawableSize = CGSizeMake(w, h);
