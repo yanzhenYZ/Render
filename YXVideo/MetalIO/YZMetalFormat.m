@@ -31,6 +31,7 @@
 }
 
 - (void)displayVideo:(YXVideoData *)videoData { }
+- (void)drawTexture:(id<CAMetalDrawable>)currentDrawable { }
 
 - (simd_float8)getTextureCoordinates {
     return [YZVFOrientation getCropRotationTextureCoordinates:_rotation crop:_cropRect];
